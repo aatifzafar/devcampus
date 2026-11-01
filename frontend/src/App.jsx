@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from './components/Sidebar';
+import Sidebar, { MobileNav, SectionTabs } from './components/Sidebar';
+import { PLACEHOLDERS, sectionOf, setNavRole } from './navigation';
+import Login from './components/faculty/Login';
+import { FACULTY } from './data/facultyData';
 import Navbar from './components/Navbar';
-import DashboardOverview from './components/DashboardOverview';
+import HomeOverview from './components/HomeOverview';
 import StudyGroups from './components/StudyGroups';
-import PYQPortal from './components/PYQPortal';
-import AlumniDirectory from './components/AlumniDirectory';
-import AIChatbot from './components/AIChatbot';
-import ThreeDViewer from './components/ThreeDViewer';
-import CoursesView from './components/CoursesView';
+import SubjectsView from './components/SubjectsView';
+import NotesView from './components/NotesView';
+import CourseView from './components/CourseView';
+import { Page, PAGES } from './components/pages';
+import { AskAlliance } from './components/features/AskAlliance';
 import { api } from './utils/api';
+import { AUTH_EVENT, SYNC_ERROR, getUser as getSessionUser, loadState, openStream, refreshUser, signOut } from './utils/session';
+import { loadStore, resetStore, setCurrentStudent } from './data/store';
 import {
   Sparkles,
   X,
@@ -20,8 +25,92 @@ import {
   GraduationCap
 } from 'lucide-react';
 
+function ComingSoon({ tabId }) {
+  const tab = sectionOf(tabId).tabs.find((t) => t.id === tabId);
+  return (
+    <div className="bg-white rounded-3xl border border-[#E4E4E7] p-10 text-center max-w-2xl mx-auto mt-4">
+      <p className="text-zinc-600 mb-2">{PLACEHOLDERS[tabId]}</p>
+      <p className="text-sm text-zinc-400">This page is coming next.</p>
+    </div>
+  );
+}
+
+const roleOf = (u) => (u?.role === 'faculty' || u?.role === 'admin' ? 'faculty' : u ? 'student' : null);
+
+// Shown while the signed-in user's data loads, or if the server can't be reached.
+function BootScreen({ error, onRetry, onSignOut }) {
+  return (
+    <div className="min-h-screen bg-[#F6F5F0] flex items-center justify-center p-6">
+      <div className="bg-white rounded-3xl border border-[#E4E4E7] p-8 max-w-md w-full text-center">
+        <span className="w-12 h-12 rounded-xl bg-[#EA580C] text-white flex items-center justify-center font-semibold mx-auto mb-4">A</span>
+        {error ? (
+          <>
+            <p className="font-semibold text-zinc-900 mb-1">Couldn’t load your data</p>
+            <p className="text-sm text-zinc-600 mb-5">{error}</p>
+            <div className="flex justify-center gap-2">
+              <button onClick={onSignOut} className="px-4 py-2 rounded-full border border-zinc-200 text-sm">Sign out</button>
+              <button onClick={onRetry} className="px-4 py-2 rounded-full bg-[#6D3FC0] text-white text-sm font-medium">Try again</button>
+            </div>
+          </>
+        ) : (
+          <p className="text-sm text-zinc-500">Loading your classes…</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [user, setUser] = useState(getSessionUser);
+  const role = roleOf(user);
+  const [ready, setReady] = useState(false);
+  const [bootError, setBootError] = useState('');
+  const [toast, setToast] = useState('');
+  const [activeTab, setActiveTab] = useState(() => (roleOf(getSessionUser()) === 'faculty' ? 'f-home' : 'dashboard'));
+  setNavRole(role || 'student');
+  setCurrentStudent(user);
+
+  // Load everything for the signed-in user from the backend.
+  const boot = async () => {
+    setBootError('');
+    setReady(false);
+    try {
+      const fresh = await refreshUser();
+      setCurrentStudent(fresh);
+      await Promise.all([loadStore(), loadState()]);
+      openStream();
+      setUser(fresh);
+      setReady(true);
+    } catch (err) {
+      if (err.status !== 401) setBootError(err.message);
+    }
+  };
+  useEffect(() => {
+    if (user) boot();
+    const onAuth = () => {
+      const u = getSessionUser();
+      setUser(u);
+      if (!u) { resetStore(); setReady(false); }
+    };
+    const onSyncError = (e) => { setToast(e.detail || 'Couldn’t save your change.'); setTimeout(() => setToast(''), 6000); };
+    window.addEventListener(AUTH_EVENT, onAuth);
+    window.addEventListener(SYNC_ERROR, onSyncError);
+    return () => { window.removeEventListener(AUTH_EVENT, onAuth); window.removeEventListener(SYNC_ERROR, onSyncError); };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const onSignedIn = (u) => {
+    setUser(u);
+    setActiveTab(roleOf(u) === 'faculty' ? 'f-home' : 'dashboard');
+    boot();
+  };
+  const handleSignOut = () => {
+    signOut();
+    resetStore();
+    setReady(false);
+    setUser(null);
+  };
+  const [notesSubject, setNotesSubject] = useState(null);
+  const [course, setCourse] = useState({ code: null, tab: 'units' });
   const [userProfile, setUserProfile] = useState(null);
   const [courses, setCourses] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -40,14 +129,7 @@ export default function App() {
     const fetchInitialData = async () => {
       try {
         setLoading(true);
-        const [profileRes, coursesRes] = await Promise.all([
-          api.getProfile(),
-          api.getCourses()
-        ]);
-
-        if (profileRes.success && profileRes.data) {
-          setUserProfile(profileRes.data);
-        }
+        const coursesRes = await api.getCourses();
         if (coursesRes.success && coursesRes.data) {
           setCourses(coursesRes.data);
         }
@@ -112,20 +194,30 @@ export default function App() {
     setIsFloatingChatOpen(true);
   };
 
+  if (!user) return <Login onSignedIn={onSignedIn} />;
+  if (!ready) return <BootScreen error={bootError} onRetry={boot} onSignOut={handleSignOut} />;
+  const profile = role === 'faculty' ? { ...FACULTY, ...user } : user;
+
   return (
     <div className="flex min-h-screen bg-[#F6F5F0] text-[#18181B] font-sans antialiased">
       {/* Left Navigation Sidebar */}
       <Sidebar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        userProfile={userProfile}
+        userProfile={profile}
+        onOpenCourse={(code, tab = 'units') => {
+          setCourse({ code, tab });
+          setActiveTab('course');
+        }}
+        openCourseCode={course.code}
       />
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top Header Navbar */}
         <Navbar
-          userProfile={userProfile}
+          userProfile={profile}
+          role={role}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
           onOpenChatbot={() => setIsFloatingChatOpen(true)}
@@ -133,22 +225,50 @@ export default function App() {
         />
 
         {/* Dynamic Main Page Content */}
-        <main className="flex-1 px-6 lg:px-10 py-6 max-w-7xl w-full mx-auto">
-          {activeTab === 'dashboard' && (
-            <DashboardOverview
-              userProfile={userProfile}
-              courses={courses}
-              onNavigate={(tab) => setActiveTab(tab)}
-              onToggleSubmission={handleToggleSubmission}
-              onOpenCourse={() => setActiveTab('courses')}
-            />
+        <main className="flex-1 px-4 sm:px-6 lg:px-10 py-6 pb-28 md:pb-6 max-w-7xl w-full mx-auto">
+          {/* Sub-page tabs for the current sidebar section */}
+          <SectionTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+
+          {PLACEHOLDERS[activeTab] && !PAGES[activeTab] && <ComingSoon tabId={activeTab} />}
+
+          <Page
+            id={activeTab}
+            onNavigate={setActiveTab}
+            userProfile={profile}
+            role={role}
+            onSwitchRole={handleSignOut}
+            onSignOut={handleSignOut}
+            onAskAI={(text) => {
+              setChatbotQuestion(text);
+              setActiveTab('chatbot');
+            }}
+            initialPrompt={chatbotQuestion}
+            onPromptUsed={() => setChatbotQuestion(null)}
+          />
+
+          {activeTab === 'dashboard' && role === 'student' && (
+            <HomeOverview userProfile={profile} onNavigate={setActiveTab} />
           )}
 
           {activeTab === 'courses' && (
-            <CoursesView
-              courses={courses}
-              onUpdateProgress={handleUpdateCourseProgress}
-              onOpenChatbot={handleOpenChatWithQuestion}
+            <SubjectsView
+              onNavigate={setActiveTab}
+              onOpenCourse={(code, tab = 'units') => {
+                setCourse({ code, tab });
+                setActiveTab('course');
+              }}
+            />
+          )}
+
+          {activeTab === 'course' && course.code && (
+            <CourseView code={course.code} initialTab={course.tab} onBack={() => setActiveTab('courses')} />
+          )}
+
+          {activeTab === 'notes' && (
+            <NotesView
+              subjectCode={notesSubject}
+              setSubjectCode={setNotesSubject}
+              onBack={() => setActiveTab('courses')}
             />
           )}
 
@@ -158,99 +278,31 @@ export default function App() {
               setActiveRoomId={setActiveRoomId}
             />
           )}
-
-          {activeTab === 'pyq' && (
-            <PYQPortal
-              onOpenChatWithQuestion={handleOpenChatWithQuestion}
-            />
-          )}
-
-          {activeTab === 'alumni' && (
-            <AlumniDirectory />
-          )}
-
-          {activeTab === 'chatbot' && (
-            <AIChatbot
-              initialQuestion={chatbotQuestion}
-              initialCourseCode={chatbotCourse}
-            />
-          )}
-
-          {activeTab === 'threeD' && (
-            <ThreeDViewer />
-          )}
-
-          {activeTab === 'settings' && (
-            <div className="bg-white rounded-3xl p-8 border border-[#E4E4E7] max-w-3xl space-y-6">
-              <div className="pb-4 border-b border-zinc-100 flex items-center gap-3">
-                <SettingsIcon className="w-5 h-5 text-zinc-700" />
-                <h3 className="text-xl font-bold text-zinc-900">
-                  Student Settings & University Profile
-                </h3>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <img
-                  src={userProfile?.avatar}
-                  alt="Anna"
-                  className="w-16 h-16 rounded-full object-cover ring-2 ring-indigo-500"
-                />
-                <div>
-                  <h4 className="text-base font-bold text-zinc-900">
-                    {userProfile?.fullName || 'Anna Sharma'}
-                  </h4>
-                  <p className="text-xs font-code text-zinc-500">
-                    {userProfile?.email} • Student ID: AU2026CSE092
-                  </p>
-                  <span className="inline-block mt-1 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-code font-bold">
-                    Alliance Active Student
-                  </span>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 text-xs font-code pt-4 border-t border-zinc-100">
-                <div className="p-3 bg-zinc-50 rounded-xl">
-                  <span className="text-zinc-400 block text-[10px]">Academic Year</span>
-                  <span className="font-semibold text-zinc-800">2026 Batch (Sem 5)</span>
-                </div>
-                <div className="p-3 bg-zinc-50 rounded-xl">
-                  <span className="text-zinc-400 block text-[10px]">Current CGPA</span>
-                  <span className="font-semibold text-zinc-800">{userProfile?.cgpa || 9.24} / 10.0</span>
-                </div>
-              </div>
-            </div>
-          )}
         </main>
       </div>
 
+      {/* Phone bottom navigation */}
+      <MobileNav activeTab={activeTab} setActiveTab={setActiveTab} />
+
       {/* Floating EDUX AI Modal / Quick Drawer */}
       {isFloatingChatOpen && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end sm:p-6 bg-black/40 backdrop-blur-xs animate-in fade-in">
-          <div className="bg-white rounded-t-3xl sm:rounded-3xl max-w-lg w-full h-[90vh] sm:h-[640px] border border-zinc-200 shadow-2xl flex flex-col overflow-hidden">
-            {/* Modal Header */}
-            <div className="bg-[#18181B] text-white p-4 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-indigo-400" />
-                <span className="text-xs font-bold tracking-tight">
-                  EDUX AI • Quick Socratic Assistant
-                </span>
-              </div>
-              <button
-                onClick={() => setIsFloatingChatOpen(false)}
-                className="w-7 h-7 rounded-full flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Embedded Chatbot Component */}
-            <div className="flex-1 overflow-hidden p-2">
-              <AIChatbot
-                initialQuestion={chatbotQuestion}
-                initialCourseCode={chatbotCourse}
-              />
-            </div>
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end sm:p-6 bg-black/40" onClick={() => setIsFloatingChatOpen(false)}>
+          <div className="relative max-w-lg w-full h-[90vh] sm:h-[640px]" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setIsFloatingChatOpen(false)}
+              className="absolute -top-11 right-0 w-9 h-9 rounded-full bg-white text-zinc-600 flex items-center justify-center shadow"
+              aria-label="Close"
+            >
+              <X className="w-4 h-4" />
+            </button>
+            <AskAlliance compact userProfile={profile} />
           </div>
+        </div>
+      )}
+      {toast && (
+        <div role="alert" className="fixed bottom-24 md:bottom-6 left-1/2 -translate-x-1/2 z-[60] max-w-md w-[calc(100%-2rem)] bg-zinc-900 text-white text-sm rounded-2xl px-4 py-3 shadow-lg flex items-start gap-3">
+          <span className="flex-1">{toast}</span>
+          <button onClick={() => setToast('')} className="text-white/60 hover:text-white" aria-label="Dismiss"><X className="w-4 h-4" /></button>
         </div>
       )}
     </div>

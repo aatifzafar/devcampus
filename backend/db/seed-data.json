@@ -1,0 +1,409 @@
+{
+ "subjects": [
+  {
+   "code": "MAT101",
+   "name": "Engineering Mathematics I",
+   "semester": 1,
+   "credits": 4,
+   "type": "Theory",
+   "color": "#2563EB",
+   "faculty": "Dr. Meena R"
+  },
+  {
+   "code": "PHY101",
+   "name": "Engineering Physics",
+   "semester": 1,
+   "credits": 3,
+   "type": "Theory",
+   "color": "#0891B2",
+   "faculty": "Dr. Arun S"
+  },
+  {
+   "code": "CSE101",
+   "name": "Programming in C",
+   "semester": 1,
+   "credits": 4,
+   "type": "Theory",
+   "color": "#6D3FC0",
+   "faculty": "Prof. Kavya N"
+  },
+  {
+   "code": "CSE101L",
+   "name": "Programming in C Lab",
+   "semester": 1,
+   "credits": 2,
+   "type": "Lab",
+   "color": "#6D3FC0",
+   "faculty": "Prof. Kavya N"
+  },
+  {
+   "code": "EEE101",
+   "name": "Basic Electrical Engineering",
+   "semester": 1,
+   "credits": 3,
+   "type": "Theory",
+   "color": "#CA8A04",
+   "faculty": "Dr. Prakash V"
+  },
+  {
+   "code": "HSS101",
+   "name": "Communication Skills",
+   "semester": 1,
+   "credits": 2,
+   "type": "Theory",
+   "color": "#DB2777",
+   "faculty": "Ms. Ritu J"
+  },
+  {
+   "code": "MAT102",
+   "name": "Engineering Mathematics II",
+   "semester": 2,
+   "credits": 4,
+   "type": "Theory",
+   "color": "#2563EB",
+   "faculty": "Dr. Meena R"
+  },
+  {
+   "code": "CHE101",
+   "name": "Engineering Chemistry",
+   "semester": 2,
+   "credits": 3,
+   "type": "Theory",
+   "color": "#0891B2",
+   "faculty": "Dr. Lakshmi T"
+  },
+  {
+   "code": "CSE102",
+   "name": "Object Oriented Programming in C++",
+   "semester": 2,
+   "credits": 4,
+   "type": "Theory",
+   "color": "#6D3FC0",
+   "faculty": "Dr. Sandeep K"
+  },
+  {
+   "code": "CSE102L",
+   "name": "C++ Lab",
+   "semester": 2,
+   "credits": 2,
+   "type": "Lab",
+   "color": "#6D3FC0",
+   "faculty": "Dr. Sandeep K"
+  },
+  {
+   "code": "ECE101",
+   "name": "Digital Logic Design",
+   "semester": 2,
+   "credits": 3,
+   "type": "Theory",
+   "color": "#D85A30",
+   "faculty": "Prof. Harish M"
+  },
+  {
+   "code": "MEC101",
+   "name": "Engineering Graphics",
+   "semester": 2,
+   "credits": 2,
+   "type": "Lab",
+   "color": "#CA8A04",
+   "faculty": "Prof. Gopal D"
+  },
+  {
+   "code": "MAT201",
+   "name": "Discrete Mathematics",
+   "semester": 3,
+   "credits": 4,
+   "type": "Theory",
+   "color": "#2563EB",
+   "faculty": "Dr. Meena R"
+  },
+  {
+   "code": "CSE201",
+   "name": "Data Structures",
+   "semester": 3,
+   "credits": 4,
+   "type": "Theory",
+   "color": "#0F9D76",
+   "faculty": "Dr. Devika P"
+  },
+  {
+   "code": "CSE201L",
+   "name": "Data Structures Lab",
+   "semester": 3,
+   "credits": 2,
+   "type": "Lab",
+   "color": "#0F9D76",
+   "faculty": "Dr. Devika P"
+  },
+  {
+   "code": "CSE202",
+   "name": "Computer Organization and Architecture",
+   "semester": 3,
+   "credits": 3,
+   "type": "Theory",
+   "color": "#D85A30",
+   "faculty": "Prof. Harish M"
+  },
+  {
+   "code": "CSE203",
+   "name": "Object Oriented Analysis and Design",
+   "semester": 3,
+   "credits": 3,
+   "type": "Theory",
+   "color": "#6D3FC0",
+   "faculty": "Prof. Anjali B"
+  },
+  {
+   "code": "HSS201",
+   "name": "Universal Human Values",
+   "semester": 3,
+   "credits": 2,
+   "type": "Theory",
+   "color": "#DB2777",
+   "faculty": "Ms. Ritu J"
+  },
+  {
+   "code": "MAT202",
+   "name": "Probability and Statistics",
+   "semester": 4,
+   "credits": 4,
+   "type": "Theory",
+   "color": "#2563EB",
+   "faculty": "Dr. Meena R"
+  },
+  {
+   "code": "CSE204",
+   "name": "Design and Analysis of Algorithms",
+   "semester": 4,
+   "credits": 4,
+   "type": "Theory",
+   "color": "#0F9D76",
+   "faculty": "Dr. Raghav S"
+  },
+  {
+   "code": "CSE204L",
+   "name": "Algorithms Lab",
+   "semester": 4,
+   "credits": 2,
+   "type": "Lab",
+   "color": "#0F9D76",
+   "faculty": "Dr. Raghav S"
+  },
+  {
+   "code": "CSE205",
+   "name": "Microprocessors and Interfacing",
+   "semester": 4,
+   "credits": 3,
+   "type": "Theory",
+   "color": "#D85A30",
+   "faculty": "Prof. Harish M"
+  },
+  {
+   "code": "CSE206",
+   "name": "Software Engineering",
+   "semester": 4,
+   "credits": 3,
+   "type": "Theory",
+   "color": "#6D3FC0",
+   "faculty": "Prof. Anjali B"
+  },
+  {
+   "code": "CSE207",
+   "name": "Python Programming",
+   "semester": 4,
+   "credits": 3,
+   "type": "Theory",
+   "color": "#CA8A04",
+   "faculty": "Dr. Iyer"
+  },
+  {
+   "code": "CSE301",
+   "name": "Java Programming",
+   "semester": 5,
+   "credits": 4,
+   "type": "Theory",
+   "color": "#0F9D76",
+   "faculty": "Dr. Sandeep Kumar"
+  },
+  {
+   "code": "CSE301L",
+   "name": "Java Programming Lab",
+   "semester": 5,
+   "credits": 2,
+   "type": "Lab",
+   "color": "#0F9D76",
+   "faculty": "Dr. Sandeep Kumar"
+  },
+  {
+   "code": "CSE302",
+   "name": "Database Management Systems",
+   "semester": 5,
+   "credits": 4,
+   "type": "Theory",
+   "color": "#D85A30",
+   "faculty": "Prof. Arvind Rao"
+  },
+  {
+   "code": "CSE303",
+   "name": "Theory of Computation",
+   "semester": 5,
+   "credits": 4,
+   "type": "Theory",
+   "color": "#6D3FC0",
+   "faculty": "Dr. Devika P"
+  },
+  {
+   "code": "CSE304",
+   "name": "Computer Networks",
+   "semester": 5,
+   "credits": 3,
+   "type": "Theory",
+   "color": "#2563EB",
+   "faculty": "Prof. Malini Shenoy"
+  },
+  {
+   "code": "CSE305",
+   "name": "Operating Systems",
+   "semester": 5,
+   "credits": 3,
+   "type": "Theory",
+   "color": "#CA8A04",
+   "faculty": "Dr. Iyer"
+  },
+  {
+   "code": "CSE306",
+   "name": "Mini Project",
+   "semester": 5,
+   "credits": 2,
+   "type": "Project",
+   "color": "#DB2777",
+   "faculty": "Dr. Sandeep Kumar"
+  }
+ ],
+ "sections": [
+  {
+   "id": "toc-5j",
+   "code": "CSE303",
+   "section": "5J"
+  },
+  {
+   "id": "toc-5k",
+   "code": "CSE303",
+   "section": "5K"
+  },
+  {
+   "id": "toc-5l",
+   "code": "CSE303",
+   "section": "5L"
+  },
+  {
+   "id": "ds-3a",
+   "code": "CSE201",
+   "section": "3A"
+  },
+  {
+   "id": "ds-3b",
+   "code": "CSE201",
+   "section": "3B"
+  }
+ ],
+ "threads": [
+  {
+   "id": "th1",
+   "code": "CSE303",
+   "title": "Why is aⁿbⁿ not regular but a*b* is?",
+   "author": "Rahul M",
+   "at": "2026-10-31T15:40:00.000Z",
+   "votes": 14,
+   "mine": false,
+   "body": "Both have a’s followed by b’s. I don’t get why one needs a PDA and the other doesn’t.",
+   "replies": [
+    {
+     "author": "Dr. Devika P",
+     "role": "faculty",
+     "at": "2026-10-31T16:35:00.000Z",
+     "votes": 21,
+     "accepted": true,
+     "body": "a*b* lets the counts differ, so the machine only needs to remember “am I still reading a’s?”. aⁿbⁿ forces equal counts, so it must remember how many a’s it saw: unbounded memory, which a DFA does not have. Try the pumping lemma with the string aᵖbᵖ."
+    },
+    {
+     "author": "Sneha K",
+     "role": "student",
+     "at": "2026-11-01T03:00:00.000Z",
+     "votes": 3,
+     "body": "The pumping lemma part in Sipser chapter 1.4 explains this exact example."
+    }
+   ]
+  },
+  {
+   "id": "th2",
+   "code": "CSE302",
+   "title": "Is every BCNF relation also in 3NF?",
+   "author": "You",
+   "at": "2026-10-30T14:15:00.000Z",
+   "votes": 6,
+   "mine": true,
+   "body": "Asking for the mid-term. My notes say yes but I want to be sure.",
+   "replies": [
+    {
+     "author": "Prof. Arvind Rao",
+     "role": "faculty",
+     "at": "2026-10-30T15:00:00.000Z",
+     "votes": 9,
+     "accepted": true,
+     "body": "Yes. BCNF is stricter than 3NF, so any relation in BCNF is automatically in 3NF. The reverse is not always true."
+    }
+   ]
+  },
+  {
+   "id": "th3",
+   "code": "CSE304",
+   "title": "How do I quickly find the broadcast address of a subnet?",
+   "author": "Arjun P",
+   "at": "2026-11-01T03:45:00.000Z",
+   "votes": 4,
+   "mine": false,
+   "body": "In the worksheet there are many /27 and /28 questions and I’m slow at it.",
+   "replies": []
+  },
+  {
+   "id": "th4",
+   "code": "CSE301",
+   "title": "Difference between wait() and sleep()?",
+   "author": "Meera S",
+   "at": "2026-10-29T11:30:00.000Z",
+   "votes": 9,
+   "mine": false,
+   "body": "Both pause a thread. When should I use which?",
+   "replies": [
+    {
+     "author": "Karthik R",
+     "role": "student",
+     "at": "2026-10-29T12:50:00.000Z",
+     "votes": 5,
+     "body": "sleep() pauses without releasing locks. wait() releases the monitor lock and waits for notify(). wait() must be called inside synchronized."
+    }
+   ]
+  },
+  {
+   "id": "th5",
+   "code": "CSE305",
+   "title": "Banker’s algorithm: safe sequence not unique?",
+   "author": "Divya N",
+   "at": "2026-10-28T14:30:00.000Z",
+   "votes": 7,
+   "mine": false,
+   "body": "My answer has a different safe sequence than the solution. Is it still right?",
+   "replies": [
+    {
+     "author": "Dr. Iyer",
+     "role": "faculty",
+     "at": "2026-10-28T15:45:00.000Z",
+     "votes": 8,
+     "accepted": true,
+     "body": "Yes, there can be more than one safe sequence. Any valid one gets full marks if your Need and Available steps are shown."
+    }
+   ]
+  }
+ ]
+}

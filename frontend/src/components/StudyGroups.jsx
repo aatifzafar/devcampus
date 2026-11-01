@@ -150,8 +150,18 @@ export default function StudyGroups({ activeRoomId, setActiveRoomId }) {
     }
   };
 
-  const handleCopyNotes = () => {
-    navigator.clipboard.writeText(scratchpadText);
+  const handleCopyNotes = async () => {
+    try {
+      await navigator.clipboard.writeText(scratchpadText);
+    } catch {
+      // Clipboard API is blocked on plain http (e.g. a phone on the LAN): fall back.
+      const t = document.createElement('textarea');
+      t.value = scratchpadText;
+      document.body.appendChild(t);
+      t.select();
+      document.execCommand('copy');
+      t.remove();
+    }
     setCopiedNotes(true);
     setTimeout(() => setCopiedNotes(false), 2000);
   };
@@ -263,7 +273,7 @@ export default function StudyGroups({ activeRoomId, setActiveRoomId }) {
                       <span className="font-code">{room.pomodoro?.durationMinutes || 25}m Pomodoro</span>
                     </div>
                     <span className={`font-semibold ${isSelected ? 'text-indigo-600' : 'text-zinc-600'}`}>
-                      {isSelected ? 'Currently In' : 'Join Room &rarr;'}
+                      {isSelected ? 'Currently In' : 'Join room →'}
                     </span>
                   </div>
                 </div>

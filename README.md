@@ -5,48 +5,53 @@ A production-ready, full-stack educational web platform designed with high-densi
 
 ---
 
-## Architecture & File Structure
+## Architecture
 
 ```
-├── backend/
-│   ├── server.js                      # Express API Gateway & middleware
+├── backend/                          Express 5 API on PostgreSQL
+│   ├── server.js                     API gateway, health check, live-update stream
+│   ├── .env.example                  copy to .env and fill in (DATABASE_URL, JWT_SECRET, ...)
+│   ├── db/
+│   │   ├── schema.sql                every table (users, subjects, assignments, submissions, tests, ...)
+│   │   ├── setup.js                  npm run db:setup  (creates DB + tables + demo data)
+│   │   ├── seed.js / seed-data.json  demo accounts, subjects, sections, discussions, study rooms
+│   │   └── index.js                  connection pool
+│   ├── lib/                          sign-in tokens, live updates, user helpers
 │   ├── routes/
-│   │   ├── auth.js                    # Profile, academic stats & submission toggling
-│   │   ├── courses.js                 # Course syllabi, progression & modules
-│   │   ├── pyq.js                     # Previous Year Question Papers repository
-│   │   ├── alumni.js                  # Alumni directory & mentorship scheduling
-│   │   ├── chatbot.js                 # EDUX AI Socratic Tutor queries & hints
-│   │   └── studyGroups.js             # Live study rooms, scratchpad & Pomodoro sync
-│   └── models/
-│       ├── userModel.js               # Student profile (Anna Sharma, B.Tech CSE '26)
-│       ├── courseModel.js             # Active courses (UI/UX, Frontend, Usability, DSA)
-│       ├── pyqModel.js                # Official exam papers with marks & AI solutions
-│       ├── alumniModel.js             # Alumni in Google, AWS, Atlassian, Razorpay, CRED
-│       ├── studyGroupModel.js         # Virtual study rooms & peer presence
-│       └── chatbotModel.js            # Socratic knowledge base & syllabi grounding
+│   │   ├── auth.js                   sign in, profile, change password
+│   │   ├── store.js                  assignments, tests, notes, announcements, PYQs, grades, live classes
+│   │   ├── state.js                  each user's saved data, submissions, test attempts, discussions
+│   │   ├── files.js                  uploads (bytes in backend/uploads, details in the files table)
+│   │   ├── studyGroups.js            study rooms
+│   │   └── ai.js                     Ask Alliance AI and 3D learning (Claude API, key in .env)
+│   ├── uploads/                      uploaded files (created automatically, not in git)
+│   └── test/api.test.js              npm test (backend must be running)
 │
-└── frontend/
-    ├── src/
-    │   ├── components/
-    │   │   ├── Sidebar.jsx            # Sleek vertical navigation with custom brand mark
-    │   │   ├── Navbar.jsx             # Top search bar, streak tracker, user profile pill
-    │   │   ├── DashboardOverview.jsx  # Pixel-matched Bento grid (Hero, Chart, Skill, Table, Cal)
-    │   │   ├── StudyGroups.jsx        # "Learn with Friends": Rooms, Pomodoro, Scratchpad
-    │   │   ├── PYQPortal.jsx          # "PYQ": Past exams, official preview & 1-click download
-    │   │   ├── AlumniDirectory.jsx    # "Connect with Alumni": Mentorship booking, LinkedIn/GitHub
-    │   │   ├── AIChatbot.jsx          # "EDUX AI": Socratic Tutor with hint mode toggle
-    │   │   ├── ThreeDViewer.jsx       # "3D Learning": Three.js WebGL (CPU, Neural Net, DNA)
-    │   │   └── CoursesView.jsx        # Course modules & curriculum tracking
-    │   ├── styles/
-    │   │   ├── tokens.css             # Tailwind v4 theme, design tokens & typography
-    │   │   └── index.css              # Global styles & hairline border utilities
-    │   ├── utils/
-    │   │   └── api.js                 # Centralized REST client with backend proxy
-    │   ├── App.jsx                    # Root application orchestrator & floating AI drawer
-    │   └── main.jsx                   # React root entry
-    ├── vite.config.js                 # Vite + Tailwind v4 + Backend reverse proxy
-    └── package.json
+└── frontend/                         React 19 + Vite + Tailwind v4
+    └── src/
+        ├── App.jsx                   sign-in, loading the user's data, live updates
+        ├── utils/session.js          token, API calls, saved data, live-update stream
+        ├── data/store.js             shared data cache, sends every change to the API
+        ├── components/faculty/       faculty portal
+        ├── components/pages/         student pages
+        └── components/features/      Learn with friends, PYQ, alumni, events, resume, AI, 3D
 ```
+
+### Database tables
+
+| Table | What it holds |
+|---|---|
+| users | students and faculty (bcrypt passwords, roll number, section) |
+| subjects, course_sections | curriculum, and which faculty teaches which section |
+| assignments, submissions | work set by faculty; each student's file, marks and feedback |
+| tests, test_attempts, test_overrides, results_published, question_bank | tests, answers, early opening, published results |
+| materials, announcements, pyqs, files | notes, notices, question papers, uploaded files |
+| live_sessions, live_votes | live classes and in-class polls |
+| threads, thread_replies | discussions and doubts |
+| study_rooms | study rooms (JSON document per room) |
+| user_state | each user's own saved data (to-dos, resume, settings, chat, events...) |
+
+Items faculty share carry a `sections` list (for example `{5J,5K}`), and students only receive items for their own section.
 
 ---
 
@@ -66,20 +71,38 @@ A production-ready, full-stack educational web platform designed with high-densi
 
 ---
 
-## Running the Application
+## Running the application
 
-### 1. Start Backend Gateway
+### 1. Database (PostgreSQL 14 or newer)
+PostgreSQL must be installed and running. Then:
+
 ```bash
 cd backend
-node server.js
-# Runs on http://localhost:5000
+copy .env.example .env        # Windows (use "cp" on Mac/Linux)
+# edit .env: put your PostgreSQL password in DATABASE_URL
+npm install
+npm run db:setup              # creates the alliance_ai database, tables and demo accounts
+```
+`npm run db:setup` is safe to run again. `npm run db:reset` deletes all data and starts fresh.
+
+### 2. Backend
+```bash
+cd backend
+npm start                     # http://localhost:5000 , check http://localhost:5000/api/health
+npm test                      # optional: API tests (with the backend running)
 ```
 
-### 2. Start Frontend Dev Server
+### 3. Frontend
 ```bash
 cd frontend
-npm run dev
-# Runs on http://localhost:5173
+npm run dev                   # http://localhost:5185
 ```
-Open [http://localhost:5173](http://localhost:5173) in your browser.
 
+### Demo accounts (password `Alliance@123`)
+| Role | Email |
+|---|---|
+| Faculty | devika@alliance.edu.in |
+| Student, section 5J | anna.sharma@alliance.edu.in |
+| Student, section 5K | kabir.das@alliance.edu.in |
+
+Sign in as faculty in one browser (or device) and as a student in another: anything faculty share appears for the student straight away.

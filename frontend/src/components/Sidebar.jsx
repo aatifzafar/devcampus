@@ -1,120 +1,350 @@
-import React from 'react';
-import {
-  LayoutDashboard,
-  BookOpen,
-  Users2,
-  FileQuestion,
-  GraduationCap,
-  BotMessageSquare,
-  Box,
-  Settings,
-  HelpCircle,
-  Sparkles,
-  ChevronRight
-} from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Search, ChevronsLeft, ChevronsRight, ChevronRight, Menu, X } from 'lucide-react';
+import { navSections, getNavRole, sectionOf, firstTab } from '../navigation';
 
-export default function Sidebar({ activeTab, setActiveTab, userProfile }) {
-  const navItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'courses', label: 'Courses', icon: BookOpen },
-    { id: 'studygroups', label: 'Study Groups', icon: Users2, badge: 'Live' },
-    { id: 'pyq', label: 'PYQ Papers', icon: FileQuestion },
-    { id: 'alumni', label: 'Alumni Network', icon: GraduationCap },
-    { id: 'chatbot', label: 'EDUX AI Tutor', icon: BotMessageSquare, badge: 'AI' },
-    { id: 'threeD', label: '3D Lab', icon: Box, badge: 'WebGL' },
-  ];
+const MAIN_ = () => navSections().filter((s) => s.place === 'main');
+const FEATURED_ = () => navSections().filter((s) => s.place === 'featured');
+const HELP_ = () => navSections().find((s) => s.id === 'help');
+const PROFILE_ = () => navSections().find((s) => s.id === 'profile');
+
+const initials = (name = '') =>
+  name.replace(/^(Dr|Prof|Mr|Ms|Mrs)\.? /i, '').split(' ').filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join('') || 'ST';
+
+function Badge({ badge }) {
+  if (!badge) return null;
+  if (badge.tone === 'live') {
+    return (
+      <span className="ml-auto inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-50 text-red-700 text-[11px] font-medium">
+        <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+        {badge.text}
+      </span>
+    );
+  }
+  return (
+    <span className="ml-auto px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-600 text-[11px] font-medium">
+      {badge.text}
+    </span>
+  );
+}
+
+export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCourse, openCourseCode }) {
+  const MAIN = MAIN_();
+  const FEATURED = FEATURED_();
+  const HELP = HELP_();
+  const PROFILE = PROFILE_();
+  const faculty = getNavRole() === 'faculty';
+  const [collapsed, setCollapsed] = useState(false);
+  const current = sectionOf(activeTab).id;
+  // Accordion: one section open at a time; follows the page you are on.
+  const [openId, setOpenId] = useState(current);
+  useEffect(() => {
+    setOpenId(current);
+  }, [current]);
+  const name = userProfile?.fullName || 'Student';
+
+  const focusSearch = () => {
+    document.querySelector('input[placeholder*="Search"]')?.focus();
+  };
+
+  const itemSize = collapsed ? 'justify-center w-11 h-11 mx-auto' : 'px-3 py-2.5';
 
   return (
-    <aside className="w-20 md:w-20 lg:w-24 shrink-0 flex flex-col items-center py-6 px-3 bg-white/80 backdrop-blur-md border-r border-[#E4E4E7] min-h-screen select-none transition-all">
-      {/* Alliance.ai Brand Mark (Stylized orange floral badge from screenshot) */}
-      <div 
-        onClick={() => setActiveTab('dashboard')}
-        className="mb-8 cursor-pointer group flex flex-col items-center"
-        title="Alliance.ai (EDUX 2.0)"
-      >
-        <div className="w-12 h-12 rounded-2xl bg-[#EA580C] hover:bg-[#C2410C] transition-all flex items-center justify-center text-white shadow-sm shadow-orange-500/20 group-hover:scale-105">
-          <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C13.1 2 14 2.9 14 4V8C14 9.1 13.1 10 12 10C10.9 10 10 9.1 10 8V4C10 2.9 10.9 2 12 2Z" />
-            <path d="M12 14C13.1 14 14 14.9 14 16V20C14 21.1 13.1 22 12 22C10.9 22 10 21.1 10 20V16C10 14.9 10.9 14 12 14Z" />
-            <path d="M22 12C22 13.1 21.1 14 20 14H16C14.9 14 14 13.1 14 12C14 10.9 14.9 10 16 10H20C21.1 10 22 10.9 22 12Z" />
-            <path d="M10 12C10 13.1 9.1 14 8 14H4C2.9 14 2 13.1 2 12C2 10.9 2.9 10 4 10H8C9.1 10 10 10.9 10 12Z" />
-            <circle cx="12" cy="12" r="2.5" fill="white" />
-          </svg>
-        </div>
-        <span className="text-[10px] font-semibold text-zinc-600 mt-1.5 tracking-tight group-hover:text-zinc-900">
-          Alliance
-        </span>
+    <aside
+      className={`hidden md:flex shrink-0 flex-col sticky top-0 h-screen bg-white/80 backdrop-blur-md border-r border-[#E4E4E7] transition-all duration-200 py-5 px-3 ${
+        collapsed ? 'w-[76px]' : 'w-64'
+      }`}
+    >
+      {/* Brand + collapse */}
+      <div className={`flex items-center mb-5 ${collapsed ? 'justify-center' : 'justify-between px-2'}`}>
+        <button onClick={() => setActiveTab(getNavRole() === 'faculty' ? 'f-home' : 'dashboard')} className="flex items-center gap-2.5" title="Alliance.ai">
+          <span className="w-9 h-9 rounded-xl bg-[#EA580C] text-white flex items-center justify-center text-sm font-semibold">
+            A
+          </span>
+          {!collapsed && <span className="text-[17px] font-semibold text-zinc-900 tracking-tight">Alliance.ai</span>}
+        </button>
+        {!collapsed && (
+          <button
+            onClick={() => setCollapsed(true)}
+            className="w-8 h-8 rounded-lg flex items-center justify-center text-zinc-400 hover:text-zinc-800 hover:bg-zinc-100"
+            aria-label="Collapse sidebar"
+          >
+            <ChevronsLeft className="w-4 h-4" />
+          </button>
+        )}
       </div>
 
-      {/* Main Navigation Icons */}
-      <nav className="flex-1 flex flex-col items-center gap-3 w-full">
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = activeTab === item.id;
+      {collapsed && (
+        <button
+          onClick={() => setCollapsed(false)}
+          className="mx-auto mb-3 w-9 h-9 rounded-lg flex items-center justify-center text-zinc-400 hover:text-zinc-800 hover:bg-zinc-100"
+          aria-label="Expand sidebar"
+        >
+          <ChevronsRight className="w-4 h-4" />
+        </button>
+      )}
+
+      {/* Search */}
+      {!collapsed ? (
+        <button
+          onClick={focusSearch}
+          className="mx-1 mb-4 flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white text-sm text-zinc-400 hover:border-zinc-300"
+        >
+          <Search className="w-4 h-4" />
+          <span>Search anything</span>
+          <span className="ml-auto text-[11px] text-zinc-400">Ctrl K</span>
+        </button>
+      ) : (
+        <button
+          onClick={focusSearch}
+          className="mx-auto mb-4 w-11 h-11 rounded-xl flex items-center justify-center text-zinc-500 hover:bg-zinc-100"
+          aria-label="Search"
+        >
+          <Search className="w-5 h-5" />
+        </button>
+      )}
+
+      {/* Main destinations: accordion with sub-pages */}
+      <nav className="flex flex-col gap-0.5 overflow-y-auto -mx-1 px-1 min-h-0" aria-label="Main">
+        {[...MAIN, ...(FEATURED.length ? ['divider', ...FEATURED] : [])].map((section) => {
+          if (section === 'divider') {
+            return collapsed ? (
+              <div key="divider" className="my-2 mx-2 border-t border-zinc-200" />
+            ) : (
+              <p key="divider" className="px-3 pt-4 pb-1 text-xs font-medium text-[#6D3FC0]">Only on Alliance.ai</p>
+            );
+          }
+          const Icon = section.icon;
+          const active = current === section.id;
+          const single = section.tabs.length < 2;
+          const open = !collapsed && !single && openId === section.id;
+
+          const onHeader = () => {
+            if (collapsed || single) {
+              setActiveTab(firstTab(section));
+              return;
+            }
+            setOpenId(open ? null : section.id);
+          };
 
           return (
-            <button
-              key={item.id}
-              onClick={() => setActiveTab(item.id)}
-              className={`relative group w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-200 ${
-                isActive
-                  ? 'bg-[#18181B] text-white shadow-md shadow-zinc-900/15 scale-105'
-                  : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100/90'
-              }`}
-              title={item.label}
-            >
-              <Icon className="w-5 h-5 stroke-[1.8]" />
-
-              {/* Status Badge */}
-              {item.badge && !isActive && (
-                <span className="absolute -top-1 -right-1 px-1 py-0.2 text-[8px] font-bold font-code bg-indigo-600 text-white rounded-full leading-tight">
-                  {item.badge}
-                </span>
-              )}
-
-              {/* Hover Floating Tooltip */}
-              <div className="absolute left-full ml-3 px-2.5 py-1 bg-zinc-900 text-white text-xs font-medium rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg z-50 flex items-center gap-1.5">
-                <span>{item.label}</span>
-                {item.badge && (
-                  <span className="text-[9px] px-1 py-0.5 bg-zinc-700 rounded text-zinc-200 font-code">
-                    {item.badge}
-                  </span>
+            <div key={section.id}>
+              <button
+                onClick={onHeader}
+                title={collapsed ? section.label : undefined}
+                aria-expanded={single || collapsed ? undefined : open}
+                aria-current={active && single ? 'page' : undefined}
+                className={`relative w-full flex items-center gap-3 rounded-xl text-[15px] transition-colors ${itemSize} ${
+                  active && (single || collapsed || !open)
+                    ? 'bg-[#F1EEFB] text-[#4C2E8A] font-medium'
+                    : active
+                      ? 'text-[#4C2E8A] font-medium hover:bg-zinc-100'
+                      : 'text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900'
+                }`}
+              >
+                <Icon className={`w-5 h-5 shrink-0 ${active ? 'text-[#6D3FC0]' : 'text-zinc-500'}`} strokeWidth={1.8} />
+                {!collapsed && <span>{section.label}</span>}
+                {!collapsed && section.badge && !open && <Badge badge={section.badge} />}
+                {!collapsed && !single && (
+                  <ChevronRight
+                    className={`w-4 h-4 shrink-0 text-zinc-400 transition-transform duration-200 ${
+                      section.badge && !open ? 'ml-1' : 'ml-auto'
+                    } ${open ? 'rotate-90' : ''}`}
+                  />
                 )}
+                {collapsed && section.badge?.tone === 'live' && (
+                  <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-500" />
+                )}
+              </button>
+
+              {/* Sub-pages */}
+              <div
+                className={`grid transition-all duration-200 ease-out ${
+                  open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <div className="ml-[22px] pl-3 border-l border-zinc-200 my-1 flex flex-col gap-0.5">
+                    {section.tabs.filter((t) => !t.hidden).map((t) => {
+                      const SubIcon = t.icon;
+                      const on = activeTab === t.id;
+                      return (
+                        <button
+                          key={t.id}
+                          tabIndex={open ? 0 : -1}
+                          onClick={() => setActiveTab(t.id)}
+                          aria-current={on ? 'page' : undefined}
+                          className={`flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-sm text-left transition-colors ${
+                            on
+                              ? 'bg-[#F1EEFB] text-[#4C2E8A] font-medium'
+                              : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900'
+                          }`}
+                        >
+                          {SubIcon && (
+                            <SubIcon
+                              className={`w-4 h-4 shrink-0 ${on ? 'text-[#6D3FC0]' : 'text-zinc-400'}`}
+                              strokeWidth={1.8}
+                            />
+                          )}
+                          <span className="truncate">{t.label}</span>
+                          {t.live && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
-            </button>
+            </div>
           );
         })}
       </nav>
 
-      {/* Bottom Actions & User Avatar */}
-      <div className="flex flex-col items-center gap-3 pt-4 border-t border-zinc-200/80 w-full">
+      {/* Bottom: help + profile */}
+      <div className="mt-auto pt-3 border-t border-zinc-200/80 flex flex-col gap-1">
         <button
-          onClick={() => setActiveTab('settings')}
-          className={`w-11 h-11 rounded-2xl flex items-center justify-center transition-all ${
-            activeTab === 'settings'
-              ? 'bg-[#18181B] text-white'
-              : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100'
-          }`}
-          title="Settings & System"
+          onClick={() => setActiveTab(firstTab(HELP))}
+          title={collapsed ? HELP.label : undefined}
+          className={`flex items-center gap-3 rounded-xl text-sm text-zinc-600 hover:bg-zinc-100 ${
+            collapsed ? 'justify-center w-11 h-11 mx-auto' : 'px-3 py-2'
+          } ${current === 'help' ? 'bg-[#F1EEFB] text-[#4C2E8A]' : ''}`}
         >
-          <Settings className="w-5 h-5 stroke-[1.8]" />
+          <HELP.icon className="w-5 h-5 text-zinc-500" strokeWidth={1.8} />
+          {!collapsed && <span>{HELP.label}</span>}
         </button>
 
-        {/* User Avatar Mini Pill */}
-        <div 
-          onClick={() => setActiveTab('dashboard')}
-          className="relative cursor-pointer group mt-1"
-          title={`${userProfile?.fullName || 'Anna'} (${userProfile?.program || 'CSE'})`}
+        <button
+          onClick={() => setActiveTab(firstTab(PROFILE))}
+          title={collapsed ? name : undefined}
+          className={`flex items-center gap-3 rounded-xl hover:bg-zinc-100 text-left ${
+            collapsed ? 'justify-center w-11 h-11 mx-auto' : 'px-2 py-2'
+          } ${current === 'profile' ? 'bg-[#F1EEFB]' : ''}`}
         >
-          <img
-            src={userProfile?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250"}
-            alt="Anna"
-            className="w-10 h-10 rounded-full object-cover ring-2 ring-zinc-300 group-hover:ring-indigo-500 transition-all"
-          />
-          <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></span>
-        </div>
+          <span className="w-9 h-9 rounded-full bg-[#F1EEFB] text-[#4C2E8A] text-xs font-semibold flex items-center justify-center shrink-0">
+            {initials(name)}
+          </span>
+          {!collapsed && (
+            <span className="min-w-0">
+              <span className="block text-sm font-medium text-zinc-900 truncate">{name}</span>
+              <span className="block text-xs text-zinc-500">{faculty ? 'Faculty · profile' : 'My progress and settings'}</span>
+            </span>
+          )}
+        </button>
       </div>
     </aside>
   );
 }
 
+// Sub-page tabs shown at the top of every page that has more than one.
+export function SectionTabs({ activeTab, setActiveTab }) {
+  const section = sectionOf(activeTab);
+  const tab = section.tabs.find((t) => t.id === activeTab);
+  if (section.tabs.length < 2 || tab?.hidden) return null;
+  const showTabs = section.place === 'bottom';
+  return (
+    <div className="mb-6">
+      <p className="text-sm text-zinc-500 mb-1">{section.label}</p>
+      <h1 className="text-2xl font-semibold text-zinc-900 mb-3">{tab?.label}</h1>
+      {/* On phones the sidebar is hidden, so tabs always show there */}
+      <div className={`flex gap-1 border-b border-zinc-200 overflow-x-auto ${showTabs ? '' : 'md:hidden'}`} role="tablist">
+        {section.tabs.filter((t) => !t.hidden).map((t) => {
+          const active = activeTab === t.id;
+          return (
+            <button
+              key={t.id}
+              role="tab"
+              aria-selected={active}
+              onClick={() => setActiveTab(t.id)}
+              className={`inline-flex items-center gap-1.5 px-4 py-2.5 text-sm whitespace-nowrap border-b-2 -mb-px transition-colors ${
+                active
+                  ? 'border-[#6D3FC0] text-[#4C2E8A] font-medium'
+                  : 'border-transparent text-zinc-500 hover:text-zinc-800'
+              }`}
+            >
+              {t.live && <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />}
+              {t.label}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// Phone navigation: four main destinations plus "More".
+const PHONE_PRIMARY_ = () => (getNavRole() === 'faculty' ? ['fhome', 'fcourses', 'fassign', 'ftests'] : ['home', 'subjects', 'tests', 'practice']);
+
+export function MobileNav({ activeTab, setActiveTab }) {
+  const [moreOpen, setMoreOpen] = useState(false);
+  const current = sectionOf(activeTab).id;
+  const primary = navSections().filter((s) => PHONE_PRIMARY_().includes(s.id));
+  const extra = navSections().filter((s) => !PHONE_PRIMARY_().includes(s.id));
+  const moreActive = extra.some((s) => s.id === current);
+
+  const go = (section) => {
+    setActiveTab(firstTab(section));
+    setMoreOpen(false);
+  };
+
+  return (
+    <>
+      {moreOpen && (
+        <div className="md:hidden fixed inset-0 z-40 bg-black/30" onClick={() => setMoreOpen(false)}>
+          <div
+            className="absolute bottom-20 left-3 right-3 bg-white rounded-2xl border border-zinc-200 p-2 shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {extra.map((section) => {
+              const Icon = section.icon;
+              return (
+                <button
+                  key={section.id}
+                  onClick={() => go(section)}
+                  className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl text-[15px] hover:bg-zinc-100 ${
+                    current === section.id ? 'text-[#4C2E8A] font-medium' : 'text-zinc-800'
+                  }`}
+                >
+                  <Icon className="w-5 h-5 text-zinc-500" strokeWidth={1.8} />
+                  <span>{section.label}</span>
+                  <Badge badge={section.badge} />
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      <nav
+        className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-zinc-200 flex px-1 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
+        aria-label="Main"
+      >
+        {primary.map((section) => {
+          const Icon = section.icon;
+          const active = current === section.id;
+          return (
+            <button
+              key={section.id}
+              onClick={() => go(section)}
+              className={`relative flex-1 flex flex-col items-center gap-1 text-[11px] ${
+                active ? 'text-[#6D3FC0] font-medium' : 'text-zinc-500'
+              }`}
+            >
+              <Icon className="w-5 h-5" strokeWidth={1.8} />
+              {section.short || section.label}
+              {section.badge?.tone === 'live' && (
+                <span className="absolute top-0 right-[30%] w-2 h-2 rounded-full bg-red-500" />
+              )}
+            </button>
+          );
+        })}
+        <button
+          onClick={() => setMoreOpen((o) => !o)}
+          className={`flex-1 flex flex-col items-center gap-1 text-[11px] ${
+            moreActive || moreOpen ? 'text-[#6D3FC0] font-medium' : 'text-zinc-500'
+          }`}
+        >
+          {moreOpen ? <X className="w-5 h-5" strokeWidth={1.8} /> : <Menu className="w-5 h-5" strokeWidth={1.8} />}
+          More
+        </button>
+      </nav>
+    </>
+  );
+}

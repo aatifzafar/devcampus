@@ -31,3 +31,6 @@ Thumbs.db
 # Temporary directories
 .system_generated/
 .turbo/
+
+# Files users upload (kept on the server, not in git)
+backend/uploads/

@@ -1,5 +1,13 @@
 // API client for Alliance.ai (EDUX 2.0)
+import { getToken } from './session';
+
 const API_BASE = '/api';
+
+// fetch() that sends the signed-in user's token.
+const fetch = (url, opts = {}) => {
+  const token = getToken();
+  return window.fetch(url, { ...opts, headers: { ...(opts.headers || {}), ...(token ? { Authorization: `Bearer ${token}` } : {}) } });
+};
 
 export const api = {
   // Auth & Profile

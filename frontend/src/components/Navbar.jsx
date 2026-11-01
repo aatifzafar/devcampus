@@ -1,3 +1,4 @@
+import { titleFor } from '../navigation';
 import React, { useState } from 'react';
 import {
   Search,
@@ -15,7 +16,8 @@ export default function Navbar({
   searchQuery,
   setSearchQuery,
   onOpenChatbot,
-  activeTab
+  activeTab,
+  role = 'student'
 }) {
   const [showNotifications, setShowNotifications] = useState(false);
 
@@ -38,7 +40,7 @@ export default function Navbar({
       {/* Left: Section Title or Greeting */}
       <div className="flex items-center gap-3">
         <h1 className="text-xl md:text-2xl font-semibold tracking-tight text-zinc-900 flex items-center gap-2">
-          <span>{activeTab === 'dashboard' ? 'Dashboard' : activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</span>
+          <span>{titleFor(activeTab)}</span>
         </h1>
         <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-200/60 text-zinc-700 text-xs font-code font-medium">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -66,16 +68,16 @@ export default function Navbar({
       {/* Right Side: Streaks, Points, Notifications & User Pill */}
       <div className="flex items-center gap-3 md:gap-4">
         {/* Streak Counter */}
-        <div className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-orange-100/70 border border-orange-200/60 text-orange-800 text-xs font-medium font-code">
+        {role !== 'faculty' && <div className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-orange-100/70 border border-orange-200/60 text-orange-800 text-xs font-medium font-code">
           <Flame className="w-4 h-4 text-orange-600 fill-orange-500" />
           <span>{userProfile?.streakDays || 7}d Streak</span>
-        </div>
+        </div>}
 
         {/* XP Points */}
-        <div className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs font-code font-medium">
+        {role !== 'faculty' && <div className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-800 text-xs font-code font-medium">
           <Award className="w-3.5 h-3.5 text-indigo-600" />
           <span>{userProfile?.skillRank?.xpPoints || 2450} XP</span>
-        </div>
+        </div>}
 
         {/* AI Quick Sparkle Button */}
         <button
@@ -83,7 +85,7 @@ export default function Navbar({
           className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#18181B] text-white hover:bg-zinc-800 text-xs font-medium shadow-sm transition-all"
         >
           <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-          <span className="hidden sm:inline">Ask EDUX AI</span>
+          <span className="hidden sm:inline">Ask Alliance AI</span>
         </button>
 
         {/* Notification Bell */}
@@ -122,17 +124,21 @@ export default function Navbar({
 
         {/* User Profile Pill (Matched to screenshot style) */}
         <div className="flex items-center gap-2.5 pl-1.5 pr-3 py-1 bg-white border border-[#E4E4E7] rounded-full hover:border-zinc-300 transition-all cursor-pointer">
-          <img
-            src={userProfile?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250"}
-            alt="Anna"
-            className="w-8 h-8 rounded-full object-cover"
-          />
+          {role === 'faculty' ? (
+            <span className="w-8 h-8 rounded-full bg-[#F1EEFB] text-[#4C2E8A] text-xs font-semibold flex items-center justify-center">DP</span>
+          ) : userProfile?.avatar ? (
+            <img src={userProfile.avatar} alt="" className="w-8 h-8 rounded-full object-cover" />
+          ) : (
+            <span className="w-8 h-8 rounded-full bg-[#F1EEFB] text-[#4C2E8A] text-xs font-semibold flex items-center justify-center">
+              {(userProfile?.fullName || 'S').split(' ').filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase()}
+            </span>
+          )}
           <div className="flex flex-col text-left">
             <span className="text-xs font-semibold text-zinc-900 leading-tight">
-              {userProfile?.name || 'Anna'}
+              {userProfile?.name || 'Student'}
             </span>
             <span className="text-[10px] text-zinc-500 font-code leading-tight">
-              Student
+              {role === 'faculty' ? 'Faculty' : 'Student'}
             </span>
           </div>
           <ChevronDown className="w-3.5 h-3.5 text-zinc-400 ml-0.5" />
