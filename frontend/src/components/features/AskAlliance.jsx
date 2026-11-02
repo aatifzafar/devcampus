@@ -28,13 +28,46 @@ const SUGGESTIONS = [
 
 const STORAGE_KEY = 'alliance_gemini_api_key';
 
-/* Small, safe markdown: paragraphs, headings, lists, bold, inline code, code blocks. */
+/* Small, safe markdown: paragraphs, headings, lists, bold, italic, code. */
 function inline(text, key) {
-  const parts = text.split(/(\?\*\*[^\*]+\*\*|`[^`]+`|_[^_]+_)/g);
+  const parts = text.split(/(\*\*\*[^*]+?\*\*\*|\*\*[^*]+?\*\*|\*[^*]+?\*|`[^`]+?`|_[^_]+?_)/g);
   return parts.map((p, i) => {
-    if (p.startsWith('**') && p.endsWith('**')) return <strong key={`${key}-${i}`} className="font-semibold">{p.slice(2, -2)}</strong>;
-    if (p.startsWith('`') && p.endsWith('`')) return <code key={`${key}-${i}`} className="px-1 py-0.5 rounded bg-zinc-100 text-[13px] font-mono">{p.slice(1, -1)}</code>;
-    if (p.startsWith('_') && p.endsWith('_') && p.length > 2) return <em key={`${key}-${i}`} className="text-zinc-500">{p.slice(1, -1)}</em>;
+    if (!p) return null;
+    if (p.startsWith('***') && p.endsWith('***') && p.length > 6) {
+      return (
+        <strong key={`${key}-${i}`} className="font-semibold text-zinc-900">
+          <em>{p.slice(3, -3)}</em>
+        </strong>
+      );
+    }
+    if (p.startsWith('**') && p.endsWith('**') && p.length > 4) {
+      return (
+        <strong key={`${key}-${i}`} className="font-semibold text-zinc-900">
+          {p.slice(2, -2)}
+        </strong>
+      );
+    }
+    if (p.startsWith('*') && p.endsWith('*') && p.length > 2) {
+      return (
+        <em key={`${key}-${i}`} className="text-zinc-600">
+          {p.slice(1, -1)}
+        </em>
+      );
+    }
+    if (p.startsWith('_') && p.endsWith('_') && p.length > 2) {
+      return (
+        <em key={`${key}-${i}`} className="text-zinc-600">
+          {p.slice(1, -1)}
+        </em>
+      );
+    }
+    if (p.startsWith('`') && p.endsWith('`') && p.length > 2) {
+      return (
+        <code key={`${key}-${i}`} className="px-1.5 py-0.5 rounded bg-zinc-100 text-[13px] font-mono text-[#6D3FC0]">
+          {p.slice(1, -1)}
+        </code>
+      );
+    }
     return p;
   });
 }
