@@ -286,7 +286,7 @@ export default function StudyGroups({ activeRoomId, setActiveRoomId }) {
         {currentRoom && (
           <div className="lg:col-span-8 space-y-6">
             {/* Room Banner & Pomodoro Controls */}
-            <div className="bg-white rounded-3xl p-6 border border-[#E4E4E7] shadow-xs">
+            <div className="glass-card rounded-3xl p-6 shadow-xs">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-zinc-100">
                 <div>
                   <div className="flex items-center gap-2 mb-1">

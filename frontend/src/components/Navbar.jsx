@@ -36,7 +36,7 @@ export default function Navbar({
   ];
 
   return (
-    <header className="sticky top-0 z-30 w-full bg-white/65 backdrop-blur-2xl px-6 lg:px-10 py-4 flex items-center justify-between border-b border-white/50 shadow-[0_4px_30px_rgba(0,0,0,0.02)]">
+    <header className="sticky top-0 z-30 w-full glass-nav px-6 lg:px-10 py-4 flex items-center justify-between border-b border-white/60 shadow-[0_4px_30px_rgba(31,38,135,0.03)] relative z-30">
       {/* Left: Section Title or Greeting */}
       <div className="flex items-center gap-3">
         <h1 className="text-xl md:text-2xl font-semibold tracking-tight text-zinc-900 flex items-center gap-2">
@@ -57,7 +57,7 @@ export default function Navbar({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search courses, PYQs, peers, or alumni..."
-            className="w-full bg-white/50 backdrop-blur-md hover:bg-white/80 focus:bg-white text-zinc-800 text-sm pl-11 pr-12 py-2.5 rounded-full border border-white/60 focus:border-[#6D3FC0]/40 focus:outline-none transition-all placeholder:text-zinc-400 shadow-xs"
+            className="w-full glass-input hover:bg-white/75 focus:bg-white/95 text-zinc-800 text-sm pl-11 pr-12 py-2.5 rounded-full placeholder:text-zinc-400 shadow-xs"
           />
           <kbd className="absolute right-3.5 px-2 py-0.5 text-[10px] font-code text-zinc-400 bg-zinc-200/80 rounded-md">
             ⌘K
@@ -92,7 +92,7 @@ export default function Navbar({
         <div className="relative">
           <button
             onClick={() => setShowNotifications(!showNotifications)}
-            className="relative w-10 h-10 rounded-full bg-white border border-[#E4E4E7] flex items-center justify-center text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all"
+            className="relative w-10 h-10 rounded-full glass-subtle flex items-center justify-center text-zinc-600 hover:text-zinc-900 transition-all shadow-xs"
             aria-label="Notifications"
           >
             <Bell className="w-4 h-4" />
@@ -101,7 +101,7 @@ export default function Navbar({
 
           {/* Notification Dropdown */}
           {showNotifications && (
-            <div className="absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-zinc-200 p-4 z-50 animate-in fade-in zoom-in-95">
+            <div className="absolute right-0 mt-2 w-80 glass-modal rounded-2xl p-4 z-50 shadow-2xl animate-in fade-in zoom-in-95">
               <div className="flex items-center justify-between pb-3 border-b border-zinc-100">
                 <span className="text-sm font-semibold text-zinc-900">Notifications</span>
                 <span className="text-xs text-indigo-600 hover:underline cursor-pointer">Mark all read</span>
@@ -123,7 +123,7 @@ export default function Navbar({
         </div>
 
         {/* User Profile Pill (Matched to screenshot style) */}
-        <div className="flex items-center gap-2.5 pl-1.5 pr-3 py-1 bg-white border border-[#E4E4E7] rounded-full hover:border-zinc-300 transition-all cursor-pointer">
+        <div className="flex items-center gap-2.5 pl-1.5 pr-3 py-1 glass-subtle rounded-full hover:bg-white/70 transition-all cursor-pointer shadow-xs">
           {role === 'faculty' ? (
             <span className="w-8 h-8 rounded-full bg-[#F1EEFB] text-[#4C2E8A] text-xs font-semibold flex items-center justify-center">DP</span>
           ) : userProfile?.avatar ? (

@@ -275,7 +275,7 @@ export default function NotesView({ subjectCode, setSubjectCode, onBack, embedde
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search materials"
-            className="pl-9 pr-3 py-2 w-full lg:w-60 rounded-full border border-zinc-200 bg-white text-sm focus:outline-none focus:border-[#6D3FC0]"
+            className="pl-9 pr-3 py-2 w-full lg:w-60 rounded-full glass-input text-sm focus:outline-none focus:border-[#6D3FC0]"
           />
         </label>
       </div>
@@ -301,7 +301,7 @@ export default function NotesView({ subjectCode, setSubjectCode, onBack, embedde
           }
 
           return (
-            <section key={u.unit} className="bg-white rounded-3xl border border-[#E4E4E7] overflow-hidden">
+            <section key={u.unit} className="glass-card rounded-3xl overflow-hidden">
               <button
                 onClick={() => toggle(u.unit)}
                 aria-expanded={isOpen}

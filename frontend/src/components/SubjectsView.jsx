@@ -22,7 +22,7 @@ function CurrentTile({ s, onNavigate, onOpenCourse }) {
   return (
     <article
       onClick={() => onOpenCourse(s.code, 'intro')}
-      className="group cursor-pointer bg-white rounded-3xl border border-[#E4E4E7] overflow-hidden flex flex-col hover:border-zinc-300 hover:shadow-sm transition-all"
+      className="group cursor-pointer glass-card rounded-3xl overflow-hidden flex flex-col hover:shadow-lg transition-all"
     >
       <div className="h-1.5" style={{ background: s.color }} />
       <div className="p-5 flex flex-col flex-1">

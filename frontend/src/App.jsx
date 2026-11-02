@@ -28,7 +28,7 @@ import {
 function ComingSoon({ tabId }) {
   const tab = sectionOf(tabId).tabs.find((t) => t.id === tabId);
   return (
-    <div className="bg-white rounded-3xl border border-[#E4E4E7] p-10 text-center max-w-2xl mx-auto mt-4">
+    <div className="glass-card rounded-3xl p-10 text-center max-w-2xl mx-auto mt-4">
       <p className="text-zinc-600 mb-2">{PLACEHOLDERS[tabId]}</p>
       <p className="text-sm text-zinc-400">This page is coming next.</p>
     </div>
@@ -40,15 +40,19 @@ const roleOf = (u) => (u?.role === 'faculty' || u?.role === 'admin' ? 'faculty' 
 // Shown while the signed-in user's data loads, or if the server can't be reached.
 function BootScreen({ error, onRetry, onSignOut }) {
   return (
-    <div className="min-h-screen bg-[#F6F5F0] flex items-center justify-center p-6">
-      <div className="bg-white rounded-3xl border border-[#E4E4E7] p-8 max-w-md w-full text-center">
+    <div className="min-h-screen bg-transparent flex items-center justify-center p-6 relative">
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#6D3FC0]/20 blur-[100px] animate-float-1" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-amber-400/20 blur-[100px] animate-float-2" />
+      </div>
+      <div className="glass-modal rounded-3xl p-8 max-w-md w-full text-center relative z-10">
         <span className="w-12 h-12 rounded-xl bg-[#EA580C] text-white flex items-center justify-center font-semibold mx-auto mb-4">A</span>
         {error ? (
           <>
             <p className="font-semibold text-zinc-900 mb-1">Couldn’t load your data</p>
             <p className="text-sm text-zinc-600 mb-5">{error}</p>
             <div className="flex justify-center gap-2">
-              <button onClick={onSignOut} className="px-4 py-2 rounded-full border border-zinc-200 text-sm">Sign out</button>
+              <button onClick={onSignOut} className="px-4 py-2 rounded-full glass-subtle text-sm">Sign out</button>
               <button onClick={onRetry} className="px-4 py-2 rounded-full bg-[#6D3FC0] text-white text-sm font-medium">Try again</button>
             </div>
           </>
@@ -199,11 +203,19 @@ export default function App() {
   const profile = role === 'faculty' ? { ...FACULTY, ...user } : user;
 
   return (
-    <div className="flex min-h-screen bg-[#F6F5F0] text-[#18181B] font-sans antialiased relative overflow-x-hidden">
-      {/* Ambient glassmorphism gradient orbs */}
-      <div className="fixed -top-40 -right-40 w-[32rem] h-[32rem] rounded-full bg-gradient-to-br from-indigo-400/15 via-[#6D3FC0]/10 to-transparent blur-3xl pointer-events-none -z-10" />
-      <div className="fixed top-1/3 -left-40 w-[28rem] h-[28rem] rounded-full bg-gradient-to-tr from-amber-300/12 via-rose-300/10 to-transparent blur-3xl pointer-events-none -z-10" />
-      <div className="fixed -bottom-40 right-1/4 w-[36rem] h-[36rem] rounded-full bg-gradient-to-tl from-emerald-300/12 via-sky-300/10 to-transparent blur-3xl pointer-events-none -z-10" />
+    <div className="flex min-h-screen bg-transparent text-[#18181B] font-sans antialiased relative overflow-x-hidden">
+      {/* Ambient Living Glassmorphism Backdrop Canvas */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+        {/* Vibrant Violet-Indigo Orb */}
+        <div className="absolute -top-32 -right-32 w-[40rem] h-[40rem] rounded-full bg-gradient-to-br from-[#6D3FC0]/30 via-indigo-500/25 to-purple-400/15 blur-[100px] animate-float-1" />
+        {/* Warm Sunset Amber-Coral Orb */}
+        <div className="absolute top-1/4 -left-36 w-[36rem] h-[36rem] rounded-full bg-gradient-to-tr from-amber-400/25 via-rose-400/22 to-orange-300/15 blur-[100px] animate-float-2" />
+        {/* Vivid Sky Blue-Cyan Orb */}
+        <div className="absolute top-2/3 right-10 w-[34rem] h-[34rem] rounded-full bg-gradient-to-tl from-sky-400/25 via-cyan-400/20 to-blue-500/15 blur-[95px] animate-float-3" />
+        {/* Fresh Emerald-Mint Orb */}
+        <div className="absolute -bottom-36 left-1/4 w-[38rem] h-[38rem] rounded-full bg-gradient-to-tr from-emerald-400/22 via-teal-400/18 to-cyan-300/15 blur-[100px] animate-float-1" />
+      </div>
+
       {/* Left Navigation Sidebar */}
       <Sidebar
         activeTab={activeTab}
@@ -217,7 +229,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 relative z-10">
         {/* Top Header Navbar */}
         <Navbar
           userProfile={profile}
@@ -290,11 +302,11 @@ export default function App() {
 
       {/* Floating EDUX AI Modal / Quick Drawer */}
       {isFloatingChatOpen && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end sm:p-6 bg-black/40" onClick={() => setIsFloatingChatOpen(false)}>
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end sm:p-6 bg-black/35 backdrop-blur-sm" onClick={() => setIsFloatingChatOpen(false)}>
           <div className="relative max-w-lg w-full h-[90vh] sm:h-[640px]" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setIsFloatingChatOpen(false)}
-              className="absolute -top-11 right-0 w-9 h-9 rounded-full bg-white text-zinc-600 flex items-center justify-center shadow"
+              className="absolute -top-11 right-0 w-9 h-9 rounded-full glass-modal text-zinc-600 flex items-center justify-center shadow hover:bg-white"
               aria-label="Close"
             >
               <X className="w-4 h-4" />
@@ -304,7 +316,7 @@ export default function App() {
         </div>
       )}
       {toast && (
-        <div role="alert" className="fixed bottom-24 md:bottom-6 left-1/2 -translate-x-1/2 z-[60] max-w-md w-[calc(100%-2rem)] bg-zinc-900 text-white text-sm rounded-2xl px-4 py-3 shadow-lg flex items-start gap-3">
+        <div role="alert" className="fixed bottom-24 md:bottom-6 left-1/2 -translate-x-1/2 z-[60] max-w-md w-[calc(100%-2rem)] bg-zinc-900/90 backdrop-blur-xl border border-white/20 text-white text-sm rounded-2xl px-4 py-3 shadow-2xl flex items-start gap-3">
           <span className="flex-1">{toast}</span>
           <button onClick={() => setToast('')} className="text-white/60 hover:text-white" aria-label="Dismiss"><X className="w-4 h-4" /></button>
         </div>

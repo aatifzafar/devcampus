@@ -115,9 +115,7 @@ function Tile({ className = '', children, onClick, as = 'div', label }) {
     <Comp
       onClick={onClick}
       aria-label={label}
-      className={`bg-white/75 backdrop-blur-xl rounded-3xl border border-white/70 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-5 sm:p-6 text-left ${
-        onClick ? 'cursor-pointer hover:bg-white/85 hover:border-white/90 hover:shadow-[0_12px_36px_rgb(0,0,0,0.08)] transition-all' : ''
-      } ${className}`}
+      className={`glass-card rounded-3xl p-5 sm:p-6 text-left ${onClick ? "cursor-pointer hover:bg-white/80 hover:border-white hover:shadow-[0_14px_40px_rgb(31,38,135,0.12)] transition-all" : ""} ${className}`}
     >
       {children}
     </Comp>
@@ -454,13 +452,13 @@ function PendingModal({ pending, onClose, onNavigate }) {
   const groups = BUCKETS.map((b) => ({ ...b, items: pending.filter((p) => p.bucket === b.id) })).filter((g) => g.items.length);
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/40 flex items-end sm:items-center justify-center sm:p-6" onClick={onClose}>
+    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-md flex items-end sm:items-center justify-center sm:p-6" onClick={onClose}>
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="pending-title"
         onClick={(e) => e.stopPropagation()}
-        className="bg-white w-full sm:max-w-2xl max-h-[88vh] rounded-t-3xl sm:rounded-3xl flex flex-col overflow-hidden shadow-2xl"
+        className="glass-modal w-full sm:max-w-2xl max-h-[88vh] rounded-t-3xl sm:rounded-3xl flex flex-col overflow-hidden shadow-2xl"
       >
         <div className="flex items-start gap-3 p-5 sm:p-6 border-b border-zinc-100">
           <div>

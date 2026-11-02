@@ -50,7 +50,7 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
 
   return (
     <aside
-      className={`hidden md:flex shrink-0 flex-col sticky top-0 h-screen bg-white/65 backdrop-blur-2xl border-r border-white/50 shadow-[4px_0_30px_rgba(0,0,0,0.02)] transition-all duration-200 py-5 px-3 ${
+      className={`hidden md:flex shrink-0 flex-col sticky top-0 h-screen glass-nav border-r border-white/60 shadow-[4px_0_30px_rgba(31,38,135,0.04)] relative z-20 transition-all duration-200 py-5 px-3 ${
         collapsed ? 'w-[76px]' : 'w-64'
       }`}
     >
@@ -289,7 +289,7 @@ export function MobileNav({ activeTab, setActiveTab }) {
       {moreOpen && (
         <div className="md:hidden fixed inset-0 z-40 bg-black/30" onClick={() => setMoreOpen(false)}>
           <div
-            className="absolute bottom-20 left-3 right-3 bg-white rounded-2xl border border-zinc-200 p-2 shadow-xl"
+            className="absolute bottom-20 left-3 right-3 glass-modal rounded-2xl p-2 shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
             {extra.map((section) => {
@@ -313,7 +313,7 @@ export function MobileNav({ activeTab, setActiveTab }) {
       )}
 
       <nav
-        className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-zinc-200 flex px-1 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
+        className="md:hidden fixed bottom-0 inset-x-0 z-40 glass-nav border-t border-white/60 flex px-1 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
         aria-label="Main"
       >
         {primary.map((section) => {

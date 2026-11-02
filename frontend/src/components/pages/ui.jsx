@@ -102,7 +102,7 @@ export { readSaved, writeSaved };
 
 /* ---------- components ---------- */
 export const Card = ({ children, className = '', ...rest }) => (
-  <div className={`bg-white/80 backdrop-blur-xl rounded-3xl border border-white/70 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_12px_36px_rgb(0,0,0,0.07)] hover:border-white/90 transition-all p-5 sm:p-6 ${className}`} {...rest}>
+  <div className={`glass-card rounded-3xl p-5 sm:p-6 ${className}`} {...rest}>
     {children}
   </div>
 );
@@ -128,12 +128,12 @@ export function Chips({ options, value, onChange }) {
           <button
             key={id}
             onClick={() => onChange(id)}
-            className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
-              on ? 'bg-[#F1EEFB] text-[#4C2E8A] font-medium' : 'text-zinc-600 hover:bg-zinc-100'
+            className={`px-3 py-1.5 rounded-full text-sm transition-all cursor-pointer ${
+              on ? 'bg-[#6D3FC0] text-white font-medium shadow-xs' : 'glass-subtle text-zinc-700 hover:text-zinc-900'
             }`}
           >
             {label}
-            {o.count !== undefined && <span className={`ml-1.5 text-xs ${on ? 'text-[#6D3FC0]' : 'text-zinc-400'}`}>{o.count}</span>}
+            {o.count !== undefined && <span className={`ml-1.5 text-xs ${on ? 'text-white/80' : 'text-zinc-400'}`}>{o.count}</span>}
           </button>
         );
       })}
@@ -144,8 +144,8 @@ export function Chips({ options, value, onChange }) {
 export const SubjectTag = ({ code, subject }) => {
   const s = subject || subjectOf(code);
   return (
-    <span className="inline-flex items-center gap-1.5 text-xs text-zinc-500 min-w-0">
-      <span className="w-2 h-2 rounded-full shrink-0" style={{ background: s.color }} />
+    <span className="inline-flex items-center gap-1.5 text-xs text-zinc-600 min-w-0 font-medium">
+      <span className="w-2 h-2 rounded-full shrink-0 shadow-xs" style={{ background: s.color }} />
       <span className="truncate">{s.name}</span>
     </span>
   );
@@ -153,27 +153,27 @@ export const SubjectTag = ({ code, subject }) => {
 
 export const Pill = ({ tone = 'zinc', children, className = '' }) => {
   const tones = {
-    zinc: 'bg-zinc-100 text-zinc-600',
-    violet: 'bg-[#F1EEFB] text-[#4C2E8A]',
-    red: 'bg-red-50 text-red-700',
-    orange: 'bg-orange-50 text-orange-700',
-    amber: 'bg-amber-50 text-amber-800',
-    green: 'bg-emerald-50 text-emerald-700',
-    blue: 'bg-sky-50 text-sky-700',
+    zinc: 'glass-subtle text-zinc-700',
+    violet: 'bg-[#F1EEFB]/90 text-[#4C2E8A] border border-indigo-200/60',
+    red: 'bg-red-50/90 text-red-700 border border-red-200/60',
+    orange: 'bg-orange-50/90 text-orange-700 border border-orange-200/60',
+    amber: 'bg-amber-50/90 text-amber-800 border border-amber-200/60',
+    green: 'bg-emerald-50/90 text-emerald-700 border border-emerald-200/60',
+    blue: 'bg-sky-50/90 text-sky-700 border border-sky-200/60',
   };
-  return <span className={`inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded-full whitespace-nowrap ${tones[tone]} ${className}`}>{children}</span>;
+  return <span className={`inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-0.5 rounded-full whitespace-nowrap shadow-xs ${tones[tone]} ${className}`}>{children}</span>;
 };
 
 export const Button = ({ variant = 'secondary', className = '', children, ...rest }) => {
   const styles = {
-    primary: 'bg-[#6D3FC0] text-white hover:bg-[#5B32A6]',
-    secondary: 'border border-white/80 text-zinc-700 bg-white/75 backdrop-blur-md hover:bg-white/95 shadow-xs',
-    ghost: 'text-[#6D3FC0] hover:bg-[#F7F5FD]',
-    danger: 'bg-red-600 text-white hover:bg-red-700',
+    primary: 'bg-[#6D3FC0] text-white hover:bg-[#5B32A6] shadow-sm',
+    secondary: 'border border-white/80 text-zinc-800 glass-subtle hover:bg-white/85 shadow-xs',
+    ghost: 'text-[#6D3FC0] hover:bg-white/60',
+    danger: 'bg-red-600 text-white hover:bg-red-700 shadow-sm',
   };
   return (
     <button
-      className={`inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors disabled:opacity-50 ${styles[variant]} ${className}`}
+      className={`inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-all disabled:opacity-50 cursor-pointer ${styles[variant]} ${className}`}
       {...rest}
     >
       {children}
@@ -203,31 +203,31 @@ export function Modal({ title, subtitle, onClose, children, footer, wide = false
     };
   }, [onClose]);
   return (
-    <div className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm flex items-end sm:items-center justify-center sm:p-6" onClick={onClose}>
+    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-md flex items-end sm:items-center justify-center sm:p-6" onClick={onClose}>
       <div
         role="dialog"
         aria-modal="true"
         onClick={(e) => e.stopPropagation()}
-        className={`bg-white/90 backdrop-blur-2xl w-full ${wide ? 'sm:max-w-3xl' : 'sm:max-w-lg'} max-h-[90vh] rounded-t-3xl sm:rounded-3xl border border-white/80 flex flex-col overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]`}
+        className={`glass-modal w-full ${wide ? 'sm:max-w-3xl' : 'sm:max-w-lg'} max-h-[90vh] rounded-t-3xl sm:rounded-3xl flex flex-col overflow-hidden shadow-2xl`}
       >
-        <div className="flex items-start gap-3 p-5 border-b border-zinc-100">
+        <div className="flex items-start gap-3 p-5 border-b border-white/60">
           <div className="min-w-0">
             <h2 className="text-lg font-semibold text-zinc-900">{title}</h2>
             {subtitle && <p className="text-sm text-zinc-500">{subtitle}</p>}
           </div>
-          <button onClick={onClose} className="ml-auto w-9 h-9 rounded-full hover:bg-zinc-100 flex items-center justify-center text-zinc-500 shrink-0" aria-label="Close">
+          <button onClick={onClose} className="ml-auto w-9 h-9 rounded-full hover:bg-white/70 flex items-center justify-center text-zinc-500 shrink-0 cursor-pointer transition-colors" aria-label="Close">
             <X className="w-5 h-5" />
           </button>
         </div>
         <div className="overflow-y-auto p-5 flex-1">{children}</div>
-        {footer && <div className="p-4 border-t border-zinc-100 flex justify-end gap-2">{footer}</div>}
+        {footer && <div className="p-4 border-t border-white/60 flex justify-end gap-2 bg-white/40">{footer}</div>}
       </div>
     </div>
   );
 }
 
 export const Stat = ({ label, value, hint, tone }) => (
-  <div className="rounded-2xl bg-white/75 backdrop-blur-md border border-white/70 shadow-[0_4px_20px_rgb(0,0,0,0.03)] px-4 py-3.5 transition-all">
+  <div className="rounded-2xl glass-card px-4 py-3.5">
     <p className="text-xs text-zinc-500">{label}</p>
     <p className={`text-2xl font-semibold ${tone || 'text-zinc-900'}`}>{value}</p>
     {hint && <p className="text-xs text-zinc-500">{hint}</p>}
@@ -247,4 +247,4 @@ export const Field = ({ label, children, hint, group = false }) => {
 };
 
 export const inputClass =
-  'w-full px-3.5 py-2.5 rounded-xl border border-zinc-200/80 bg-white/70 backdrop-blur-md text-sm focus:outline-none focus:bg-white/95 focus:border-[#6D3FC0] focus:ring-2 focus:ring-[#6D3FC0]/15 shadow-xs transition-all';
+  'w-full px-3.5 py-2.5 rounded-xl border border-white/75 bg-white/55 backdrop-blur-md text-sm focus:outline-none focus:bg-white/90 focus:border-[#6D3FC0] focus:ring-2 focus:ring-[#6D3FC0]/15 shadow-xs transition-all';

@@ -285,7 +285,7 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
   const isLiveConnected = Boolean(customKey || (status && status !== 'offline' && status.connected));
 
   return (
-    <div className={`flex flex-col ${compact ? 'h-full' : 'h-[calc(100vh-15rem)] min-h-[480px]'} bg-white/80 backdrop-blur-2xl rounded-3xl border border-white/70 shadow-[0_8px_32px_0_rgba(31,38,135,0.06)] overflow-hidden relative`}>
+    <div className={`flex flex-col ${compact ? 'h-full' : 'h-[calc(100vh-15rem)] min-h-[480px]'} glass-card rounded-3xl overflow-hidden relative shadow-[0_12px_40px_0_rgba(31,38,135,0.08)]`}>
       {/* Header Bar */}
       <div className="flex items-center gap-2 px-4 sm:px-5 py-3 border-b border-zinc-100 flex-wrap sm:flex-nowrap">
         <span className="w-8 h-8 rounded-xl bg-[#6D3FC0] text-white flex items-center justify-center shrink-0">
@@ -427,8 +427,8 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
       </div>
 
       {/* Input Form */}
-      <form onSubmit={(e) => { e.preventDefault(); send(); }} className="p-3 sm:p-4 border-t border-zinc-100">
-        <div className="flex items-end gap-2 rounded-2xl border border-zinc-200 focus-within:border-[#6D3FC0] px-3 py-2">
+      <form onSubmit={(e) => { e.preventDefault(); send(); }} className="p-3 sm:p-4 border-t border-white/60 glass-subtle">
+        <div className="flex items-end gap-2 rounded-2xl glass-input focus-within:border-[#6D3FC0] px-3 py-2">
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}

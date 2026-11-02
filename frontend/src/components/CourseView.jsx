@@ -44,7 +44,7 @@ const LEVEL_STYLE = {
 };
 
 const Card = ({ children, className = '' }) => (
-  <div className={`bg-white rounded-3xl border border-[#E4E4E7] p-5 sm:p-6 ${className}`}>{children}</div>
+  <div className={`glass-card rounded-3xl p-5 sm:p-6 ${className}`}>{children}</div>
 );
 
 const SectionTitle = ({ children, hint }) => (
@@ -405,7 +405,7 @@ export default function CourseView({ code, initialTab = 'units', onBack }) {
       </nav>
 
       {/* Header */}
-      <div className="bg-white rounded-3xl border border-[#E4E4E7] overflow-hidden mb-5">
+      <div className="glass-card rounded-3xl overflow-hidden mb-5">
         <div className="h-1.5" style={{ background: subject.color }} />
         <div className="p-5 sm:p-6 flex flex-col md:flex-row md:items-center gap-4">
           <div className="min-w-0">
