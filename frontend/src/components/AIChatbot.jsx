@@ -239,7 +239,7 @@ I am grounded in the **Alliance University curriculum**, MSE/ESE past question p
               {msg.sender === 'user' && (
                 <img
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250"
-                  alt="Anna"
+                  alt="Alex"
                   className="w-9 h-9 rounded-2xl object-cover shrink-0 ring-2 ring-zinc-200"
                 />
               )}

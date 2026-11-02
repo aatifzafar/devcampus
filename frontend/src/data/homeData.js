@@ -31,7 +31,7 @@ export const STUDENT_INFO = {
   program: 'B.Tech CSE',
   semester: 5,
   section: 'J',
-  mentor: 'Dr. Devika P',
+  mentor: 'Demo Teacher',
   cgpa: 8.6,
 };
 
@@ -42,13 +42,13 @@ export const WEEK_STATS = { submitted: 4 };
 
 // Everything the student has to hand in. `submitted: false` = pending.
 export const SUBMISSIONS = [
-  { id: 's1', title: 'ER diagram for library system', type: 'Assignment', subject: SUBJECTS.DBMS, due: at(-2, 23, 59), teacher: 'Prof. Rao', marks: 10 },
-  { id: 's2', title: 'Lab 6: Exception handling programs', type: 'Lab record', subject: SUBJECTS.JAVA, due: laterToday(3), teacher: 'Dr. Kumar', marks: 15 },
-  { id: 's3', title: 'DFA minimisation problem set', type: 'Assignment', subject: SUBJECTS.TOC, due: at(0, 23, 59), teacher: 'Dr. Devika P', marks: 10 },
-  { id: 's4', title: 'Subnetting worksheet', type: 'Worksheet', subject: SUBJECTS.CN, due: at(1, 23, 59), teacher: 'Prof. Shenoy', marks: 5 },
-  { id: 's5', title: 'CPU scheduling case study', type: 'Assignment', subject: SUBJECTS.OS, due: at(3, 23, 59), teacher: 'Dr. Iyer', marks: 10 },
-  { id: 's6', title: 'Mini project: proposal document', type: 'Project', subject: SUBJECTS.JAVA, due: at(6, 23, 59), teacher: 'Dr. Kumar', marks: 20 },
-  { id: 's7', title: 'Normalisation exercises (1NF to BCNF)', type: 'Assignment', subject: SUBJECTS.DBMS, due: at(11, 23, 59), teacher: 'Prof. Rao', marks: 10 },
+  { id: 's1', title: 'ER diagram for library system', type: 'Assignment', subject: SUBJECTS.DBMS, due: at(-2, 23, 59), teacher: 'Teacher 8', marks: 10 },
+  { id: 's2', title: 'Lab 6: Exception handling programs', type: 'Lab record', subject: SUBJECTS.JAVA, due: laterToday(3), teacher: 'Teacher 7', marks: 15 },
+  { id: 's3', title: 'DFA minimisation problem set', type: 'Assignment', subject: SUBJECTS.TOC, due: at(0, 23, 59), teacher: 'Demo Teacher', marks: 10 },
+  { id: 's4', title: 'Subnetting worksheet', type: 'Worksheet', subject: SUBJECTS.CN, due: at(1, 23, 59), teacher: 'Teacher 11', marks: 5 },
+  { id: 's5', title: 'CPU scheduling case study', type: 'Assignment', subject: SUBJECTS.OS, due: at(3, 23, 59), teacher: 'Teacher 6', marks: 10 },
+  { id: 's6', title: 'Mini project: proposal document', type: 'Project', subject: SUBJECTS.JAVA, due: at(6, 23, 59), teacher: 'Teacher 7', marks: 20 },
+  { id: 's7', title: 'Normalisation exercises (1NF to BCNF)', type: 'Assignment', subject: SUBJECTS.DBMS, due: at(11, 23, 59), teacher: 'Teacher 8', marks: 10 },
 ];
 
 export const TESTS = [
@@ -62,10 +62,10 @@ export const CLASSES_TODAY = [];
 
 // New things teachers shared recently.
 export const RECENTLY_ASSIGNED = [
-  { id: 'r1', kind: 'Notes', title: 'Unit 4 notes: Transport layer', subject: SUBJECTS.CN, when: at(0, 8, 15), teacher: 'Prof. Shenoy' },
-  { id: 'r2', kind: 'Assignment', title: 'DFA minimisation problem set', subject: SUBJECTS.TOC, when: at(-1, 16, 40), teacher: 'Dr. Devika P' },
-  { id: 'r3', kind: 'Test', title: 'Mid-term 2 scheduled', subject: SUBJECTS.DBMS, when: at(-1, 11, 5), teacher: 'Prof. Rao' },
-  { id: 'r4', kind: 'Recording', title: 'Deadlock avoidance class', subject: SUBJECTS.OS, when: at(-2, 20, 30), teacher: 'Dr. Iyer' },
+  { id: 'r1', kind: 'Notes', title: 'Unit 4 notes: Transport layer', subject: SUBJECTS.CN, when: at(0, 8, 15), teacher: 'Teacher 11' },
+  { id: 'r2', kind: 'Assignment', title: 'DFA minimisation problem set', subject: SUBJECTS.TOC, when: at(-1, 16, 40), teacher: 'Demo Teacher' },
+  { id: 'r3', kind: 'Test', title: 'Mid-term 2 scheduled', subject: SUBJECTS.DBMS, when: at(-1, 11, 5), teacher: 'Teacher 8' },
+  { id: 'r4', kind: 'Recording', title: 'Deadlock avoidance class', subject: SUBJECTS.OS, when: at(-2, 20, 30), teacher: 'Teacher 6' },
 ];
 
 // One question per day, picked by date so everyone gets the same one.

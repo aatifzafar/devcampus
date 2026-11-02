@@ -43,9 +43,9 @@ async function main() {
   console.log(summary);
   console.log('\nDone. Start the backend with "npm start".');
   console.log('Demo sign-ins (password Alliance@123):');
-  console.log('  Faculty  devika@alliance.edu.in');
-  console.log('  Student  anna.sharma@alliance.edu.in   (section 5J)');
-  console.log('  Student  kabir.das@alliance.edu.in     (section 5K)');
+  console.log('  Faculty  demoteacher@alliance.edu.in');
+  console.log('  Student  alex.sharma@alliance.edu.in   (section 5J)');
+  console.log('  Student  demostudent@alliance.edu.in   (section 5K)');
 }
 
 main()

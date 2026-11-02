@@ -101,8 +101,8 @@ npm run dev                   # http://localhost:5185
 ### Demo accounts (password `Alliance@123`)
 | Role | Email |
 |---|---|
-| Faculty | devika@alliance.edu.in |
-| Student, section 5J | anna.sharma@alliance.edu.in |
-| Student, section 5K | kabir.das@alliance.edu.in |
+| Faculty | demoteacher@alliance.edu.in |
+| Student, section 5J | alex.sharma@alliance.edu.in |
+| Student, section 5K | demostudent@alliance.edu.in |
 
 Sign in as faculty in one browser (or device) and as a student in another: anything faculty share appears for the student straight away.

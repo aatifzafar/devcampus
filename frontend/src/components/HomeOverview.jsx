@@ -45,9 +45,9 @@ const TESTS_ = () => {
 };
 const RECENT_ = () => {
   const fromFaculty = [
-    ...storeAnnouncements().map((a) => ({ id: a.id, kind: 'Announcement', title: a.title, subject: { code: a.code, name: storeSubject(a.code).name, color: storeSubject(a.code).color }, when: a.at, teacher: 'Dr. Devika P' })),
+    ...storeAnnouncements().map((a) => ({ id: a.id, kind: 'Announcement', title: a.title, subject: { code: a.code, name: storeSubject(a.code).name, color: storeSubject(a.code).color }, when: a.at, teacher: 'Demo Teacher' })),
     ...storeSubmissions().map((a) => ({ id: `n-${a.id}`, kind: 'Assignment', title: a.title, subject: a.subject, when: new Date(), teacher: a.teacher })),
-    ...storeTests().map((t) => ({ id: `n-${t.id}`, kind: 'Test', title: `${t.title} scheduled`, subject: t.subject, when: new Date(), teacher: 'Dr. Devika P' })),
+    ...storeTests().map((t) => ({ id: `n-${t.id}`, kind: 'Test', title: `${t.title} scheduled`, subject: t.subject, when: new Date(), teacher: 'Demo Teacher' })),
     ...['CSE303', 'CSE301', 'CSE302', 'CSE304', 'CSE305'].flatMap((code) => storeMaterials(code).map((m) => ({ id: `n-${m.id}`, kind: 'Notes', title: m.title, subject: { code, name: storeSubject(code).name, color: storeSubject(code).color }, when: m.sharedAt, teacher: m.faculty }))),
   ];
   return [...fromFaculty, ...BASE_RECENT].sort((a, b) => b.when - a.when).slice(0, 5);
@@ -133,7 +133,7 @@ function TileHeader({ kicker, icon: Icon, title, action, onAction, tint = 'bg-zi
       )}
       <div className="flex items-center gap-2.5">
         {Icon && (
-          <span className={`w-7 h-7 rounded-md flex items-center justify-center ${tint}`}>
+          <span className={`w-7 h-7 rounded-xl flex items-center justify-center ${tint}`}>
             <Icon className="w-4 h-4" strokeWidth={1.8} />
           </span>
         )}

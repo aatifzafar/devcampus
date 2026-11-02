@@ -29,7 +29,7 @@ let studyRooms = [
       },
       {
         id: "p2",
-        name: "Anna Sharma (You)",
+        name: "Alex Sharma (You)",
         avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150",
         role: "Member",
         status: "Active & Listening",
@@ -96,7 +96,7 @@ asyncio.run(main())
       },
       {
         id: "m_3",
-        sender: "Anna Sharma",
+        sender: "Alex Sharma",
         avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150",
         time: "5:18 PM",
         text: "I added the working code snippet to our collaborative scratchpad!"
@@ -132,7 +132,7 @@ asyncio.run(main())
       },
       {
         id: "p21",
-        name: "Anna Sharma (You)",
+        name: "Alex Sharma (You)",
         avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150",
         role: "Member",
         status: "Critiquing color contrast",
@@ -201,7 +201,7 @@ const createRoom = (roomData) => {
     peers: [
       {
         id: "p_me",
-        name: "Anna Sharma (You)",
+        name: "Alex Sharma (You)",
         avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150",
         role: "Host",
         status: "Leading discussion",
@@ -213,7 +213,7 @@ const createRoom = (roomData) => {
     messages: [
       {
         id: "msg_init_" + Date.now(),
-        sender: "Anna Sharma",
+        sender: "Alex Sharma",
         avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150",
         time: "Just now",
         text: `Room created for ${roomData.courseCode}! Let's focus and get this done.`
@@ -238,7 +238,7 @@ const postMessage = (roomId, message) => {
   if (room) {
     const newMsg = {
       id: "msg_" + Date.now(),
-      sender: "Anna Sharma",
+      sender: "Alex Sharma",
       avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150",
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       text: message

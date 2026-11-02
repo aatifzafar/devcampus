@@ -175,7 +175,7 @@ const subj = (code) => {
 export const storeSubmissions = () =>
   getStore()
     .assignments.filter(forStudent)
-    .map((a) => ({ id: a.id, title: a.title, type: a.type, subject: subj(a.code), due: new Date(a.due), teacher: 'Dr. Devika P', marks: a.marks, details: a.details, fromFaculty: true }));
+    .map((a) => ({ id: a.id, title: a.title, type: a.type, subject: subj(a.code), due: new Date(a.due), teacher: 'Demo Teacher', marks: a.marks, details: a.details, fromFaculty: true }));
 
 // Shaped like appData ALL_TESTS.
 export const storeTests = () =>
@@ -205,7 +205,7 @@ export const testStartOverride = (id) => {
 export const storeMaterials = (code, all = false) =>
   getStore()
     .materials.filter((m) => m.code === code && (all || forStudent(m)))
-    .map((m) => ({ ...m, sharedAt: new Date(m.sharedAt), faculty: subj(code).faculty || 'Dr. Devika P' }));
+    .map((m) => ({ ...m, sharedAt: new Date(m.sharedAt), faculty: subj(code).faculty || 'Demo Teacher' }));
 
 export const storeAnnouncements = () =>
   getStore()

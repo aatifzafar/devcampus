@@ -139,8 +139,8 @@ let mentorshipBookings = [
     id: "book_sample_1",
     alumniId: "alm_1",
     alumniName: "Rohan Varma",
-    studentId: "usr_anna_2026",
-    studentName: "Anna Sharma",
+    studentId: "usr_alex_2026",
+    studentName: "Alex Sharma",
     topic: "System Design & Scale",
     dateTime: "Tomorrow, 6:00 PM IST",
     status: "Confirmed",
@@ -180,8 +180,8 @@ const getAlumniById = (id) => alumni.find((a) => a.id === id);
 const bookMentorship = (bookingData) => {
   const newBooking = {
     id: "book_" + Date.now(),
-    studentId: "usr_anna_2026",
-    studentName: "Anna Sharma",
+    studentId: "usr_alex_2026",
+    studentName: "Alex Sharma",
     createdAt: new Date().toISOString(),
     status: "Confirmed",
     meetingLink: "https://meet.google.com/edux-" + Math.random().toString(36).substring(2, 7),

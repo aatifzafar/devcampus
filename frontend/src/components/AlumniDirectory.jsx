@@ -149,28 +149,26 @@ export default function AlumniDirectory() {
         </div>
 
         {/* Tab Switcher: Directory vs My Sessions */}
-        <div className="flex items-center bg-zinc-200/60 p-1 rounded-full text-xs font-semibold">
+        <div className="flex items-center bg-zinc-100 border border-zinc-300 p-1 rounded-md text-xs font-semibold">
           <button
             onClick={() => setActiveTab('directory')}
-            className={`px-4 py-1.5 rounded-full transition-all ${
-              activeTab === 'directory'
-                ? 'bg-white text-zinc-900 shadow-xs'
+            className={`px-4 py-1.5 rounded-md transition-all cursor-pointer ${activeTab === 'directory'
+                ? 'bg-white text-zinc-900 border border-zinc-900 shadow-xs'
                 : 'text-zinc-600 hover:text-zinc-900'
-            }`}
+              }`}
           >
             Alumni Directory ({alumniList.length})
           </button>
           <button
             onClick={() => setActiveTab('mySessions')}
-            className={`px-4 py-1.5 rounded-full transition-all flex items-center gap-1.5 ${
-              activeTab === 'mySessions'
-                ? 'bg-white text-zinc-900 shadow-xs'
+            className={`px-4 py-1.5 rounded-md transition-all flex items-center gap-1.5 cursor-pointer ${activeTab === 'mySessions'
+                ? 'bg-white text-zinc-900 border border-zinc-900 shadow-xs'
                 : 'text-zinc-600 hover:text-zinc-900'
-            }`}
+              }`}
           >
             <span>My Sessions</span>
             {mySessions.length > 0 && (
-              <span className="w-4 h-4 rounded-full bg-indigo-600 text-white text-[10px] flex items-center justify-center font-code">
+              <span className="w-4 h-4 rounded-full bg-[#005FB8] text-white text-[10px] flex items-center justify-center font-mono">
                 {mySessions.length}
               </span>
             )}
@@ -181,7 +179,7 @@ export default function AlumniDirectory() {
       {activeTab === 'directory' && (
         <>
           {/* Filter Bar */}
-          <div className="bg-white rounded-3xl p-4 sm:p-5 border border-[#E4E4E7] shadow-xs flex flex-col md:flex-row items-stretch md:items-center gap-3">
+          <div className="elastic-card p-4 sm:p-5 flex flex-col md:flex-row items-stretch md:items-center gap-3">
             <div className="relative flex-1">
               <Search className="w-4 h-4 text-zinc-400 absolute left-4 top-1/2 -translate-y-1/2" />
               <input
@@ -189,7 +187,7 @@ export default function AlumniDirectory() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by name, company, skill (e.g. Google, Kubernetes, Figma)..."
-                className="w-full pl-10 pr-4 py-2 text-xs bg-[#FAF9F6] border border-zinc-200 rounded-full focus:outline-none focus:border-indigo-400"
+                className="w-full pl-10 pr-4 py-2 text-xs bg-white border border-zinc-300 rounded-md focus:outline-none focus:border-[#005FB8]"
               />
             </div>
 
@@ -199,11 +197,10 @@ export default function AlumniDirectory() {
                 <button
                   key={ind}
                   onClick={() => setSelectedIndustry(ind)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-code transition-all whitespace-nowrap ${
-                    selectedIndustry === ind
+                  className={`px-3 py-1.5 rounded-md text-xs font-mono transition-all whitespace-nowrap cursor-pointer ${selectedIndustry === ind
                       ? 'bg-zinc-900 text-white font-semibold'
-                      : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
-                  }`}
+                      : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 border border-zinc-200'
+                    }`}
                 >
                   {ind}
                 </button>
@@ -213,11 +210,10 @@ export default function AlumniDirectory() {
             {/* Mentorship Toggle */}
             <button
               onClick={() => setMentorshipOnly(!mentorshipOnly)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-code font-medium flex items-center gap-1.5 transition-all shrink-0 ${
-                mentorshipOnly
+              className={`px-3.5 py-1.5 rounded-md text-xs font-mono font-medium flex items-center gap-1.5 transition-all shrink-0 cursor-pointer ${mentorshipOnly
                   ? 'bg-emerald-600 text-white'
-                  : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
-              }`}
+                  : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 border border-zinc-200'
+                }`}
             >
               <Coffee className="w-3.5 h-3.5" />
               <span>Available for Coffee Chat</span>
@@ -229,7 +225,7 @@ export default function AlumniDirectory() {
             {alumniList.map((alumnus) => (
               <div
                 key={alumnus.id}
-                className="bg-white rounded-3xl p-5 border border-[#E4E4E7] hover:border-zinc-300 hover:shadow-md transition-all flex flex-col justify-between group"
+                className="elastic-card p-5 hover:border-[#005FB8] transition-all flex flex-col justify-between group"
               >
                 <div>
                   {/* Top: Avatar, Name, Company Badge */}
@@ -239,7 +235,7 @@ export default function AlumniDirectory() {
                         <img
                           src={alumnus.avatar}
                           alt={alumnus.name}
-                          className="w-12 h-12 rounded-2xl object-cover ring-2 ring-zinc-100"
+                          className="w-12 h-12 rounded-md object-cover ring-1 ring-zinc-200"
                         />
                         {alumnus.openForMentorship && (
                           <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-emerald-500 border-2 border-white rounded-full" title="Open for mentorship"></span>
@@ -249,14 +245,14 @@ export default function AlumniDirectory() {
                         <h4 className="text-sm font-bold text-zinc-900 flex items-center gap-1.5">
                           {alumnus.name}
                         </h4>
-                        <span className="text-[11px] font-code text-zinc-500 block">
+                        <span className="text-[11px] font-mono text-zinc-500 block">
                           Alliance '{alumnus.graduationBatch} • {alumnus.degree}
                         </span>
                       </div>
                     </div>
 
                     {/* Company Pill */}
-                    <span className="px-2.5 py-1 rounded-full bg-zinc-100 text-zinc-800 text-[11px] font-bold font-code flex items-center gap-1">
+                    <span className="px-2.5 py-1 rounded-md bg-zinc-100 border border-zinc-200 text-zinc-800 text-[11px] font-bold font-mono flex items-center gap-1">
                       {alumnus.company}
                     </span>
                   </div>
@@ -339,25 +335,25 @@ export default function AlumniDirectory() {
       {/* Tab: My Mentorship Sessions */}
       {activeTab === 'mySessions' && (
         <div className="space-y-4">
-          <div className="bg-white rounded-3xl p-6 border border-[#E4E4E7] shadow-xs">
+          <div className="elastic-card p-6">
             <h3 className="text-base font-bold text-zinc-900 mb-4">
               Scheduled Mentorship Sessions ({mySessions.length})
             </h3>
 
             {mySessions.length === 0 ? (
-              <div className="text-center py-12 text-zinc-500 text-xs">
-                No mentorship sessions scheduled yet. Browse the directory to connect with alumni!
+              <div className="text-center py-12 text-zinc-500 text-xs font-mono">
+                No mentorship sessions scheduled yet. Browse the directory to connect with alumni.
               </div>
             ) : (
               <div className="space-y-3">
                 {mySessions.map((session) => (
                   <div
                     key={session.id}
-                    className="p-4 rounded-2xl bg-[#FAF9F6] border border-zinc-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                    className="p-4 rounded-md bg-zinc-50 border border-zinc-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                   >
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-code font-bold">
+                        <span className="px-2 py-0.5 rounded-sm bg-emerald-100 text-emerald-800 text-[10px] font-mono font-bold">
                           {session.status}
                         </span>
                         <span className="text-xs font-bold text-zinc-900">
@@ -367,11 +363,11 @@ export default function AlumniDirectory() {
                       <p className="text-xs text-zinc-600 font-medium">
                         Topic: {session.topic}
                       </p>
-                      <p className="text-[11px] text-zinc-400 font-code mt-0.5">
+                      <p className="text-[11px] text-zinc-400 font-mono mt-0.5">
                         Time: {session.dateTime}
                       </p>
                       {session.note && (
-                        <p className="text-[11px] text-zinc-500 italic mt-1">
+                        <p className="text-[11px] text-zinc-500 italic mt-1 font-sans">
                           "{session.note}"
                         </p>
                       )}
@@ -381,7 +377,7 @@ export default function AlumniDirectory() {
                       href={session.meetingLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-xs self-start sm:self-auto"
+                      className="elastic-btn-primary inline-flex items-center gap-1.5 text-xs font-semibold self-start sm:self-auto"
                     >
                       <Video className="w-3.5 h-3.5" />
                       <span>Join Google Meet</span>
@@ -397,13 +393,13 @@ export default function AlumniDirectory() {
       {/* Mentorship Booking Modal */}
       {bookingModalAlumni && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-4 animate-in fade-in">
-          <div className="bg-white rounded-3xl p-6 sm:p-7 max-w-lg w-full border border-zinc-200 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-zinc-100">
+          <div className="elastic-modal p-6 sm:p-7 max-w-lg w-full space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-zinc-200">
               <div className="flex items-center gap-2.5">
                 <img
                   src={bookingModalAlumni.avatar}
                   alt={bookingModalAlumni.name}
-                  className="w-9 h-9 rounded-full object-cover"
+                  className="w-9 h-9 rounded-md object-cover ring-1 ring-zinc-200"
                 />
                 <div>
                   <h3 className="text-sm font-bold text-zinc-900">
@@ -430,7 +426,7 @@ export default function AlumniDirectory() {
                 <select
                   value={selectedTopic}
                   onChange={(e) => setSelectedTopic(e.target.value)}
-                  className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-xs focus:outline-none focus:border-[#005FB8]"
                 >
                   {bookingModalAlumni.mentorshipTopics?.map((topic, i) => (
                     <option key={i} value={topic}>{topic}</option>
@@ -446,11 +442,10 @@ export default function AlumniDirectory() {
                   {bookingModalAlumni.availableSlots?.map((slot, i) => (
                     <label
                       key={i}
-                      className={`flex items-center gap-2 p-2.5 rounded-xl border cursor-pointer transition-all ${
-                        selectedSlot === slot
-                          ? 'border-indigo-600 bg-indigo-50/50 text-indigo-900 font-medium'
+                      className={`flex items-center gap-2 p-2.5 rounded-md border cursor-pointer transition-all ${selectedSlot === slot
+                          ? 'border-[#005FB8] bg-blue-50/50 text-[#005FB8] font-medium'
                           : 'border-zinc-200 hover:bg-zinc-50 text-zinc-700'
-                      }`}
+                        }`}
                     >
                       <input
                         type="radio"
@@ -458,10 +453,10 @@ export default function AlumniDirectory() {
                         value={slot}
                         checked={selectedSlot === slot}
                         onChange={() => setSelectedSlot(slot)}
-                        className="text-indigo-600 focus:ring-0"
+                        className="text-[#005FB8] focus:ring-0"
                       />
                       <Clock className="w-3.5 h-3.5 text-zinc-400" />
-                      <span className="font-code text-xs">{slot}</span>
+                      <span className="font-mono text-xs">{slot}</span>
                     </label>
                   ))}
                 </div>
@@ -476,7 +471,7 @@ export default function AlumniDirectory() {
                   value={studentNote}
                   onChange={(e) => setStudentNote(e.target.value)}
                   placeholder="e.g. Hi! I'm preparing for the upcoming Alliance campus placements and would love feedback on my backend portfolio..."
-                  className="w-full bg-zinc-50 border border-zinc-200 rounded-xl p-3 text-xs focus:outline-none focus:border-indigo-500 leading-relaxed"
+                  className="w-full bg-white border border-zinc-300 rounded-md p-3 text-xs focus:outline-none focus:border-[#005FB8] leading-relaxed"
                 ></textarea>
               </div>
 
@@ -484,14 +479,14 @@ export default function AlumniDirectory() {
                 <button
                   type="button"
                   onClick={() => setBookingModalAlumni(null)}
-                  className="px-4 py-2 rounded-full border border-zinc-200 text-zinc-600 hover:bg-zinc-100 font-medium"
+                  className="elastic-btn-secondary text-xs"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={bookingSubmitting}
-                  className="px-5 py-2 rounded-full bg-[#18181B] text-white hover:bg-zinc-800 font-semibold shadow-sm flex items-center gap-1.5"
+                  className="elastic-btn-primary inline-flex items-center gap-1.5 text-xs"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>{bookingSubmitting ? 'Confirming...' : 'Confirm Request'}</span>

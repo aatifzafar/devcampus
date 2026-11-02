@@ -337,8 +337,8 @@ function VideosTab({ info, subject }) {
                 <span className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow-sm" style={{ color: subject.color }}>
                   <CirclePlay className="w-7 h-7" />
                 </span>
-                <span className="absolute bottom-2 right-2 text-[11px] font-medium px-2 py-0.5 rounded-md bg-black/70 text-white">{r.minutes} min</span>
-                <span className="absolute top-2 left-2 text-[11px] font-medium px-2 py-0.5 rounded-md bg-white/90 text-zinc-700">
+                <span className="absolute bottom-2 right-2 text-[11px] font-medium px-2 py-0.5 rounded-full bg-black/70 text-white">{r.minutes} min</span>
+                <span className="absolute top-2 left-2 text-[11px] font-medium px-2 py-0.5 rounded-full bg-white/90 text-zinc-700">
                   Lecture {r.lecture}
                 </span>
               </div>

@@ -386,7 +386,7 @@ export function FProfile({ userProfile, onSignOut }) {
     <div className="max-w-3xl space-y-5">
       <Card>
         <div className="flex items-center gap-4 mb-5">
-          <span className="w-16 h-16 rounded-2xl bg-[#F1EEFB] text-[#4C2E8A] text-xl font-semibold flex items-center justify-center">DP</span>
+          <span className="w-16 h-16 rounded-2xl bg-[#F1EEFB] text-[#4C2E8A] text-xl font-semibold flex items-center justify-center">DT</span>
           <div><p className="text-xl font-semibold text-zinc-900">{FACULTY.fullName}</p><p className="text-sm text-zinc-500">{FACULTY.designation}, {FACULTY.department}</p></div>
         </div>
         <dl className="divide-y divide-zinc-100">{rows.map(([k, v]) => <div key={k} className="flex justify-between gap-4 py-2.5 text-sm"><dt className="text-zinc-500">{k}</dt><dd className="text-zinc-900 font-medium text-right">{v}</dd></div>)}</dl>

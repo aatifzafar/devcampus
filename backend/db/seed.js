@@ -7,17 +7,17 @@ const DEMO_PASSWORD = 'Alliance@123';
 
 const USERS = [
   {
-    email: 'devika@alliance.edu.in', role: 'faculty', full_name: 'Dr. Devika P',
+    email: 'demoteacher@alliance.edu.in', role: 'faculty', full_name: 'Demo Teacher',
     department: 'Computer Science and Engineering', designation: 'Assistant Professor',
   },
   {
-    email: 'anna.sharma@alliance.edu.in', role: 'student', full_name: 'Anna Sharma',
+    email: 'alex.sharma@alliance.edu.in', role: 'student', full_name: 'Alex Sharma',
     roll_no: '2411021061234', section: '5J', semester: 5, program: 'B.Tech Computer Science and Engineering',
     department: 'Alliance School of Advanced Computing',
     avatar_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
   },
   {
-    email: 'kabir.das@alliance.edu.in', role: 'student', full_name: 'Kabir Das',
+    email: 'demostudent@alliance.edu.in', role: 'student', full_name: 'Demo Student',
     roll_no: '2411021062201', section: '5K', semester: 5, program: 'B.Tech Computer Science and Engineering',
     department: 'Alliance School of Advanced Computing',
   },
@@ -34,7 +34,7 @@ async function seed(db) {
     );
     users += r.rowCount;
   }
-  const faculty = (await db.query(`SELECT id FROM users WHERE email = 'devika@alliance.edu.in'`)).rows[0];
+  const faculty = (await db.query(`SELECT id FROM users WHERE email = 'demoteacher@alliance.edu.in'`)).rows[0];
 
   for (const s of data.subjects) {
     await db.query(

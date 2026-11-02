@@ -185,7 +185,7 @@ export default function PYQPortal({ initialCourseFilter, onOpenChatWithQuestion 
               {/* Card Header */}
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-0.5 rounded-md bg-zinc-900 text-white font-code text-[11px] font-bold">
+                  <span className="px-2.5 py-0.5 rounded-full bg-zinc-900 text-white font-code text-[11px] font-bold">
                     {paper.courseCode}
                   </span>
                   <span className={`px-2 py-0.5 rounded-full text-[10px] font-code font-bold ${

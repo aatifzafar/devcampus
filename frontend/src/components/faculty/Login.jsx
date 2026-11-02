@@ -4,9 +4,9 @@ import { signIn } from '../../utils/session';
 
 // Accounts created by "npm run db:setup" (password Alliance@123).
 const DEMO = [
-  { email: 'devika@alliance.edu.in', icon: Presentation, title: 'Faculty', who: 'Dr. Devika P · Theory of Computation, Data Structures' },
-  { email: 'anna.sharma@alliance.edu.in', icon: GraduationCap, title: 'Student', who: 'Anna Sharma · B.Tech CSE · Section 5J' },
-  { email: 'kabir.das@alliance.edu.in', icon: GraduationCap, title: 'Student', who: 'Kabir Das · B.Tech CSE · Section 5K' },
+  { email: 'demoteacher@alliance.edu.in', icon: Presentation, title: 'Faculty', who: 'Demo Teacher · Theory of Computation, Data Structures' },
+  { email: 'alex.sharma@alliance.edu.in', icon: GraduationCap, title: 'Student', who: 'Alex Sharma · B.Tech CSE · Section 5J' },
+  { email: 'demostudent@alliance.edu.in', icon: GraduationCap, title: 'Student', who: 'Demo Student · B.Tech CSE · Section 5K' },
 ];
 const DEMO_PASSWORD = 'Alliance@123';
 

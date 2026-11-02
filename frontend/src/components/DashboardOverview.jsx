@@ -110,7 +110,7 @@ export default function DashboardOverview({
       <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
         <div>
           <h2 className="text-3xl lg:text-4xl font-editorial text-zinc-900 tracking-tight">
-            Good evening, {userProfile?.name || 'Anna'}
+            Good evening, {userProfile?.name || 'Alex'}
           </h2>
           <p className="text-sm text-zinc-500 mt-0.5">
             Track your semester progress, study sessions, and university submissions.
@@ -134,7 +134,7 @@ export default function DashboardOverview({
               EDUX 2.0 • Sem 5
             </span>
             <h3 className="text-2xl font-bold tracking-tight text-white mb-2">
-              Welcome back, {userProfile?.name || 'Anna'}
+              Welcome back, {userProfile?.name || 'Alex'}
             </h3>
             <p className="text-zinc-400 text-sm leading-relaxed max-w-sm">
               Your progress this week is awesome! Lets keep it up and get a lot of points reward!
@@ -397,7 +397,7 @@ export default function DashboardOverview({
                           className={`w-4 h-4 rounded flex items-center justify-center transition-all ${
                             item.completed
                               ? 'bg-zinc-900 text-white'
-                              : 'border border-zinc-300 hover:border-zinc-500 bg-white'
+                              : 'border border-zinc-200 hover:border-zinc-500 bg-white'
                           }`}
                         >
                           {item.completed && <Check className="w-3 h-3 stroke-[3]" />}

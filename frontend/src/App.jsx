@@ -289,7 +289,7 @@ export default function App() {
           <div className="relative max-w-lg w-full h-[90vh] sm:h-[640px]" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setIsFloatingChatOpen(false)}
-              className="absolute -top-10 right-0 w-8 h-8 rounded-lg bg-white border border-zinc-300 text-zinc-600 flex items-center justify-center shadow hover:bg-zinc-100 transition-colors cursor-pointer"
+              className="absolute -top-10 right-0 w-8 h-8 rounded-lg bg-white border border-zinc-200 text-zinc-600 flex items-center justify-center shadow hover:bg-zinc-100 transition-colors cursor-pointer"
               aria-label="Close"
             >
               <X className="w-4 h-4" />

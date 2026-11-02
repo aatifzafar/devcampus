@@ -7,7 +7,7 @@
    "credits": 4,
    "type": "Theory",
    "color": "#2563EB",
-   "faculty": "Dr. Meena R"
+   "faculty": "Teacher 2"
   },
   {
    "code": "PHY101",
@@ -16,7 +16,7 @@
    "credits": 3,
    "type": "Theory",
    "color": "#0891B2",
-   "faculty": "Dr. Arun S"
+   "faculty": "Teacher 15"
   },
   {
    "code": "CSE101",
@@ -25,7 +25,7 @@
    "credits": 4,
    "type": "Theory",
    "color": "#6D3FC0",
-   "faculty": "Prof. Kavya N"
+   "faculty": "Teacher 9"
   },
   {
    "code": "CSE101L",
@@ -34,7 +34,7 @@
    "credits": 2,
    "type": "Lab",
    "color": "#6D3FC0",
-   "faculty": "Prof. Kavya N"
+   "faculty": "Teacher 9"
   },
   {
    "code": "EEE101",
@@ -43,7 +43,7 @@
    "credits": 3,
    "type": "Theory",
    "color": "#CA8A04",
-   "faculty": "Dr. Prakash V"
+   "faculty": "Teacher 13"
   },
   {
    "code": "HSS101",
@@ -52,7 +52,7 @@
    "credits": 2,
    "type": "Theory",
    "color": "#DB2777",
-   "faculty": "Ms. Ritu J"
+   "faculty": "Teacher 10"
   },
   {
    "code": "MAT102",
@@ -61,7 +61,7 @@
    "credits": 4,
    "type": "Theory",
    "color": "#2563EB",
-   "faculty": "Dr. Meena R"
+   "faculty": "Teacher 2"
   },
   {
    "code": "CHE101",
@@ -70,7 +70,7 @@
    "credits": 3,
    "type": "Theory",
    "color": "#0891B2",
-   "faculty": "Dr. Lakshmi T"
+   "faculty": "Teacher 14"
   },
   {
    "code": "CSE102",
@@ -79,7 +79,7 @@
    "credits": 4,
    "type": "Theory",
    "color": "#6D3FC0",
-   "faculty": "Dr. Sandeep K"
+   "faculty": "Teacher 7"
   },
   {
    "code": "CSE102L",
@@ -88,7 +88,7 @@
    "credits": 2,
    "type": "Lab",
    "color": "#6D3FC0",
-   "faculty": "Dr. Sandeep K"
+   "faculty": "Teacher 7"
   },
   {
    "code": "ECE101",
@@ -97,7 +97,7 @@
    "credits": 3,
    "type": "Theory",
    "color": "#D85A30",
-   "faculty": "Prof. Harish M"
+   "faculty": "Teacher 4"
   },
   {
    "code": "MEC101",
@@ -106,7 +106,7 @@
    "credits": 2,
    "type": "Lab",
    "color": "#CA8A04",
-   "faculty": "Prof. Gopal D"
+   "faculty": "Teacher 12"
   },
   {
    "code": "MAT201",
@@ -115,7 +115,7 @@
    "credits": 4,
    "type": "Theory",
    "color": "#2563EB",
-   "faculty": "Dr. Meena R"
+   "faculty": "Teacher 2"
   },
   {
    "code": "CSE201",
@@ -124,7 +124,7 @@
    "credits": 4,
    "type": "Theory",
    "color": "#0F9D76",
-   "faculty": "Dr. Devika P"
+   "faculty": "Demo Teacher"
   },
   {
    "code": "CSE201L",
@@ -133,7 +133,7 @@
    "credits": 2,
    "type": "Lab",
    "color": "#0F9D76",
-   "faculty": "Dr. Devika P"
+   "faculty": "Demo Teacher"
   },
   {
    "code": "CSE202",
@@ -142,7 +142,7 @@
    "credits": 3,
    "type": "Theory",
    "color": "#D85A30",
-   "faculty": "Prof. Harish M"
+   "faculty": "Teacher 4"
   },
   {
    "code": "CSE203",
@@ -151,7 +151,7 @@
    "credits": 3,
    "type": "Theory",
    "color": "#6D3FC0",
-   "faculty": "Prof. Anjali B"
+   "faculty": "Teacher 5"
   },
   {
    "code": "HSS201",
@@ -160,7 +160,7 @@
    "credits": 2,
    "type": "Theory",
    "color": "#DB2777",
-   "faculty": "Ms. Ritu J"
+   "faculty": "Teacher 10"
   },
   {
    "code": "MAT202",
@@ -169,7 +169,7 @@
    "credits": 4,
    "type": "Theory",
    "color": "#2563EB",
-   "faculty": "Dr. Meena R"
+   "faculty": "Teacher 2"
   },
   {
    "code": "CSE204",
@@ -178,7 +178,7 @@
    "credits": 4,
    "type": "Theory",
    "color": "#0F9D76",
-   "faculty": "Dr. Raghav S"
+   "faculty": "Teacher 3"
   },
   {
    "code": "CSE204L",
@@ -187,7 +187,7 @@
    "credits": 2,
    "type": "Lab",
    "color": "#0F9D76",
-   "faculty": "Dr. Raghav S"
+   "faculty": "Teacher 3"
   },
   {
    "code": "CSE205",
@@ -196,7 +196,7 @@
    "credits": 3,
    "type": "Theory",
    "color": "#D85A30",
-   "faculty": "Prof. Harish M"
+   "faculty": "Teacher 4"
   },
   {
    "code": "CSE206",
@@ -205,7 +205,7 @@
    "credits": 3,
    "type": "Theory",
    "color": "#6D3FC0",
-   "faculty": "Prof. Anjali B"
+   "faculty": "Teacher 5"
   },
   {
    "code": "CSE207",
@@ -214,7 +214,7 @@
    "credits": 3,
    "type": "Theory",
    "color": "#CA8A04",
-   "faculty": "Dr. Iyer"
+   "faculty": "Teacher 6"
   },
   {
    "code": "CSE301",
@@ -223,7 +223,7 @@
    "credits": 4,
    "type": "Theory",
    "color": "#0F9D76",
-   "faculty": "Dr. Sandeep Kumar"
+   "faculty": "Teacher 7"
   },
   {
    "code": "CSE301L",
@@ -232,7 +232,7 @@
    "credits": 2,
    "type": "Lab",
    "color": "#0F9D76",
-   "faculty": "Dr. Sandeep Kumar"
+   "faculty": "Teacher 7"
   },
   {
    "code": "CSE302",
@@ -241,7 +241,7 @@
    "credits": 4,
    "type": "Theory",
    "color": "#D85A30",
-   "faculty": "Prof. Arvind Rao"
+   "faculty": "Teacher 8"
   },
   {
    "code": "CSE303",
@@ -250,7 +250,7 @@
    "credits": 4,
    "type": "Theory",
    "color": "#6D3FC0",
-   "faculty": "Dr. Devika P"
+   "faculty": "Demo Teacher"
   },
   {
    "code": "CSE304",
@@ -259,7 +259,7 @@
    "credits": 3,
    "type": "Theory",
    "color": "#2563EB",
-   "faculty": "Prof. Malini Shenoy"
+   "faculty": "Teacher 11"
   },
   {
    "code": "CSE305",
@@ -268,7 +268,7 @@
    "credits": 3,
    "type": "Theory",
    "color": "#CA8A04",
-   "faculty": "Dr. Iyer"
+   "faculty": "Teacher 6"
   },
   {
    "code": "CSE306",
@@ -277,7 +277,7 @@
    "credits": 2,
    "type": "Project",
    "color": "#DB2777",
-   "faculty": "Dr. Sandeep Kumar"
+   "faculty": "Teacher 7"
   }
  ],
  "sections": [
@@ -319,7 +319,7 @@
    "body": "Both have a’s followed by b’s. I don’t get why one needs a PDA and the other doesn’t.",
    "replies": [
     {
-     "author": "Dr. Devika P",
+     "author": "Demo Teacher",
      "role": "faculty",
      "at": "2026-10-31T16:35:00.000Z",
      "votes": 21,
@@ -346,7 +346,7 @@
    "body": "Asking for the mid-term. My notes say yes but I want to be sure.",
    "replies": [
     {
-     "author": "Prof. Arvind Rao",
+     "author": "Teacher 8",
      "role": "faculty",
      "at": "2026-10-30T15:00:00.000Z",
      "votes": 9,
@@ -396,7 +396,7 @@
    "body": "My answer has a different safe sequence than the solution. Is it still right?",
    "replies": [
     {
-     "author": "Dr. Iyer",
+     "author": "Teacher 6",
      "role": "faculty",
      "at": "2026-10-28T15:45:00.000Z",
      "votes": 8,

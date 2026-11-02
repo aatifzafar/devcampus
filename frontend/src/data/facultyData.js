@@ -3,12 +3,12 @@
 import { STUDENT_ROLL } from './store';
 
 export const FACULTY = {
-  name: 'Devika',
-  fullName: 'Dr. Devika P',
+  name: 'Demo Teacher',
+  fullName: 'Demo Teacher',
   designation: 'Assistant Professor',
   department: 'Computer Science and Engineering',
   school: 'Alliance School of Advanced Computing',
-  email: 'devika.p@alliance.edu.in',
+  email: 'demoteacher@alliance.edu.in',
   employeeId: 'AU-FAC-2311',
   cabin: 'Block B, Room 214',
 };
@@ -53,8 +53,8 @@ function buildRoster(section, prefix, count, seed) {
 }
 
 const r5j = buildRoster('5J', '24110210612', 30, 11);
-// The demo student, Anna Sharma, is in 5J.
-r5j[29] = { roll: STUDENT_ROLL, name: 'Anna Sharma', section: '5J', strength: 0.8, lastActiveDays: 0, submitsOnTime: true, demo: true };
+// The demo student, Alex Sharma, is in 5J.
+r5j[29] = { roll: STUDENT_ROLL, name: 'Alex Sharma', section: '5J', strength: 0.8, lastActiveDays: 0, submitsOnTime: true, demo: true };
 
 export const ROSTERS = {
   'toc-5j': r5j,

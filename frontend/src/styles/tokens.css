@@ -16,7 +16,7 @@
   
   --color-elastic-bg: #FFFFFF;
   --color-elastic-canvas: #FFFFFF;
-  --color-elastic-border: #18181B;
+  --color-elastic-border: #E4E4E7;
   --color-elastic-border-subtle: #E4E4E7;
 
   --color-elastic-emerald: #059669;
@@ -33,7 +33,7 @@
   --bg-card: #FFFFFF;
   --color-primary: #005FB8;
   --color-primary-hover: #004B93;
-  --border-hairline: #18181B;
+  --border-hairline: #E4E4E7;
   --text-primary: #18181B;
   --text-secondary: #3F3F46;
   --text-muted: #71717A;
@@ -53,18 +53,18 @@ body {
    Elastic Technical SaaS Utilities (Matching Wireframe Grid)
    ========================================================================== */
 
-/* Crisp Technical Box Card */
+/* Soft card: white, hairline grey border, large radius */
 .elastic-card {
   background: #FFFFFF;
-  border: 1px solid #18181B;
-  border-radius: 6px;
+  border: 1px solid #E4E4E7;
+  border-radius: 24px;
   box-shadow: none;
-  transition: all 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .elastic-card:hover {
-  border-color: #005FB8;
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.06);
+  border-color: #D4D4D8;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
 }
 
 /* Crisp Nav */
@@ -77,11 +77,11 @@ body {
 .elastic-btn-primary {
   background-color: #005FB8;
   color: #FFFFFF;
-  font-weight: 600;
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  padding: 0.5rem 1.1rem;
   transition: all 0.15s ease;
-  box-shadow: 0 1px 2px 0 rgba(0, 95, 184, 0.2);
+  box-shadow: none;
 }
 
 .elastic-btn-primary:hover {
@@ -91,26 +91,26 @@ body {
 /* Secondary Enterprise Button (Clean Crisp Outline) */
 .elastic-btn-secondary {
   background-color: #FFFFFF;
-  color: #18181B;
-  border: 1px solid #18181B;
-  font-weight: 600;
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
+  color: #3F3F46;
+  border: 1px solid #E4E4E7;
+  font-weight: 500;
+  border-radius: 9999px;
+  padding: 0.5rem 1.1rem;
   transition: all 0.15s ease;
 }
 
 .elastic-btn-secondary:hover {
-  background-color: #F4F4F5;
-  border-color: #005FB8;
-  color: #005FB8;
+  background-color: #FAFAFA;
+  border-color: #D4D4D8;
+  color: #18181B;
 }
 
 /* Enterprise Input Field */
 .elastic-input {
   background: #FFFFFF;
-  border: 1px solid #D4D4D8;
-  border-radius: 6px;
-  padding: 0.5rem 0.85rem;
+  border: 1px solid #E4E4E7;
+  border-radius: 9999px;
+  padding: 0.55rem 1rem;
   font-size: 0.875rem;
   color: #18181B;
   transition: all 0.15s ease;
@@ -119,15 +119,15 @@ body {
 .elastic-input:focus {
   outline: none;
   border-color: #005FB8;
-  box-shadow: 0 0 0 2px rgba(0, 95, 184, 0.2);
+  box-shadow: 0 0 0 3px rgba(0, 95, 184, 0.12);
 }
 
 /* Enterprise Modal Dialog */
 .elastic-modal {
   background: #FFFFFF;
-  border: 1.5px solid #18181B;
-  border-radius: 8px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+  border: 1px solid #E4E4E7;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12);
 }
 
 /* High-Contrast Code / Dark Surface */
@@ -135,7 +135,7 @@ body {
   background-color: #18181B;
   color: #FAFAFA;
   border: 1px solid #27272A;
-  border-radius: 6px;
+  border-radius: 16px;
 }
 
 /* Technical Monospace & Section Kicker */

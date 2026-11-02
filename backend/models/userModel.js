@@ -1,9 +1,9 @@
 // User Profile & Activity Model for Alliance.ai (EDUX 2.0)
 let userProfile = {
-  id: "usr_anna_2026",
-  name: "PAVAN",
-  fullName: "Pavan urs",
-  email: "upavan@ced.alliance.edu.in",
+  id: "usr_alex_2026",
+  name: "Alex",
+  fullName: "Alex Sharma",
+  email: "alex.sharma@alliance.edu.in",
   avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250",
   role: "Student",
   department: "School of Engineering & Technology",

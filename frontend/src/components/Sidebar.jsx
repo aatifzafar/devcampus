@@ -14,14 +14,14 @@ function Badge({ badge }) {
   if (!badge) return null;
   if (badge.tone === 'live') {
     return (
-      <span className="ml-auto inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-rose-50 border border-rose-200 text-rose-700 text-[10px] font-mono font-medium">
+      <span className="ml-auto inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 text-[11px] font-medium">
         <span className="w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse" />
         {badge.text}
       </span>
     );
   }
   return (
-    <span className="ml-auto px-1.5 py-0.5 rounded bg-zinc-100 border border-zinc-200 text-zinc-600 text-[10px] font-mono font-medium">
+    <span className="ml-auto min-w-[20px] text-center px-1.5 py-0.5 rounded-full bg-zinc-100 text-zinc-600 text-[11px] font-medium">
       {badge.text}
     </span>
   );
@@ -50,27 +50,27 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
 
   return (
     <aside
-      className={`hidden md:flex shrink-0 flex-col sticky top-0 h-screen bg-white border-r border-zinc-200 shadow-xs z-20 transition-all duration-200 py-4 px-3 ${
+      className={`hidden md:flex shrink-0 flex-col sticky top-0 h-screen bg-white border-r border-zinc-200 z-20 transition-all duration-200 py-4 px-3 ${
         collapsed ? 'w-[72px]' : 'w-64'
       }`}
     >
       {/* Brand + collapse */}
       <div className={`flex items-center mb-4 ${collapsed ? 'justify-center' : 'justify-between px-2'}`}>
         <button onClick={() => setActiveTab(getNavRole() === 'faculty' ? 'f-home' : 'dashboard')} className="flex items-center gap-2.5 cursor-pointer" title="Alliance.ai">
-          <span className="w-8 h-8 rounded-lg bg-[#0077CC] text-white flex items-center justify-center text-sm font-bold shadow-xs">
+          <span className="w-8 h-8 rounded-xl bg-[#0077CC] text-white flex items-center justify-center text-sm font-bold">
             A
           </span>
           {!collapsed && (
             <div className="flex flex-col text-left">
               <span className="text-sm font-bold text-zinc-900 tracking-tight leading-none">Alliance.ai</span>
-              <span className="text-[10px] text-zinc-500 font-mono tracking-wider uppercase mt-0.5">Academic OS</span>
+              <span className="text-[11px] text-zinc-500 mt-0.5">Academic OS</span>
             </div>
           )}
         </button>
         {!collapsed && (
           <button
             onClick={() => setCollapsed(true)}
-            className="w-7 h-7 rounded-md flex items-center justify-center text-zinc-400 hover:text-zinc-800 hover:bg-zinc-100 cursor-pointer"
+            className="w-7 h-7 rounded-full flex items-center justify-center text-zinc-400 hover:text-zinc-800 hover:bg-zinc-100 cursor-pointer"
             aria-label="Collapse sidebar"
           >
             <ChevronsLeft className="w-4 h-4" />
@@ -81,7 +81,7 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
       {collapsed && (
         <button
           onClick={() => setCollapsed(false)}
-          className="mx-auto mb-3 w-8 h-8 rounded-md flex items-center justify-center text-zinc-400 hover:text-zinc-800 hover:bg-zinc-100 cursor-pointer"
+          className="mx-auto mb-3 w-8 h-8 rounded-full flex items-center justify-center text-zinc-400 hover:text-zinc-800 hover:bg-zinc-100 cursor-pointer"
           aria-label="Expand sidebar"
         >
           <ChevronsRight className="w-4 h-4" />
@@ -92,16 +92,16 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
       {!collapsed ? (
         <button
           onClick={focusSearch}
-          className="mx-1 mb-3 flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-zinc-200 bg-[#F8FAFC] text-xs text-zinc-500 hover:border-zinc-300 hover:bg-white transition-all cursor-pointer"
+          className="mx-1 mb-3 flex items-center gap-2 px-3 py-2 rounded-full border border-zinc-200 bg-white text-sm text-zinc-400 hover:border-zinc-300 transition-all cursor-pointer"
         >
           <Search className="w-3.5 h-3.5" />
           <span>Search modules</span>
-          <span className="ml-auto text-[10px] font-mono text-zinc-400">Ctrl+K</span>
+          <span className="ml-auto px-2 py-0.5 rounded-full bg-zinc-100 text-[10px] font-medium text-zinc-500">Ctrl+K</span>
         </button>
       ) : (
         <button
           onClick={focusSearch}
-          className="mx-auto mb-3 w-10 h-10 rounded-lg flex items-center justify-center text-zinc-500 hover:bg-zinc-100 cursor-pointer"
+          className="mx-auto mb-3 w-10 h-10 rounded-full flex items-center justify-center text-zinc-500 hover:bg-zinc-100 cursor-pointer"
           aria-label="Search"
         >
           <Search className="w-4 h-4" />
@@ -115,7 +115,7 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
             return collapsed ? (
               <div key="divider" className="my-2 mx-2 border-t border-zinc-200" />
             ) : (
-              <p key="divider" className="px-3 pt-3 pb-1 text-[10px] font-mono uppercase tracking-wider font-bold text-zinc-400">Features & Hub</p>
+              <p key="divider" className="px-3 pt-4 pb-1.5 text-[11px] font-mono uppercase tracking-wider text-zinc-400">Features & Hub</p>
             );
           }
           const Icon = section.icon;
@@ -138,12 +138,12 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
                 title={collapsed ? section.label : undefined}
                 aria-expanded={single || collapsed ? undefined : open}
                 aria-current={active && single ? 'page' : undefined}
-                className={`relative w-full flex items-center gap-2.5 rounded-lg text-sm transition-colors cursor-pointer ${itemSize} ${
+                className={`relative w-full flex items-center gap-2.5 rounded-xl text-sm transition-colors cursor-pointer ${itemSize} ${
                   active && (single || collapsed || !open)
-                    ? 'bg-[#EFF6FF] text-[#0077CC] font-semibold'
+                    ? 'bg-[#EFF6FF] text-[#005FA3] font-medium'
                     : active
-                      ? 'text-[#0077CC] font-semibold hover:bg-zinc-50'
-                      : 'text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900'
+                      ? 'text-[#005FA3] font-medium hover:bg-zinc-50'
+                      : 'text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900'
                 }`}
               >
                 <Icon className={`w-4 h-4 shrink-0 ${active ? 'text-[#0077CC]' : 'text-zinc-500'}`} strokeWidth={1.8} />
@@ -178,10 +178,10 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
                           tabIndex={open ? 0 : -1}
                           onClick={() => setActiveTab(t.id)}
                           aria-current={on ? 'page' : undefined}
-                          className={`flex items-center gap-2 px-2 py-1.5 rounded-md text-xs text-left transition-colors cursor-pointer ${
+                          className={`flex items-center gap-2 px-2.5 py-1.5 rounded-xl text-[13px] text-left transition-colors cursor-pointer ${
                             on
-                              ? 'bg-[#EFF6FF] text-[#0077CC] font-semibold'
-                              : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900'
+                              ? 'bg-[#EFF6FF] text-[#005FA3] font-medium'
+                              : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900'
                           }`}
                         >
                           {SubIcon && (
@@ -208,7 +208,7 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
         <button
           onClick={() => setActiveTab(firstTab(HELP))}
           title={collapsed ? HELP.label : undefined}
-          className={`flex items-center gap-2.5 rounded-lg text-xs font-medium text-zinc-600 hover:bg-zinc-100 cursor-pointer ${
+          className={`flex items-center gap-2.5 rounded-xl text-sm text-zinc-600 hover:bg-zinc-50 cursor-pointer ${
             collapsed ? 'justify-center w-10 h-10 mx-auto' : 'px-3 py-2'
           } ${current === 'help' ? 'bg-[#EFF6FF] text-[#0077CC]' : ''}`}
         >
@@ -219,17 +219,17 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
         <button
           onClick={() => setActiveTab(firstTab(PROFILE))}
           title={collapsed ? name : undefined}
-          className={`flex items-center gap-2.5 rounded-lg hover:bg-zinc-50 border border-zinc-200 text-left cursor-pointer p-1.5 ${
+          className={`flex items-center gap-2.5 rounded-2xl hover:border-zinc-300 border border-zinc-200 text-left cursor-pointer p-2 ${
             collapsed ? 'justify-center w-10 h-10 mx-auto' : ''
-          } ${current === 'profile' ? 'border-[#BAE6FD] bg-[#EFF6FF]' : ''}`}
+          } ${current === 'profile' ? 'border-transparent bg-[#EFF6FF]' : ''}`}
         >
-          <span className="w-7 h-7 rounded bg-[#EFF6FF] text-[#0077CC] text-xs font-bold flex items-center justify-center shrink-0">
+          <span className="w-8 h-8 rounded-full bg-[#EFF6FF] text-[#005FA3] text-xs font-semibold flex items-center justify-center shrink-0">
             {initials(name)}
           </span>
           {!collapsed && (
             <span className="min-w-0">
               <span className="block text-xs font-semibold text-zinc-900 truncate">{name}</span>
-              <span className="block text-[10px] text-zinc-500 font-mono">{faculty ? 'Faculty Account' : 'Student Verified'}</span>
+              <span className="block text-[11px] text-zinc-500">{faculty ? 'Faculty Account' : 'Student Verified'}</span>
             </span>
           )}
         </button>
@@ -290,7 +290,7 @@ export function MobileNav({ activeTab, setActiveTab }) {
       {moreOpen && (
         <div className="md:hidden fixed inset-0 z-40 bg-black/40" onClick={() => setMoreOpen(false)}>
           <div
-            className="absolute bottom-20 left-3 right-3 bg-white rounded-xl border border-zinc-200 p-2 shadow-2xl"
+            className="absolute bottom-20 left-3 right-3 bg-white rounded-3xl border border-zinc-200 p-2 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {extra.map((section) => {
@@ -299,7 +299,7 @@ export function MobileNav({ activeTab, setActiveTab }) {
                 <button
                   key={section.id}
                   onClick={() => go(section)}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm hover:bg-zinc-50 ${
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm hover:bg-zinc-50 ${
                     current === section.id ? 'text-[#0077CC] font-semibold bg-[#EFF6FF]' : 'text-zinc-800'
                   }`}
                 >

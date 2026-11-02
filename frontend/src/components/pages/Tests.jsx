@@ -354,7 +354,7 @@ function TestScreen({ test, stream, saved, onSave, onSubmit }) {
                       onClick={() => pick(i)}
                       className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl border text-left transition-colors ${on ? 'border-[#6D3FC0] bg-[#F7F5FD] text-[#4C2E8A]' : 'border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50 text-zinc-800'}`}
                     >
-                      <span className={`w-7 h-7 rounded-full flex items-center justify-center text-sm shrink-0 ${on ? 'bg-[#6D3FC0] text-white' : 'border border-zinc-300'}`}>
+                      <span className={`w-7 h-7 rounded-full flex items-center justify-center text-sm shrink-0 ${on ? 'bg-[#6D3FC0] text-white' : 'border border-zinc-200'}`}>
                         {String.fromCharCode(65 + i)}
                       </span>
                       {opt}
@@ -409,7 +409,7 @@ function TestScreen({ test, stream, saved, onSave, onSubmit }) {
               <ul className="space-y-1.5 text-xs text-zinc-600">
                 <li className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-[#6D3FC0]" /> Answered</li>
                 <li className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-amber-100 border border-amber-300" /> Marked for review</li>
-                <li className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-white border border-zinc-300" /> Seen, not answered</li>
+                <li className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-white border border-zinc-200" /> Seen, not answered</li>
                 <li className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-zinc-50 border border-zinc-200" /> Not seen yet</li>
               </ul>
             </Card>

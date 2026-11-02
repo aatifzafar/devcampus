@@ -20,10 +20,10 @@ class MockDatabase {
     this.users = [
       {
         id: 1,
-        email: 'devika@alliance.edu.in',
+        email: 'demoteacher@alliance.edu.in',
         password_hash: passwordHash,
         role: 'faculty',
-        full_name: 'Dr. Devika P',
+        full_name: 'Demo Teacher',
         designation: 'Assistant Professor',
         department: 'Computer Science and Engineering',
         avatar_url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=250',
@@ -32,10 +32,10 @@ class MockDatabase {
       },
       {
         id: 2,
-        email: 'anna.sharma@alliance.edu.in',
+        email: 'alex.sharma@alliance.edu.in',
         password_hash: passwordHash,
         role: 'student',
-        full_name: 'Anna Sharma',
+        full_name: 'Alex Sharma',
         roll_no: '2411021061234',
         section: '5J',
         semester: 5,
@@ -47,10 +47,10 @@ class MockDatabase {
       },
       {
         id: 3,
-        email: 'kabir.das@alliance.edu.in',
+        email: 'demostudent@alliance.edu.in',
         password_hash: passwordHash,
         role: 'student',
-        full_name: 'Kabir Das',
+        full_name: 'Demo Student',
         roll_no: '2411021062201',
         section: '5K',
         semester: 5,
@@ -177,11 +177,11 @@ class MockDatabase {
         type: 'Notes',
         title: 'Unit 1 Complete Notes: Regular Languages & DFAs',
         meta: 'PDF • 24 Pages',
-        note: 'Prof. Devika P lecture slides',
+        note: 'Demo Teacher lecture slides',
         url: null,
         file_id: null,
         file_name: 'CSE303_Unit1_Notes.pdf',
-        faculty: 'Dr. Devika P',
+        faculty: 'Demo Teacher',
         shared_at: new Date().toISOString()
       }
     ];
@@ -256,7 +256,7 @@ class MockDatabase {
     }
 
     if (lower.startsWith('select id from users where email =')) {
-      const user = this.users.find(u => u.email === 'devika@alliance.edu.in');
+      const user = this.users.find(u => u.email === 'demoteacher@alliance.edu.in');
       return { rows: user ? [{ id: user.id }] : [], rowCount: user ? 1 : 0 };
     }
 

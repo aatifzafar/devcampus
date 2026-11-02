@@ -428,7 +428,7 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
 
       {/* Input Form */}
       <form onSubmit={(e) => { e.preventDefault(); send(); }} className="p-3 sm:p-4 border-t border-zinc-200 bg-[#F8FAFC]">
-        <div className="flex items-end gap-2 rounded-lg bg-white border border-zinc-300 focus-within:border-[#0077CC] focus-within:ring-2 focus-within:ring-[#0077CC]/15 px-3 py-2 shadow-xs">
+        <div className="flex items-end gap-2 rounded-lg bg-white border border-zinc-200 focus-within:border-[#0077CC] focus-within:ring-2 focus-within:ring-[#0077CC]/15 px-3 py-2 shadow-xs">
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}

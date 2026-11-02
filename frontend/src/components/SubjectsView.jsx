@@ -22,9 +22,8 @@ function CurrentTile({ s, onNavigate, onOpenCourse }) {
   return (
     <article
       onClick={() => onOpenCourse(s.code, 'intro')}
-      className="group cursor-pointer elastic-card overflow-hidden flex flex-col hover:shadow-lg transition-all"
+      className="group cursor-pointer elastic-card overflow-hidden flex flex-col"
     >
-      <div className="h-1.5" style={{ background: s.color }} />
       <div className="p-5 flex flex-col flex-1">
         <div className="flex items-center gap-2 mb-3">
           <span className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: `${s.color}14`, color: s.color }}>

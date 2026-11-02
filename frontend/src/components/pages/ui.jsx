@@ -157,7 +157,7 @@ export const Pill = ({ tone = 'zinc', children, className = '' }) => {
     green: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
     blue: 'bg-sky-50 text-sky-700 border border-sky-200',
   };
-  return <span className={`inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-0.5 rounded-md whitespace-nowrap ${tones[tone]} ${className}`}>{children}</span>;
+  return <span className={`inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-0.5 rounded-full whitespace-nowrap ${tones[tone]} ${className}`}>{children}</span>;
 };
 
 export const Button = ({ variant = 'secondary', className = '', children, ...rest }) => {
@@ -242,4 +242,4 @@ export const Field = ({ label, children, hint, group = false }) => {
 };
 
 export const inputClass =
-  'w-full px-3.5 py-2.5 rounded-lg border border-zinc-300 bg-white text-sm text-zinc-900 focus:outline-none focus:border-[#0077CC] focus:ring-2 focus:ring-[#0077CC]/15 shadow-xs transition-all placeholder:text-zinc-400';
+  'w-full px-3.5 py-2.5 rounded-lg border border-zinc-200 bg-white text-sm text-zinc-900 focus:outline-none focus:border-[#0077CC] focus:ring-2 focus:ring-[#0077CC]/15 shadow-xs transition-all placeholder:text-zinc-400';

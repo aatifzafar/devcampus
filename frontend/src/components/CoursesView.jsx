@@ -82,7 +82,7 @@ export default function CoursesView({ courses, onUpdateProgress, onOpenChatbot }
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-800 text-[11px] font-code font-bold">
+                  <span className="px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-800 text-[11px] font-code font-bold">
                     {course.code}
                   </span>
                   <span className="text-xs font-code font-semibold text-zinc-700">
@@ -117,7 +117,7 @@ export default function CoursesView({ courses, onUpdateProgress, onOpenChatbot }
           <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-7 border border-[#E4E4E7] shadow-xs space-y-6">
             <div className="pb-5 border-b border-zinc-100">
               <div className="flex items-center gap-2 mb-2">
-                <span className="px-2.5 py-0.5 rounded-md bg-[#18181B] text-white text-xs font-code font-bold">
+                <span className="px-2.5 py-0.5 rounded-full bg-[#18181B] text-white text-xs font-code font-bold">
                   {selectedCourse.code}
                 </span>
                 <span className="text-xs text-zinc-500 font-code">

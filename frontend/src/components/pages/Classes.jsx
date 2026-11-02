@@ -61,7 +61,7 @@ function LiveRoom({ cls, onLeave }) {
         <Pill tone="red"><span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />Live</Pill>
         <div className="min-w-0">
           <p className="font-semibold truncate">{subjectOf(cls.subject.code).name}</p>
-          <p className="text-xs text-white/60">{cls.storeLive ? 'Dr. Devika P' : subjectOf(cls.subject.code).faculty} · {fmtTime(cls.start)}{cls.end ? ` – ${fmtTime(cls.end)}` : ''}</p>
+          <p className="text-xs text-white/60">{cls.storeLive ? 'Demo Teacher' : subjectOf(cls.subject.code).faculty} · {fmtTime(cls.start)}{cls.end ? ` – ${fmtTime(cls.end)}` : ''}</p>
         </div>
         <span className="ml-auto text-sm text-white/60 flex items-center gap-1.5"><Users className="w-4 h-4" />{cls.storeLive ? 'Class in progress' : '61 joined'}</span>
       </header>
@@ -139,7 +139,7 @@ export function LiveToday({ onNavigate }) {
           <span className="w-11 h-11 rounded-xl bg-emerald-500 text-white flex items-center justify-center"><Video className="w-5 h-5" /></span>
           <div className="min-w-0 flex-1">
             <p className="font-semibold text-zinc-900">{subjectOf(facultyLive.code).name} is live now</p>
-            <p className="text-sm text-zinc-600">Dr. Devika P started the class {fromNow(new Date(facultyLive.startedAt))}</p>
+            <p className="text-sm text-zinc-600">Demo Teacher started the class {fromNow(new Date(facultyLive.startedAt))}</p>
           </div>
           <Button variant="primary" onClick={joinFaculty}><Video className="w-4 h-4" />Join now</Button>
         </Card>

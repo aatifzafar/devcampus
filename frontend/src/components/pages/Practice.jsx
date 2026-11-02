@@ -81,7 +81,7 @@ export function DailyChallenge() {
               <div
                 key={d.toISOString()}
                 title={d.toDateString()}
-                className={`aspect-square rounded-md ${done ? 'bg-orange-400' : 'bg-zinc-100'} ${isToday ? 'ring-2 ring-zinc-900 ring-offset-1' : ''}`}
+                className={`aspect-square rounded-xl ${done ? 'bg-orange-400' : 'bg-zinc-100'} ${isToday ? 'ring-2 ring-zinc-900 ring-offset-1' : ''}`}
               />
             ))}
           </div>

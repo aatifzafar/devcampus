@@ -25,11 +25,11 @@ const DETAILS = {
 
 export const ASSIGNMENTS = [
   ...SUBMISSIONS.map((s) => ({ ...s, code: s.subject.code, details: DETAILS[s.id], status: 'pending' })),
-  { id: 'g1', title: 'Pumping lemma proofs', type: 'Assignment', code: 'CSE303', due: at(-9, 23, 59), teacher: 'Dr. Devika P', marks: 10, status: 'graded', score: 9, submittedAt: at(-10, 20, 12), feedback: 'Clear proofs. In Q3, state the choice of string before splitting it.', details: 'Prove that the four given languages are not regular.' },
-  { id: 'g2', title: 'SQL queries on the company schema', type: 'Assignment', code: 'CSE302', due: at(-12, 23, 59), teacher: 'Prof. Rao', marks: 10, status: 'graded', score: 8, submittedAt: at(-12, 18, 40), feedback: 'Good use of joins. Q7 needed GROUP BY with HAVING, not WHERE.', details: 'Write 10 SQL queries on the given company schema.' },
-  { id: 'g3', title: 'Lab 5: Collections programs', type: 'Lab record', code: 'CSE301L', due: at(-7, 17, 0), teacher: 'Dr. Kumar', marks: 15, status: 'graded', score: 14, submittedAt: at(-7, 15, 5), feedback: 'Well documented.', details: 'Programs 5.1 to 5.5 using ArrayList, HashMap and TreeSet.' },
-  { id: 'd1', title: 'Process synchronisation worksheet', type: 'Worksheet', code: 'CSE305', due: at(-3, 23, 59), teacher: 'Dr. Iyer', marks: 5, status: 'submitted', submittedAt: at(-4, 21, 30), fileName: 'os_sync_worksheet.pdf', details: 'Solve the producer–consumer and readers–writers questions.' },
-  { id: 'd2', title: 'Error detection: CRC problems', type: 'Assignment', code: 'CSE304', due: at(-2, 23, 59), teacher: 'Prof. Shenoy', marks: 10, status: 'submitted', submittedAt: at(-2, 19, 2), fileName: 'crc_problems.pdf', details: 'Compute CRC for the five given messages.' },
+  { id: 'g1', title: 'Pumping lemma proofs', type: 'Assignment', code: 'CSE303', due: at(-9, 23, 59), teacher: 'Demo Teacher', marks: 10, status: 'graded', score: 9, submittedAt: at(-10, 20, 12), feedback: 'Clear proofs. In Q3, state the choice of string before splitting it.', details: 'Prove that the four given languages are not regular.' },
+  { id: 'g2', title: 'SQL queries on the company schema', type: 'Assignment', code: 'CSE302', due: at(-12, 23, 59), teacher: 'Teacher 8', marks: 10, status: 'graded', score: 8, submittedAt: at(-12, 18, 40), feedback: 'Good use of joins. Q7 needed GROUP BY with HAVING, not WHERE.', details: 'Write 10 SQL queries on the given company schema.' },
+  { id: 'g3', title: 'Lab 5: Collections programs', type: 'Lab record', code: 'CSE301L', due: at(-7, 17, 0), teacher: 'Teacher 7', marks: 15, status: 'graded', score: 14, submittedAt: at(-7, 15, 5), feedback: 'Well documented.', details: 'Programs 5.1 to 5.5 using ArrayList, HashMap and TreeSet.' },
+  { id: 'd1', title: 'Process synchronisation worksheet', type: 'Worksheet', code: 'CSE305', due: at(-3, 23, 59), teacher: 'Teacher 6', marks: 5, status: 'submitted', submittedAt: at(-4, 21, 30), fileName: 'os_sync_worksheet.pdf', details: 'Solve the producer–consumer and readers–writers questions.' },
+  { id: 'd2', title: 'Error detection: CRC problems', type: 'Assignment', code: 'CSE304', due: at(-2, 23, 59), teacher: 'Teacher 11', marks: 10, status: 'submitted', submittedAt: at(-2, 19, 2), fileName: 'crc_problems.pdf', details: 'Compute CRC for the five given messages.' },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -132,14 +132,14 @@ export const THREADS = [
     id: 'th1', code: 'CSE303', title: 'Why is aⁿbⁿ not regular but a*b* is?', author: 'Rahul M', at: at(-1, 21, 10), votes: 14, mine: false,
     body: 'Both have a’s followed by b’s. I don’t get why one needs a PDA and the other doesn’t.',
     replies: [
-      { author: 'Dr. Devika P', role: 'faculty', at: at(-1, 22, 5), votes: 21, accepted: true, body: 'a*b* lets the counts differ, so the machine only needs to remember “am I still reading a’s?”. aⁿbⁿ forces equal counts, so it must remember how many a’s it saw: unbounded memory, which a DFA does not have. Try the pumping lemma with the string aᵖbᵖ.' },
+      { author: 'Demo Teacher', role: 'faculty', at: at(-1, 22, 5), votes: 21, accepted: true, body: 'a*b* lets the counts differ, so the machine only needs to remember “am I still reading a’s?”. aⁿbⁿ forces equal counts, so it must remember how many a’s it saw: unbounded memory, which a DFA does not have. Try the pumping lemma with the string aᵖbᵖ.' },
       { author: 'Sneha K', role: 'student', at: at(0, 8, 30), votes: 3, body: 'The pumping lemma part in Sipser chapter 1.4 explains this exact example.' },
     ],
   },
   {
     id: 'th2', code: 'CSE302', title: 'Is every BCNF relation also in 3NF?', author: 'You', at: at(-2, 19, 45), votes: 6, mine: true,
     body: 'Asking for the mid-term. My notes say yes but I want to be sure.',
-    replies: [{ author: 'Prof. Arvind Rao', role: 'faculty', at: at(-2, 20, 30), votes: 9, accepted: true, body: 'Yes. BCNF is stricter than 3NF, so any relation in BCNF is automatically in 3NF. The reverse is not always true.' }],
+    replies: [{ author: 'Teacher 8', role: 'faculty', at: at(-2, 20, 30), votes: 9, accepted: true, body: 'Yes. BCNF is stricter than 3NF, so any relation in BCNF is automatically in 3NF. The reverse is not always true.' }],
   },
   {
     id: 'th3', code: 'CSE304', title: 'How do I quickly find the broadcast address of a subnet?', author: 'Arjun P', at: at(0, 9, 15), votes: 4, mine: false,
@@ -156,16 +156,16 @@ export const THREADS = [
   {
     id: 'th5', code: 'CSE305', title: 'Banker’s algorithm: safe sequence not unique?', author: 'Divya N', at: at(-4, 20, 0), votes: 7, mine: false,
     body: 'My answer has a different safe sequence than the solution. Is it still right?',
-    replies: [{ author: 'Dr. Iyer', role: 'faculty', at: at(-4, 21, 15), votes: 8, accepted: true, body: 'Yes, there can be more than one safe sequence. Any valid one gets full marks if your Need and Available steps are shown.' }],
+    replies: [{ author: 'Teacher 6', role: 'faculty', at: at(-4, 21, 15), votes: 8, accepted: true, body: 'Yes, there can be more than one safe sequence. Any valid one gets full marks if your Need and Available steps are shown.' }],
   },
 ];
 
 export const PROJECT = {
   title: 'CampusEats: canteen pre-ordering app',
   code: 'CSE306',
-  mentor: 'Dr. Sandeep Kumar',
+  mentor: 'Teacher 7',
   team: [
-    { name: 'Anna Sharma', role: 'Team lead, backend', you: true },
+    { name: 'Alex Sharma', role: 'Team lead, backend', you: true },
     { name: 'Rahul M', role: 'Frontend' },
     { name: 'Sneha K', role: 'Database' },
     { name: 'Arjun P', role: 'Testing and docs' },
@@ -178,7 +178,7 @@ export const PROJECT = {
     { title: 'Final report and viva', due: at(55, 23, 59), status: 'upcoming' },
   ],
   files: [
-    { name: 'topic_approval.pdf', by: 'Anna Sharma', at: at(-21, 18) },
+    { name: 'topic_approval.pdf', by: 'Alex Sharma', at: at(-21, 18) },
     { name: 'proposal_draft_v1.docx', by: 'Rahul M', at: at(-1, 22) },
   ],
 };
