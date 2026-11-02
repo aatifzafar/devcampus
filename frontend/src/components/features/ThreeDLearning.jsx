@@ -245,7 +245,15 @@ export function ThreeDLearning() {
     setBusy(true);
     setNote(null);
     try {
-      const res = await fetch('/api/ai/scene', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ topic: t }) });
+      const customKey = localStorage.getItem('alliance_gemini_api_key') || '';
+      const res = await fetch('/api/ai/scene', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          ...(customKey ? { 'x-gemini-api-key': customKey } : {})
+        },
+        body: JSON.stringify({ topic: t, apiKey: customKey || undefined })
+      });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || 'Could not build the model. Try again.');
       if (data.scene) {

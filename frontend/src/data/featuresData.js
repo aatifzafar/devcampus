@@ -148,8 +148,10 @@ export function topicFrequency(code) {
 /* 3. Alumni                                                           */
 /* ================================================================== */
 
-const alum = (id, name, batch, program, company, role, location, years, domains, story, advice, openToAdvice = true) => ({
-  id, name, batch, program, company, role, location, years, domains, story, advice, openToAdvice, linkedin: null,
+const alum = (id, name, batch, program, company, role, location, years, domains, story, advice, openToAdvice = true, github = null, linkedin = null) => ({
+  id, name, batch, program, company, role, location, years, domains, story, advice, openToAdvice,
+  linkedin: linkedin || "https://www.linkedin.com/search/results/people/?keywords=" + encodeURIComponent(name + " Alliance University"),
+  github: github || "https://github.com/" + name.toLowerCase().replace(/[^a-z]/g, ""),
 });
 
 // linkedin: put the real profile URL here. When it is null, the app opens a

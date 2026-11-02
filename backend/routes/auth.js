@@ -25,7 +25,7 @@ const fail = (key) => {
 };
 
 router.post('/login', ah(async (req, res) => {
-  const email = String(req.body?.email || '').trim().toLowerCase();
+  const email = String(req.body?.email || req.body?.identifier || req.body?.rollNo || '').trim().toLowerCase();
   const password = String(req.body?.password || '');
   if (!email || !password) return res.status(400).json({ success: false, message: 'Enter your email and password.' });
   const key = `${email}|${req.ip}`;

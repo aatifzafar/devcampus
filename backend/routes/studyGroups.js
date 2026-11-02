@@ -27,7 +27,8 @@ router.get('/:id', ah(async (req, res) => {
 
 // POST /api/studygroups
 router.post('/', ah(async (req, res) => {
-  const { title, courseCode, courseName, topic, maxPeers, pomodoroMinutes } = req.body || {};
+  const title = req.body?.title || req.body?.name;
+  const { courseCode, courseName, topic, maxPeers, pomodoroMinutes } = req.body || {};
   if (!title || !courseCode) return res.status(400).json({ success: false, message: 'Title and courseCode are required' });
   const me = await getUser(req.user.id);
   const minutes = parseInt(pomodoroMinutes, 10) || 25;

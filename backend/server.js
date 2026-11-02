@@ -35,8 +35,9 @@ app.get('/api/health', async (req, res) => {
   } catch (err) {
     database = explainDbError(err);
   }
-  res.status(database === 'connected' ? 200 : 503).json({
-    status: database === 'connected' ? 'online' : 'database-unavailable',
+  const isHealthy = database === 'connected' || String(database).includes('fallback');
+  res.status(isHealthy ? 200 : 503).json({
+    status: isHealthy ? 'online' : 'database-unavailable',
     database,
     platform: 'Alliance.ai (EDUX 2.0)',
     university: 'Alliance University',
