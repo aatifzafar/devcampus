@@ -4,6 +4,7 @@ import {
   ArrowRight,
   CalendarClock,
   CircleCheck,
+  Search,
   CircleX,
   ClipboardCheck,
   Clock,

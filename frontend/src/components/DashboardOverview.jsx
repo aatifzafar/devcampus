@@ -16,7 +16,9 @@ import {
   Code2,
   CheckCircle2,
   SlidersHorizontal,
-  ExternalLink
+  ExternalLink,
+  Palette,
+  FlaskConical
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
