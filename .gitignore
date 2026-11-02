@@ -34,3 +34,6 @@ Thumbs.db
 
 # Files users upload (kept on the server, not in git)
 backend/uploads/
+demovideoforfrontend/
+*.mp4
+*.mov

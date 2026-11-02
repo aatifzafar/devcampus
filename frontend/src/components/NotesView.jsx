@@ -108,7 +108,7 @@ function PreviewModal({ item, subject, onClose }) {
             <button
               disabled={!file}
               onClick={() => file && downloadBlob(file.blob, file.name)}
-              className="ml-auto shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#6D3FC0] text-white text-sm font-medium hover:bg-[#5B32A6] disabled:opacity-50"
+              className="ml-auto shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#0077CC] text-white text-sm font-medium hover:bg-[#005FA3] disabled:opacity-50"
             >
               <Download className="w-4 h-4" />
               <span className="hidden sm:inline">Download</span>
@@ -245,7 +245,7 @@ export default function NotesView({ subjectCode, setSubjectCode, onBack, embedde
               <p className="text-zinc-500 text-xs">Units shared</p>
             </div>
             <div>
-              <p className={`text-2xl font-semibold ${newCount ? 'text-[#6D3FC0]' : 'text-zinc-900'}`}>{newCount}</p>
+              <p className={`text-2xl font-semibold ${newCount ? 'text-[#0077CC]' : 'text-zinc-900'}`}>{newCount}</p>
               <p className="text-zinc-500 text-xs">New for you</p>
             </div>
           </div>
@@ -262,7 +262,7 @@ export default function NotesView({ subjectCode, setSubjectCode, onBack, embedde
               key={t}
               onClick={() => setType(t)}
               className={`px-3 py-1.5 rounded-full text-sm ${
-                type === t ? 'bg-[#F1EEFB] text-[#4C2E8A] font-medium' : 'text-zinc-600 hover:bg-zinc-100'
+                type === t ? 'bg-[#EFF6FF] text-[#005FA3] font-medium' : 'text-zinc-600 hover:bg-zinc-100'
               }`}
             >
               {t === 'all' ? 'All materials' : TYPES[t].label}
@@ -275,7 +275,7 @@ export default function NotesView({ subjectCode, setSubjectCode, onBack, embedde
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search materials"
-            className="pl-9 pr-3 py-2 w-full lg:w-60 rounded-full glass-input text-sm focus:outline-none focus:border-[#6D3FC0]"
+            className="pl-9 pr-3 py-2 w-full lg:w-60 rounded-full elastic-input text-sm focus:outline-none focus:border-[#0077CC]"
           />
         </label>
       </div>
@@ -301,7 +301,7 @@ export default function NotesView({ subjectCode, setSubjectCode, onBack, embedde
           }
 
           return (
-            <section key={u.unit} className="glass-card rounded-3xl overflow-hidden">
+            <section key={u.unit} className="elastic-card overflow-hidden">
               <button
                 onClick={() => toggle(u.unit)}
                 aria-expanded={isOpen}
@@ -321,7 +321,7 @@ export default function NotesView({ subjectCode, setSubjectCode, onBack, embedde
                   </p>
                 </div>
                 {unitNew > 0 && (
-                  <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-[#F1EEFB] text-[#4C2E8A]">{unitNew} new</span>
+                  <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-[#EFF6FF] text-[#005FA3]">{unitNew} new</span>
                 )}
                 <ChevronDown className={`w-5 h-5 text-zinc-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
               </button>
@@ -339,7 +339,7 @@ export default function NotesView({ subjectCode, setSubjectCode, onBack, embedde
                         </span>
                         <button onClick={() => open(item)} className="min-w-0 flex-1 text-left">
                           <p className={`text-[15px] truncate ${fresh ? 'font-semibold text-zinc-900' : 'font-medium text-zinc-800'}`}>
-                            {fresh && <span className="inline-block w-2 h-2 rounded-full bg-[#6D3FC0] mr-2 align-middle" />}
+                            {fresh && <span className="inline-block w-2 h-2 rounded-full bg-[#0077CC] mr-2 align-middle" />}
                             {item.title}
                           </p>
                           <p className="text-xs text-zinc-500 truncate">

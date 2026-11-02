@@ -44,7 +44,7 @@ const LEVEL_STYLE = {
 };
 
 const Card = ({ children, className = '' }) => (
-  <div className={`glass-card rounded-3xl p-5 sm:p-6 ${className}`}>{children}</div>
+  <div className={`elastic-card p-5 sm:p-6 ${className}`}>{children}</div>
 );
 
 const SectionTitle = ({ children, hint }) => (
@@ -96,7 +96,7 @@ function IntroTab({ subject, info }) {
           ))}
         </dl>
         <div className="mt-5 pt-5 border-t border-zinc-100 flex items-center gap-3">
-          <span className="w-10 h-10 rounded-full bg-[#F1EEFB] text-[#4C2E8A] flex items-center justify-center">
+          <span className="w-10 h-10 rounded-full bg-[#EFF6FF] text-[#005FA3] flex items-center justify-center">
             <UserRound className="w-5 h-5" />
           </span>
           <div>
@@ -119,7 +119,7 @@ function ObjectivesTab({ info }) {
         <ol className="space-y-3">
           {info.objectives.map((o, i) => (
             <li key={i} className="flex gap-3">
-              <span className="w-7 h-7 rounded-full bg-[#F1EEFB] text-[#4C2E8A] text-sm font-semibold flex items-center justify-center shrink-0">
+              <span className="w-7 h-7 rounded-full bg-[#EFF6FF] text-[#005FA3] text-sm font-semibold flex items-center justify-center shrink-0">
                 {i + 1}
               </span>
               <p className="text-[15px] text-zinc-700 pt-0.5">{o}</p>
@@ -143,7 +143,7 @@ function OutcomesTab({ info }) {
         <ul className="divide-y divide-zinc-100">
           {info.outcomes.map((o) => (
             <li key={o.id} className="flex items-start gap-4 py-3.5 first:pt-0 last:pb-0">
-              <span className="text-sm font-semibold text-[#6D3FC0] w-10 shrink-0 pt-0.5">{o.id}</span>
+              <span className="text-sm font-semibold text-[#0077CC] w-10 shrink-0 pt-0.5">{o.id}</span>
               <p className="text-[15px] text-zinc-700 flex-1">{o.text}</p>
               <span className={`text-xs font-medium px-2.5 py-1 rounded-full shrink-0 ${LEVEL_STYLE[o.level] || LEVEL_STYLE.Remember}`}>
                 {o.level}
@@ -253,7 +253,7 @@ function BookList({ books, label }) {
     <ol className="space-y-3">
       {books.map((b, i) => (
         <li key={b.title} className="flex gap-4 p-4 rounded-2xl border border-zinc-100 hover:border-zinc-200">
-          <span className="w-11 h-14 rounded-lg bg-gradient-to-b from-[#F1EEFB] to-[#E4DDF7] text-[#4C2E8A] flex items-center justify-center shrink-0">
+          <span className="w-11 h-14 rounded-lg bg-gradient-to-b from-[#EFF6FF] to-[#E4DDF7] text-[#005FA3] flex items-center justify-center shrink-0">
             <BookOpenText className="w-5 h-5" />
           </span>
           <div className="min-w-0 flex-1">
@@ -315,7 +315,7 @@ function VideosTab({ info, subject }) {
           <button
             key={u}
             onClick={() => setUnit(u)}
-            className={`px-3 py-1.5 rounded-full text-sm ${unit === u ? 'bg-[#F1EEFB] text-[#4C2E8A] font-medium' : 'text-zinc-600 hover:bg-zinc-100'}`}
+            className={`px-3 py-1.5 rounded-full text-sm ${unit === u ? 'bg-[#EFF6FF] text-[#005FA3] font-medium' : 'text-zinc-600 hover:bg-zinc-100'}`}
           >
             {u === 'all' ? `All classes (${info.recordings.length})` : `Unit ${u}`}
           </button>
@@ -395,7 +395,7 @@ export default function CourseView({ code, initialTab = 'units', onBack }) {
     <div>
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1.5 text-sm mb-4" aria-label="Breadcrumb">
-        <button onClick={onBack} className="text-[#6D3FC0] hover:text-[#4C2E8A]">
+        <button onClick={onBack} className="text-[#0077CC] hover:text-[#005FA3]">
           My subjects
         </button>
         <ChevronRight className="w-4 h-4 text-zinc-400" />
@@ -405,7 +405,7 @@ export default function CourseView({ code, initialTab = 'units', onBack }) {
       </nav>
 
       {/* Header */}
-      <div className="glass-card rounded-3xl overflow-hidden mb-5">
+      <div className="elastic-card overflow-hidden mb-5">
         <div className="h-1.5" style={{ background: subject.color }} />
         <div className="p-5 sm:p-6 flex flex-col md:flex-row md:items-center gap-4">
           <div className="min-w-0">
@@ -452,7 +452,7 @@ export default function CourseView({ code, initialTab = 'units', onBack }) {
               aria-selected={on}
               onClick={() => setTab(t.id)}
               className={`inline-flex items-center gap-2 px-4 py-3 text-sm whitespace-nowrap border-b-2 -mb-px transition-colors ${
-                on ? 'border-[#6D3FC0] text-[#4C2E8A] font-medium' : 'border-transparent text-zinc-500 hover:text-zinc-800'
+                on ? 'border-[#0077CC] text-[#005FA3] font-medium' : 'border-transparent text-zinc-500 hover:text-zinc-800'
               }`}
             >
               <Icon className="w-4 h-4" />

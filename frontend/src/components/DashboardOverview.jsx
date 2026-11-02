@@ -173,9 +173,9 @@ export default function DashboardOverview({
                   className="w-10 h-10 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-105"
                   style={{ backgroundColor: course.bgTint || '#FEF9C3' }}
                 >
-                  {idx === 0 && <span className="text-base">🎨</span>}
-                  {idx === 1 && <span className="text-base">💻</span>}
-                  {idx === 2 && <span className="text-base">🔬</span>}
+                  {idx === 0 && <Palette className="w-4 h-4 text-indigo-600" />}
+                  {idx === 1 && <Code2 className="w-4 h-4 text-emerald-600" />}
+                  {idx === 2 && <FlaskConical className="w-4 h-4 text-amber-600" />}
                 </div>
                 <button 
                   onClick={(e) => { e.stopPropagation(); }} 

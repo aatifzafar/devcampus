@@ -286,7 +286,7 @@ export default function StudyGroups({ activeRoomId, setActiveRoomId }) {
         {currentRoom && (
           <div className="lg:col-span-8 space-y-6">
             {/* Room Banner & Pomodoro Controls */}
-            <div className="glass-card rounded-3xl p-6 shadow-xs">
+            <div className="elastic-card p-6 shadow-xs">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-zinc-100">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
@@ -306,7 +306,7 @@ export default function StudyGroups({ activeRoomId, setActiveRoomId }) {
                 <div className="bg-[#18181B] text-white px-5 py-3 rounded-2xl flex items-center gap-4 shadow-sm self-start md:self-auto">
                   <div className="flex flex-col">
                     <span className="text-[10px] font-code uppercase tracking-wider text-zinc-400">
-                      {timerMode === 'work' ? '🎯 Focus Sprint' : '☕ Break Time'}
+                      {timerMode === 'work' ? 'Focus Interval' : 'Break Period'}
                     </span>
                     <span className="text-2xl font-bold font-code tracking-tight">
                       {formatTimer(pomodoroSeconds)}

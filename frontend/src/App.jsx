@@ -28,9 +28,9 @@ import {
 function ComingSoon({ tabId }) {
   const tab = sectionOf(tabId).tabs.find((t) => t.id === tabId);
   return (
-    <div className="glass-card rounded-3xl p-10 text-center max-w-2xl mx-auto mt-4">
+    <div className="elastic-card p-10 text-center max-w-2xl mx-auto mt-4">
       <p className="text-zinc-600 mb-2">{PLACEHOLDERS[tabId]}</p>
-      <p className="text-sm text-zinc-400">This page is coming next.</p>
+      <p className="text-sm text-zinc-400">This module is scheduled for the next deployment.</p>
     </div>
   );
 }
@@ -40,24 +40,20 @@ const roleOf = (u) => (u?.role === 'faculty' || u?.role === 'admin' ? 'faculty' 
 // Shown while the signed-in user's data loads, or if the server can't be reached.
 function BootScreen({ error, onRetry, onSignOut }) {
   return (
-    <div className="min-h-screen bg-transparent flex items-center justify-center p-6 relative">
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#6D3FC0]/20 blur-[100px] animate-float-1" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-amber-400/20 blur-[100px] animate-float-2" />
-      </div>
-      <div className="glass-modal rounded-3xl p-8 max-w-md w-full text-center relative z-10">
-        <span className="w-12 h-12 rounded-xl bg-[#EA580C] text-white flex items-center justify-center font-semibold mx-auto mb-4">A</span>
+    <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center p-6">
+      <div className="elastic-modal p-8 max-w-md w-full text-center">
+        <span className="w-12 h-12 rounded-xl bg-[#0077CC] text-white flex items-center justify-center font-bold text-lg mx-auto mb-4 shadow-sm">A</span>
         {error ? (
           <>
-            <p className="font-semibold text-zinc-900 mb-1">Couldn’t load your data</p>
+            <p className="font-bold text-zinc-900 mb-1 text-base">Failed to synchronize academic state</p>
             <p className="text-sm text-zinc-600 mb-5">{error}</p>
             <div className="flex justify-center gap-2">
-              <button onClick={onSignOut} className="px-4 py-2 rounded-full glass-subtle text-sm">Sign out</button>
-              <button onClick={onRetry} className="px-4 py-2 rounded-full bg-[#6D3FC0] text-white text-sm font-medium">Try again</button>
+              <button onClick={onSignOut} className="elastic-btn-secondary text-sm">Sign out</button>
+              <button onClick={onRetry} className="elastic-btn-primary text-sm">Try again</button>
             </div>
           </>
         ) : (
-          <p className="text-sm text-zinc-500">Loading your classes…</p>
+          <p className="text-sm text-zinc-500 font-medium">Synchronizing coursework and class schedules...</p>
         )}
       </div>
     </div>
@@ -96,7 +92,7 @@ export default function App() {
       setUser(u);
       if (!u) { resetStore(); setReady(false); }
     };
-    const onSyncError = (e) => { setToast(e.detail || 'Couldn’t save your change.'); setTimeout(() => setToast(''), 6000); };
+    const onSyncError = (e) => { setToast(e.detail || 'Could not persist update.'); setTimeout(() => setToast(''), 6000); };
     window.addEventListener(AUTH_EVENT, onAuth);
     window.addEventListener(SYNC_ERROR, onSyncError);
     return () => { window.removeEventListener(AUTH_EVENT, onAuth); window.removeEventListener(SYNC_ERROR, onSyncError); };
@@ -147,7 +143,7 @@ export default function App() {
     fetchInitialData();
   }, []);
 
-  // Keyboard shortcut ⌘K / Ctrl+K
+  // Keyboard shortcut Ctrl+K
   useEffect(() => {
     const handleKeyDown = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -203,110 +199,108 @@ export default function App() {
   const profile = role === 'faculty' ? { ...FACULTY, ...user } : user;
 
   return (
-    <div className="flex min-h-screen bg-transparent text-[#18181B] font-sans antialiased relative overflow-x-hidden">
-      {/* Ambient Living Glassmorphism Backdrop Canvas */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
-        {/* Vibrant Violet-Indigo Orb */}
-        <div className="absolute -top-32 -right-32 w-[40rem] h-[40rem] rounded-full bg-gradient-to-br from-[#6D3FC0]/30 via-indigo-500/25 to-purple-400/15 blur-[100px] animate-float-1" />
-        {/* Warm Sunset Amber-Coral Orb */}
-        <div className="absolute top-1/4 -left-36 w-[36rem] h-[36rem] rounded-full bg-gradient-to-tr from-amber-400/25 via-rose-400/22 to-orange-300/15 blur-[100px] animate-float-2" />
-        {/* Vivid Sky Blue-Cyan Orb */}
-        <div className="absolute top-2/3 right-10 w-[34rem] h-[34rem] rounded-full bg-gradient-to-tl from-sky-400/25 via-cyan-400/20 to-blue-500/15 blur-[95px] animate-float-3" />
-        {/* Fresh Emerald-Mint Orb */}
-        <div className="absolute -bottom-36 left-1/4 w-[38rem] h-[38rem] rounded-full bg-gradient-to-tr from-emerald-400/22 via-teal-400/18 to-cyan-300/15 blur-[100px] animate-float-1" />
+    <div className="flex flex-col min-h-screen bg-[#F8FAFC] text-[#0F172A] font-sans antialiased">
+      {/* Elastic-style Announcement Ribbon */}
+      <div className="bg-[#EFF6FF] border-b border-[#BAE6FD] px-4 py-2 text-center text-xs font-medium text-[#005FA3] flex items-center justify-center gap-2">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#0077CC] animate-pulse shrink-0"></span>
+        <span className="font-semibold text-zinc-900">Alliance University Academic OS</span>
+        <span className="text-zinc-400">·</span>
+        <span className="text-zinc-600">Enterprise Curriculum Intelligence, Proctored Observability, and Autonomous AI</span>
       </div>
 
-      {/* Left Navigation Sidebar */}
-      <Sidebar
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        userProfile={profile}
-        onOpenCourse={(code, tab = 'units') => {
-          setCourse({ code, tab });
-          setActiveTab('course');
-        }}
-        openCourseCode={course.code}
-      />
-
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 relative z-10">
-        {/* Top Header Navbar */}
-        <Navbar
-          userProfile={profile}
-          role={role}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          onOpenChatbot={() => setIsFloatingChatOpen(true)}
+      <div className="flex flex-1 min-h-0">
+        {/* Left Navigation Sidebar */}
+        <Sidebar
           activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          userProfile={profile}
+          onOpenCourse={(code, tab = 'units') => {
+            setCourse({ code, tab });
+            setActiveTab('course');
+          }}
+          openCourseCode={course.code}
         />
 
-        {/* Dynamic Main Page Content */}
-        <main className="flex-1 px-4 sm:px-6 lg:px-10 py-6 pb-28 md:pb-6 max-w-7xl w-full mx-auto">
-          {/* Sub-page tabs for the current sidebar section */}
-          <SectionTabs activeTab={activeTab} setActiveTab={setActiveTab} />
-
-          {PLACEHOLDERS[activeTab] && !PAGES[activeTab] && <ComingSoon tabId={activeTab} />}
-
-          <Page
-            id={activeTab}
-            onNavigate={setActiveTab}
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col min-w-0 bg-[#F8FAFC]">
+          {/* Top Header Navbar */}
+          <Navbar
             userProfile={profile}
             role={role}
-            onSwitchRole={handleSignOut}
-            onSignOut={handleSignOut}
-            onAskAI={(text) => {
-              setChatbotQuestion(text);
-              setActiveTab('chatbot');
-            }}
-            initialPrompt={chatbotQuestion}
-            onPromptUsed={() => setChatbotQuestion(null)}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            onOpenChatbot={() => setIsFloatingChatOpen(true)}
+            activeTab={activeTab}
           />
 
-          {activeTab === 'dashboard' && role === 'student' && (
-            <HomeOverview userProfile={profile} onNavigate={setActiveTab} />
-          )}
+          {/* Dynamic Main Page Content */}
+          <main className="flex-1 px-4 sm:px-6 lg:px-10 py-6 pb-28 md:pb-6 max-w-7xl w-full mx-auto">
+            {/* Sub-page tabs for the current sidebar section */}
+            <SectionTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
-          {activeTab === 'courses' && (
-            <SubjectsView
+            {PLACEHOLDERS[activeTab] && !PAGES[activeTab] && <ComingSoon tabId={activeTab} />}
+
+            <Page
+              id={activeTab}
               onNavigate={setActiveTab}
-              onOpenCourse={(code, tab = 'units') => {
-                setCourse({ code, tab });
-                setActiveTab('course');
+              userProfile={profile}
+              role={role}
+              onSwitchRole={handleSignOut}
+              onSignOut={handleSignOut}
+              onAskAI={(text) => {
+                setChatbotQuestion(text);
+                setActiveTab('chatbot');
               }}
+              initialPrompt={chatbotQuestion}
+              onPromptUsed={() => setChatbotQuestion(null)}
             />
-          )}
 
-          {activeTab === 'course' && course.code && (
-            <CourseView code={course.code} initialTab={course.tab} onBack={() => setActiveTab('courses')} />
-          )}
+            {activeTab === 'dashboard' && role === 'student' && (
+              <HomeOverview userProfile={profile} onNavigate={setActiveTab} />
+            )}
 
-          {activeTab === 'notes' && (
-            <NotesView
-              subjectCode={notesSubject}
-              setSubjectCode={setNotesSubject}
-              onBack={() => setActiveTab('courses')}
-            />
-          )}
+            {activeTab === 'courses' && (
+              <SubjectsView
+                onNavigate={setActiveTab}
+                onOpenCourse={(code, tab = 'units') => {
+                  setCourse({ code, tab });
+                  setActiveTab('course');
+                }}
+              />
+            )}
 
-          {activeTab === 'studygroups' && (
-            <StudyGroups
-              activeRoomId={activeRoomId}
-              setActiveRoomId={setActiveRoomId}
-            />
-          )}
-        </main>
+            {activeTab === 'course' && course.code && (
+              <CourseView code={course.code} initialTab={course.tab} onBack={() => setActiveTab('courses')} />
+            )}
+
+            {activeTab === 'notes' && (
+              <NotesView
+                subjectCode={notesSubject}
+                setSubjectCode={setNotesSubject}
+                onBack={() => setActiveTab('courses')}
+              />
+            )}
+
+            {activeTab === 'studygroups' && (
+              <StudyGroups
+                activeRoomId={activeRoomId}
+                setActiveRoomId={setActiveRoomId}
+              />
+            )}
+          </main>
+        </div>
       </div>
 
       {/* Phone bottom navigation */}
       <MobileNav activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {/* Floating EDUX AI Modal / Quick Drawer */}
+      {/* Floating AI Modal / Quick Drawer */}
       {isFloatingChatOpen && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end sm:p-6 bg-black/35 backdrop-blur-sm" onClick={() => setIsFloatingChatOpen(false)}>
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end sm:p-6 bg-black/40" onClick={() => setIsFloatingChatOpen(false)}>
           <div className="relative max-w-lg w-full h-[90vh] sm:h-[640px]" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setIsFloatingChatOpen(false)}
-              className="absolute -top-11 right-0 w-9 h-9 rounded-full glass-modal text-zinc-600 flex items-center justify-center shadow hover:bg-white"
+              className="absolute -top-10 right-0 w-8 h-8 rounded-lg bg-white border border-zinc-300 text-zinc-600 flex items-center justify-center shadow hover:bg-zinc-100 transition-colors cursor-pointer"
               aria-label="Close"
             >
               <X className="w-4 h-4" />
@@ -316,7 +310,7 @@ export default function App() {
         </div>
       )}
       {toast && (
-        <div role="alert" className="fixed bottom-24 md:bottom-6 left-1/2 -translate-x-1/2 z-[60] max-w-md w-[calc(100%-2rem)] bg-zinc-900/90 backdrop-blur-xl border border-white/20 text-white text-sm rounded-2xl px-4 py-3 shadow-2xl flex items-start gap-3">
+        <div role="alert" className="fixed bottom-24 md:bottom-6 left-1/2 -translate-x-1/2 z-[60] max-w-md w-[calc(100%-2rem)] bg-zinc-900 text-white text-sm rounded-xl px-4 py-3 shadow-lg flex items-start gap-3 border border-zinc-700">
           <span className="flex-1">{toast}</span>
           <button onClick={() => setToast('')} className="text-white/60 hover:text-white" aria-label="Dismiss"><X className="w-4 h-4" /></button>
         </div>

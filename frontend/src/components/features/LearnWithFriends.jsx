@@ -238,7 +238,7 @@ export function SkillSwap() {
                   <span className="w-10 h-10 rounded-full bg-[#F1EEFB] text-[#4C2E8A] text-sm font-semibold flex items-center justify-center">{initials(p.name)}</span>
                   <div className="min-w-0 flex-1">
                     <p className="font-semibold text-zinc-900">{p.name}</p>
-                    <p className="text-xs text-zinc-500">Semester {p.sem}{p.rating ? ` · ${p.rating.toFixed(1)}★` : ' · New tutor'}</p>
+                    <p className="text-xs text-zinc-500">Semester {p.sem}{p.rating ? ` · Rating: ${p.rating.toFixed(1)}/5` : ' · New tutor'}</p>
                   </div>
                   {perfect ? <Pill tone="violet"><ArrowLeftRight className="w-3 h-3" />Perfect swap</Pill> : <Pill>Can help you</Pill>}
                 </div>

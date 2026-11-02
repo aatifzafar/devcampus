@@ -548,7 +548,7 @@ export default function ThreeDViewer() {
           {/* Bottom Canvas Controls Help */}
           <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between text-[11px] font-code text-zinc-400 pointer-events-none">
             <span className="bg-zinc-900/80 px-2.5 py-1 rounded-lg backdrop-blur-md">
-              🖱️ Drag to Rotate • Scroll to Zoom
+              Drag to Rotate • Scroll to Zoom
             </span>
             <span className="bg-zinc-900/80 px-2.5 py-1 rounded-lg backdrop-blur-md">
               60 FPS WebGL 2.0
@@ -604,7 +604,7 @@ export default function ThreeDViewer() {
 
           {/* Alliance University Exam Note */}
           <div className="p-3.5 rounded-2xl bg-amber-50/80 border border-amber-200/80 text-xs text-amber-950 font-code">
-            <strong>📝 Exam Relevant Concept:</strong>
+            <strong>Core Concept & Architecture:</strong>
             <p className="mt-1 text-[11px] leading-relaxed">
               Questions frequently test cache coherence (MESI) and pipeline hazard stalls for this subsystem.
             </p>

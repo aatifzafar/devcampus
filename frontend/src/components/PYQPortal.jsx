@@ -372,7 +372,7 @@ export default function PYQPortal({ initialCourseFilter, onOpenChatWithQuestion 
                             {/* Revealed AI Solution Hint */}
                             {isHintOpen && (
                               <div className="mt-2 p-3 bg-amber-50/70 border border-amber-200/70 rounded-xl text-xs text-amber-950 font-code leading-relaxed animate-in fade-in">
-                                <strong>💡 Step-by-Step AI Approach:</strong>
+                                <strong>Step-by-Step Solution Methodology:</strong>
                                 <p className="mt-1">{q.aiHint}</p>
                               </div>
                             )}

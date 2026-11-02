@@ -115,7 +115,7 @@ function Tile({ className = '', children, onClick, as = 'div', label }) {
     <Comp
       onClick={onClick}
       aria-label={label}
-      className={`glass-card rounded-3xl p-5 sm:p-6 text-left ${onClick ? "cursor-pointer hover:bg-white/80 hover:border-white hover:shadow-[0_14px_40px_rgb(31,38,135,0.12)] transition-all" : ""} ${className}`}
+      className={`elastic-card p-5 sm:p-6 text-left ${onClick ? "cursor-pointer hover:border-zinc-300 hover:shadow-md transition-all" : ""} ${className}`}
     >
       {children}
     </Comp>
@@ -135,7 +135,7 @@ function TileHeader({ icon: Icon, title, action, onAction, tint = 'bg-zinc-100 t
             e.stopPropagation();
             onAction?.();
           }}
-          className="ml-auto inline-flex items-center gap-1 text-sm text-[#6D3FC0] hover:text-[#4C2E8A]"
+          className="ml-auto inline-flex items-center gap-1 text-sm text-[#0077CC] hover:text-[#005FA3]"
         >
           {action}
           <ArrowRight className="w-4 h-4" />
@@ -188,7 +188,7 @@ function TodayTile({ onNavigate }) {
 
   return (
     <Tile className="md:col-span-2 xl:col-span-8">
-      <TileHeader icon={CalendarClock} title="Do today" tint="bg-[#F1EEFB] text-[#6D3FC0]" action="Planner" onAction={() => onNavigate('planner-calendar')} />
+      <TileHeader icon={CalendarClock} title="Do today" tint="bg-[#EFF6FF] text-[#0077CC]" action="Planner" onAction={() => onNavigate('planner-calendar')} />
       {items.length === 0 ? (
         <div className="py-10 text-center">
           <CircleCheck className="w-8 h-8 text-emerald-500 mx-auto mb-2" />
@@ -221,7 +221,7 @@ function TodayTile({ onNavigate }) {
                   <button
                     onClick={() => onNavigate(it.go)}
                     className={`shrink-0 px-3.5 py-1.5 rounded-full text-sm font-medium ${
-                      it.overdue || it.live ? 'bg-[#6D3FC0] text-white hover:bg-[#5B32A6]' : 'border border-zinc-200 text-zinc-700 hover:bg-zinc-50'
+                      it.overdue || it.live ? 'bg-[#0077CC] text-white hover:bg-[#005299]' : 'border border-zinc-200 text-zinc-700 hover:bg-zinc-50'
                     }`}
                   >
                     {it.cta}
@@ -263,7 +263,7 @@ function PendingTile({ pending, onOpen }) {
           </p>
         </div>
       )}
-      <span className="mt-4 inline-flex items-center gap-1 text-sm text-[#6D3FC0]">
+      <span className="mt-4 inline-flex items-center gap-1 text-sm text-[#0077CC]">
         See all in order of priority <ArrowRight className="w-4 h-4" />
       </span>
     </Tile>
@@ -347,7 +347,7 @@ function QuizTile() {
             {quiz.subject.name}
           </p>
         </div>
-        <span className="ml-auto shrink-0 text-xs font-medium px-2 py-0.5 rounded-full bg-[#F1EEFB] text-[#4C2E8A]">+{quiz.xp} XP</span>
+        <span className="ml-auto shrink-0 text-xs font-medium px-2 py-0.5 rounded-full bg-[#EFF6FF] text-[#005FA3]">+{quiz.xp} XP</span>
       </div>
 
       <p className="text-[16px] font-medium text-zinc-900 mb-4 leading-relaxed">{quiz.question}</p>
@@ -357,7 +357,7 @@ function QuizTile() {
           const isPicked = picked === i;
           const isAnswer = i === quiz.answer;
           let style = 'border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50 text-zinc-800';
-          if (!checked && isPicked) style = 'border-[#6D3FC0] bg-[#F7F5FD] text-[#4C2E8A]';
+          if (!checked && isPicked) style = 'border-[#0077CC] bg-[#F7F5FD] text-[#005FA3]';
           if (checked && isAnswer) style = 'border-emerald-400 bg-emerald-50 text-emerald-800';
           if (checked && isPicked && !isAnswer) style = 'border-red-300 bg-red-50 text-red-700';
           if (checked && !isPicked && !isAnswer) style = 'border-zinc-200 text-zinc-400';
@@ -384,7 +384,7 @@ function QuizTile() {
 
       {!checked ? (
         <div className="flex items-center gap-3 mt-auto">
-          <button onClick={check} className="px-5 py-2.5 rounded-full bg-[#6D3FC0] text-white text-sm font-medium hover:bg-[#5B32A6]">
+          <button onClick={check} className="px-5 py-2.5 rounded-full bg-[#0077CC] text-white text-sm font-medium hover:bg-[#005299]">
             Check answer
           </button>
           {error && <span className="text-sm text-red-600">{error}</span>}
@@ -458,7 +458,7 @@ function PendingModal({ pending, onClose, onNavigate }) {
         aria-modal="true"
         aria-labelledby="pending-title"
         onClick={(e) => e.stopPropagation()}
-        className="glass-modal w-full sm:max-w-2xl max-h-[88vh] rounded-t-3xl sm:rounded-3xl flex flex-col overflow-hidden shadow-2xl"
+        className="elastic-modal w-full sm:max-w-2xl max-h-[88vh] flex flex-col overflow-hidden shadow-2xl"
       >
         <div className="flex items-start gap-3 p-5 sm:p-6 border-b border-zinc-100">
           <div>
@@ -506,7 +506,7 @@ function PendingModal({ pending, onClose, onNavigate }) {
                         onNavigate('assignments');
                       }}
                       className={`shrink-0 px-3.5 py-1.5 rounded-full text-sm font-medium ${
-                        ['overdue', 'today'].includes(g.id) ? 'bg-[#6D3FC0] text-white hover:bg-[#5B32A6]' : 'border border-zinc-200 text-zinc-700 hover:bg-zinc-50'
+                        ['overdue', 'today'].includes(g.id) ? 'bg-[#0077CC] text-white hover:bg-[#005299]' : 'border border-zinc-200 text-zinc-700 hover:bg-zinc-50'
                       }`}
                     >
                       Submit
@@ -550,17 +550,140 @@ export default function HomeOverview({ userProfile, onNavigate }) {
   ].filter(Boolean);
 
   return (
-    <div className="space-y-5">
-      <div className="mb-2">
-        <p className="text-sm text-zinc-500 mb-1">
-          {new Date().toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' })}
-        </p>
-        <h1 className="text-3xl font-semibold text-zinc-900 tracking-tight">
-          {greeting}, {firstName}
-        </h1>
-        <p className="text-zinc-600 mt-1">
-          {summary.length ? `You have ${summary.join(', ')}.` : 'Nothing urgent today. Nice work.'}
-        </p>
+    <div className="space-y-6">
+      {/* Elastic-style Enterprise Hero Showcase */}
+      <div className="bg-white rounded-xl border border-zinc-200 p-6 md:p-8 shadow-xs">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#EFF6FF] border border-[#BAE6FD] text-[#0077CC] text-xs font-mono font-semibold uppercase tracking-wider mb-3">
+              Academic Intelligence Platform
+            </span>
+            <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-900 leading-tight">
+              Alliance.ai: The search and reasoning platform for academics
+            </h1>
+            <p className="text-sm md:text-base text-zinc-600 mt-2.5 leading-relaxed">
+              Curriculum intelligence powers coursework, verified past exam paper search, real-time proctored test observability, and autonomous AI reasoning for engineers.
+            </p>
+            <div className="flex flex-wrap items-center gap-3 mt-5">
+              <button
+                onClick={() => onNavigate('planner-calendar')}
+                className="elastic-btn-primary text-sm font-semibold px-4 py-2 cursor-pointer"
+              >
+                Start today's tasks
+              </button>
+              <button
+                onClick={() => onNavigate('courses')}
+                className="elastic-btn-secondary text-sm font-semibold px-4 py-2 cursor-pointer"
+              >
+                Explore curriculum
+              </button>
+            </div>
+          </div>
+
+          {/* Elastic-style Live Observability Quick Gauge */}
+          <div className="flex flex-col sm:flex-row lg:flex-col gap-3 min-w-[240px]">
+            <div className="p-3.5 rounded-lg bg-[#F8FAFC] border border-zinc-200">
+              <div className="flex items-center justify-between text-xs font-mono text-zinc-500 mb-1">
+                <span>SYSTEM HEALTH</span>
+                <span className="text-[#059669] font-bold">OPERATIONAL</span>
+              </div>
+              <p className="text-base font-bold text-zinc-900 font-mono">Gemini Flash 3.8</p>
+              <p className="text-[11px] text-zinc-500 font-mono">Curriculum Vector Index Active</p>
+            </div>
+            <div className="p-3.5 rounded-lg bg-[#F8FAFC] border border-zinc-200">
+              <div className="flex items-center justify-between text-xs font-mono text-zinc-500 mb-1">
+                <span>PROCTOR OBSERVABILITY</span>
+                <span className="text-[#0077CC] font-bold">ARMED</span>
+              </div>
+              <p className="text-base font-bold text-zinc-900 font-mono">1-Strike Tab Blur</p>
+              <p className="text-[11px] text-zinc-500 font-mono">Auto-submit proctor active</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Accreditations & Technical Proof Strip */}
+        <div className="mt-8 pt-4 border-t border-zinc-100 flex flex-wrap items-center justify-between gap-4 text-xs font-mono uppercase text-zinc-400">
+          <span>Alliance SAC</span>
+          <span>•</span>
+          <span>ACM Student Chapter</span>
+          <span>•</span>
+          <span>IEEE Computer Society</span>
+          <span>•</span>
+          <span>CSI Student Branch</span>
+          <span>•</span>
+          <span>NAAC A+ Accredited</span>
+        </div>
+      </div>
+
+      {/* SOLUTIONS 3-Card Technical Grid (From Elastic Video) */}
+      <div>
+        <div className="mb-3">
+          <span className="text-xs font-mono uppercase tracking-wider text-[#0077CC] font-bold block mb-0.5">
+            SOLUTIONS
+          </span>
+          <h2 className="text-xl font-bold tracking-tight text-zinc-900">
+            Security, Observability, Curriculum Search, and AI
+          </h2>
+          <p className="text-xs text-zinc-500 mt-0.5">
+            Real-time telemetry and vector search power academic excellence across the department.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="p-5 rounded-xl bg-white border border-zinc-200 hover:border-[#0077CC] hover:shadow-sm transition-all flex flex-col justify-between">
+            <div>
+              <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 text-[#0077CC] flex items-center justify-center font-bold mb-3">
+                <Search className="w-4 h-4" />
+              </div>
+              <h3 className="text-base font-bold text-zinc-900">Search and AI</h3>
+              <p className="text-xs text-zinc-600 mt-1.5 leading-relaxed">
+                Vector search across lecture units, verified MSE/ESE past year questions, and syllabi with live Gemini reasoning.
+              </p>
+            </div>
+            <button
+              onClick={() => onNavigate('chatbot')}
+              className="mt-4 text-xs font-bold text-[#0077CC] hover:underline flex items-center gap-1 self-start cursor-pointer"
+            >
+              Discover Ask Alliance <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          <div className="p-5 rounded-xl bg-white border border-zinc-200 hover:border-[#059669] hover:shadow-sm transition-all flex flex-col justify-between">
+            <div>
+              <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 text-[#059669] flex items-center justify-center font-bold mb-3">
+                <ClipboardCheck className="w-4 h-4" />
+              </div>
+              <h3 className="text-base font-bold text-zinc-900">Academic Observability</h3>
+              <p className="text-xs text-zinc-600 mt-1.5 leading-relaxed">
+                Full-spectrum coursework observability: syllabus unit progress, submission deadlines, and streak tracking.
+              </p>
+            </div>
+            <button
+              onClick={() => onNavigate('planner-calendar')}
+              className="mt-4 text-xs font-bold text-[#059669] hover:underline flex items-center gap-1 self-start cursor-pointer"
+            >
+              Discover Observability <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          <div className="p-5 rounded-xl bg-white border border-zinc-200 hover:border-rose-600 hover:shadow-sm transition-all flex flex-col justify-between">
+            <div>
+              <div className="w-8 h-8 rounded-lg bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center font-bold mb-3">
+                <ShieldCheck className="w-4 h-4" />
+              </div>
+              <h3 className="text-base font-bold text-zinc-900">Security & Integrity</h3>
+              <p className="text-xs text-zinc-600 mt-1.5 leading-relaxed">
+                Automated proctoring engine with zero-tolerance tab and window blur auto-submission on the 1st attempt.
+              </p>
+            </div>
+            <button
+              onClick={() => onNavigate('tests-upcoming')}
+              className="mt-4 text-xs font-bold text-rose-600 hover:underline flex items-center gap-1 self-start cursor-pointer"
+            >
+              Discover Exam Security <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-5">

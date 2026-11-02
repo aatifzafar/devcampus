@@ -14,14 +14,14 @@ function Badge({ badge }) {
   if (!badge) return null;
   if (badge.tone === 'live') {
     return (
-      <span className="ml-auto inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-50 text-red-700 text-[11px] font-medium">
-        <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+      <span className="ml-auto inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-rose-50 border border-rose-200 text-rose-700 text-[10px] font-mono font-medium">
+        <span className="w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse" />
         {badge.text}
       </span>
     );
   }
   return (
-    <span className="ml-auto px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-600 text-[11px] font-medium">
+    <span className="ml-auto px-1.5 py-0.5 rounded bg-zinc-100 border border-zinc-200 text-zinc-600 text-[10px] font-mono font-medium">
       {badge.text}
     </span>
   );
@@ -46,26 +46,31 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
     document.querySelector('input[placeholder*="Search"]')?.focus();
   };
 
-  const itemSize = collapsed ? 'justify-center w-11 h-11 mx-auto' : 'px-3 py-2.5';
+  const itemSize = collapsed ? 'justify-center w-10 h-10 mx-auto' : 'px-3 py-2';
 
   return (
     <aside
-      className={`hidden md:flex shrink-0 flex-col sticky top-0 h-screen glass-nav border-r border-white/60 shadow-[4px_0_30px_rgba(31,38,135,0.04)] relative z-20 transition-all duration-200 py-5 px-3 ${
-        collapsed ? 'w-[76px]' : 'w-64'
+      className={`hidden md:flex shrink-0 flex-col sticky top-0 h-screen bg-white border-r border-zinc-200 shadow-xs z-20 transition-all duration-200 py-4 px-3 ${
+        collapsed ? 'w-[72px]' : 'w-64'
       }`}
     >
       {/* Brand + collapse */}
-      <div className={`flex items-center mb-5 ${collapsed ? 'justify-center' : 'justify-between px-2'}`}>
-        <button onClick={() => setActiveTab(getNavRole() === 'faculty' ? 'f-home' : 'dashboard')} className="flex items-center gap-2.5" title="Alliance.ai">
-          <span className="w-9 h-9 rounded-xl bg-[#EA580C] text-white flex items-center justify-center text-sm font-semibold">
+      <div className={`flex items-center mb-4 ${collapsed ? 'justify-center' : 'justify-between px-2'}`}>
+        <button onClick={() => setActiveTab(getNavRole() === 'faculty' ? 'f-home' : 'dashboard')} className="flex items-center gap-2.5 cursor-pointer" title="Alliance.ai">
+          <span className="w-8 h-8 rounded-lg bg-[#0077CC] text-white flex items-center justify-center text-sm font-bold shadow-xs">
             A
           </span>
-          {!collapsed && <span className="text-[17px] font-semibold text-zinc-900 tracking-tight">Alliance.ai</span>}
+          {!collapsed && (
+            <div className="flex flex-col text-left">
+              <span className="text-sm font-bold text-zinc-900 tracking-tight leading-none">Alliance.ai</span>
+              <span className="text-[10px] text-zinc-500 font-mono tracking-wider uppercase mt-0.5">Academic OS</span>
+            </div>
+          )}
         </button>
         {!collapsed && (
           <button
             onClick={() => setCollapsed(true)}
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-zinc-400 hover:text-zinc-800 hover:bg-zinc-100"
+            className="w-7 h-7 rounded-md flex items-center justify-center text-zinc-400 hover:text-zinc-800 hover:bg-zinc-100 cursor-pointer"
             aria-label="Collapse sidebar"
           >
             <ChevronsLeft className="w-4 h-4" />
@@ -76,30 +81,30 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
       {collapsed && (
         <button
           onClick={() => setCollapsed(false)}
-          className="mx-auto mb-3 w-9 h-9 rounded-lg flex items-center justify-center text-zinc-400 hover:text-zinc-800 hover:bg-zinc-100"
+          className="mx-auto mb-3 w-8 h-8 rounded-md flex items-center justify-center text-zinc-400 hover:text-zinc-800 hover:bg-zinc-100 cursor-pointer"
           aria-label="Expand sidebar"
         >
           <ChevronsRight className="w-4 h-4" />
         </button>
       )}
 
-      {/* Search */}
+      {/* Search Button */}
       {!collapsed ? (
         <button
           onClick={focusSearch}
-          className="mx-1 mb-4 flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 bg-white text-sm text-zinc-400 hover:border-zinc-300"
+          className="mx-1 mb-3 flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-zinc-200 bg-[#F8FAFC] text-xs text-zinc-500 hover:border-zinc-300 hover:bg-white transition-all cursor-pointer"
         >
-          <Search className="w-4 h-4" />
-          <span>Search anything</span>
-          <span className="ml-auto text-[11px] text-zinc-400">Ctrl K</span>
+          <Search className="w-3.5 h-3.5" />
+          <span>Search modules</span>
+          <span className="ml-auto text-[10px] font-mono text-zinc-400">Ctrl+K</span>
         </button>
       ) : (
         <button
           onClick={focusSearch}
-          className="mx-auto mb-4 w-11 h-11 rounded-xl flex items-center justify-center text-zinc-500 hover:bg-zinc-100"
+          className="mx-auto mb-3 w-10 h-10 rounded-lg flex items-center justify-center text-zinc-500 hover:bg-zinc-100 cursor-pointer"
           aria-label="Search"
         >
-          <Search className="w-5 h-5" />
+          <Search className="w-4 h-4" />
         </button>
       )}
 
@@ -110,7 +115,7 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
             return collapsed ? (
               <div key="divider" className="my-2 mx-2 border-t border-zinc-200" />
             ) : (
-              <p key="divider" className="px-3 pt-4 pb-1 text-xs font-medium text-[#6D3FC0]">Only on Alliance.ai</p>
+              <p key="divider" className="px-3 pt-3 pb-1 text-[10px] font-mono uppercase tracking-wider font-bold text-zinc-400">Features & Hub</p>
             );
           }
           const Icon = section.icon;
@@ -133,26 +138,26 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
                 title={collapsed ? section.label : undefined}
                 aria-expanded={single || collapsed ? undefined : open}
                 aria-current={active && single ? 'page' : undefined}
-                className={`relative w-full flex items-center gap-3 rounded-xl text-[15px] transition-colors ${itemSize} ${
+                className={`relative w-full flex items-center gap-2.5 rounded-lg text-sm transition-colors cursor-pointer ${itemSize} ${
                   active && (single || collapsed || !open)
-                    ? 'bg-[#F1EEFB] text-[#4C2E8A] font-medium'
+                    ? 'bg-[#EFF6FF] text-[#0077CC] font-semibold'
                     : active
-                      ? 'text-[#4C2E8A] font-medium hover:bg-zinc-100'
+                      ? 'text-[#0077CC] font-semibold hover:bg-zinc-50'
                       : 'text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900'
                 }`}
               >
-                <Icon className={`w-5 h-5 shrink-0 ${active ? 'text-[#6D3FC0]' : 'text-zinc-500'}`} strokeWidth={1.8} />
+                <Icon className={`w-4 h-4 shrink-0 ${active ? 'text-[#0077CC]' : 'text-zinc-500'}`} strokeWidth={1.8} />
                 {!collapsed && <span>{section.label}</span>}
                 {!collapsed && section.badge && !open && <Badge badge={section.badge} />}
                 {!collapsed && !single && (
                   <ChevronRight
-                    className={`w-4 h-4 shrink-0 text-zinc-400 transition-transform duration-200 ${
+                    className={`w-3.5 h-3.5 shrink-0 text-zinc-400 transition-transform duration-200 ${
                       section.badge && !open ? 'ml-1' : 'ml-auto'
                     } ${open ? 'rotate-90' : ''}`}
                   />
                 )}
                 {collapsed && section.badge?.tone === 'live' && (
-                  <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-500" />
+                  <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-rose-500" />
                 )}
               </button>
 
@@ -163,7 +168,7 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
                 }`}
               >
                 <div className="overflow-hidden">
-                  <div className="ml-[22px] pl-3 border-l border-zinc-200 my-1 flex flex-col gap-0.5">
+                  <div className="ml-5 pl-2.5 border-l border-zinc-200 my-1 flex flex-col gap-0.5">
                     {section.tabs.filter((t) => !t.hidden).map((t) => {
                       const SubIcon = t.icon;
                       const on = activeTab === t.id;
@@ -173,20 +178,20 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
                           tabIndex={open ? 0 : -1}
                           onClick={() => setActiveTab(t.id)}
                           aria-current={on ? 'page' : undefined}
-                          className={`flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-sm text-left transition-colors ${
+                          className={`flex items-center gap-2 px-2 py-1.5 rounded-md text-xs text-left transition-colors cursor-pointer ${
                             on
-                              ? 'bg-[#F1EEFB] text-[#4C2E8A] font-medium'
+                              ? 'bg-[#EFF6FF] text-[#0077CC] font-semibold'
                               : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900'
                           }`}
                         >
                           {SubIcon && (
                             <SubIcon
-                              className={`w-4 h-4 shrink-0 ${on ? 'text-[#6D3FC0]' : 'text-zinc-400'}`}
+                              className={`w-3.5 h-3.5 shrink-0 ${on ? 'text-[#0077CC]' : 'text-zinc-400'}`}
                               strokeWidth={1.8}
                             />
                           )}
                           <span className="truncate">{t.label}</span>
-                          {t.live && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />}
+                          {t.live && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />}
                         </button>
                       );
                     })}
@@ -199,32 +204,32 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
       </nav>
 
       {/* Bottom: help + profile */}
-      <div className="mt-auto pt-3 border-t border-zinc-200/80 flex flex-col gap-1">
+      <div className="mt-auto pt-3 border-t border-zinc-200 flex flex-col gap-1">
         <button
           onClick={() => setActiveTab(firstTab(HELP))}
           title={collapsed ? HELP.label : undefined}
-          className={`flex items-center gap-3 rounded-xl text-sm text-zinc-600 hover:bg-zinc-100 ${
-            collapsed ? 'justify-center w-11 h-11 mx-auto' : 'px-3 py-2'
-          } ${current === 'help' ? 'bg-[#F1EEFB] text-[#4C2E8A]' : ''}`}
+          className={`flex items-center gap-2.5 rounded-lg text-xs font-medium text-zinc-600 hover:bg-zinc-100 cursor-pointer ${
+            collapsed ? 'justify-center w-10 h-10 mx-auto' : 'px-3 py-2'
+          } ${current === 'help' ? 'bg-[#EFF6FF] text-[#0077CC]' : ''}`}
         >
-          <HELP.icon className="w-5 h-5 text-zinc-500" strokeWidth={1.8} />
+          <HELP.icon className="w-4 h-4 text-zinc-500" strokeWidth={1.8} />
           {!collapsed && <span>{HELP.label}</span>}
         </button>
 
         <button
           onClick={() => setActiveTab(firstTab(PROFILE))}
           title={collapsed ? name : undefined}
-          className={`flex items-center gap-3 rounded-xl hover:bg-zinc-100 text-left ${
-            collapsed ? 'justify-center w-11 h-11 mx-auto' : 'px-2 py-2'
-          } ${current === 'profile' ? 'bg-[#F1EEFB]' : ''}`}
+          className={`flex items-center gap-2.5 rounded-lg hover:bg-zinc-50 border border-zinc-200 text-left cursor-pointer p-1.5 ${
+            collapsed ? 'justify-center w-10 h-10 mx-auto' : ''
+          } ${current === 'profile' ? 'border-[#BAE6FD] bg-[#EFF6FF]' : ''}`}
         >
-          <span className="w-9 h-9 rounded-full bg-[#F1EEFB] text-[#4C2E8A] text-xs font-semibold flex items-center justify-center shrink-0">
+          <span className="w-7 h-7 rounded bg-[#EFF6FF] text-[#0077CC] text-xs font-bold flex items-center justify-center shrink-0">
             {initials(name)}
           </span>
           {!collapsed && (
             <span className="min-w-0">
-              <span className="block text-sm font-medium text-zinc-900 truncate">{name}</span>
-              <span className="block text-xs text-zinc-500">{faculty ? 'Faculty · profile' : 'My progress and settings'}</span>
+              <span className="block text-xs font-semibold text-zinc-900 truncate">{name}</span>
+              <span className="block text-[10px] text-zinc-500 font-mono">{faculty ? 'Faculty Account' : 'Student Verified'}</span>
             </span>
           )}
         </button>
@@ -241,9 +246,8 @@ export function SectionTabs({ activeTab, setActiveTab }) {
   const showTabs = section.place === 'bottom';
   return (
     <div className="mb-6">
-      <p className="text-sm text-zinc-500 mb-1">{section.label}</p>
-      <h1 className="text-2xl font-semibold text-zinc-900 mb-3">{tab?.label}</h1>
-      {/* On phones the sidebar is hidden, so tabs always show there */}
+      <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-1">{section.label}</p>
+      <h1 className="text-2xl font-bold tracking-tight text-zinc-900 mb-3">{tab?.label}</h1>
       <div className={`flex gap-1 border-b border-zinc-200 overflow-x-auto ${showTabs ? '' : 'md:hidden'}`} role="tablist">
         {section.tabs.filter((t) => !t.hidden).map((t) => {
           const active = activeTab === t.id;
@@ -253,13 +257,13 @@ export function SectionTabs({ activeTab, setActiveTab }) {
               role="tab"
               aria-selected={active}
               onClick={() => setActiveTab(t.id)}
-              className={`inline-flex items-center gap-1.5 px-4 py-2.5 text-sm whitespace-nowrap border-b-2 -mb-px transition-colors ${
+              className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-sm whitespace-nowrap border-b-2 -mb-px transition-colors cursor-pointer ${
                 active
-                  ? 'border-[#6D3FC0] text-[#4C2E8A] font-medium'
+                  ? 'border-[#0077CC] text-[#0077CC] font-semibold'
                   : 'border-transparent text-zinc-500 hover:text-zinc-800'
               }`}
             >
-              {t.live && <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />}
+              {t.live && <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />}
               {t.label}
             </button>
           );
@@ -269,14 +273,11 @@ export function SectionTabs({ activeTab, setActiveTab }) {
   );
 }
 
-// Phone navigation: four main destinations plus "More".
-const PHONE_PRIMARY_ = () => (getNavRole() === 'faculty' ? ['fhome', 'fcourses', 'fassign', 'ftests'] : ['home', 'subjects', 'tests', 'practice']);
-
 export function MobileNav({ activeTab, setActiveTab }) {
   const [moreOpen, setMoreOpen] = useState(false);
   const current = sectionOf(activeTab).id;
-  const primary = navSections().filter((s) => PHONE_PRIMARY_().includes(s.id));
-  const extra = navSections().filter((s) => !PHONE_PRIMARY_().includes(s.id));
+  const primary = navSections().filter((s) => ['home', 'subjects', 'tests', 'practice'].includes(s.id));
+  const extra = navSections().filter((s) => !['home', 'subjects', 'tests', 'practice'].includes(s.id));
   const moreActive = extra.some((s) => s.id === current);
 
   const go = (section) => {
@@ -287,9 +288,9 @@ export function MobileNav({ activeTab, setActiveTab }) {
   return (
     <>
       {moreOpen && (
-        <div className="md:hidden fixed inset-0 z-40 bg-black/30" onClick={() => setMoreOpen(false)}>
+        <div className="md:hidden fixed inset-0 z-40 bg-black/40" onClick={() => setMoreOpen(false)}>
           <div
-            className="absolute bottom-20 left-3 right-3 glass-modal rounded-2xl p-2 shadow-xl"
+            className="absolute bottom-20 left-3 right-3 bg-white rounded-xl border border-zinc-200 p-2 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {extra.map((section) => {
@@ -298,11 +299,11 @@ export function MobileNav({ activeTab, setActiveTab }) {
                 <button
                   key={section.id}
                   onClick={() => go(section)}
-                  className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl text-[15px] hover:bg-zinc-100 ${
-                    current === section.id ? 'text-[#4C2E8A] font-medium' : 'text-zinc-800'
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm hover:bg-zinc-50 ${
+                    current === section.id ? 'text-[#0077CC] font-semibold bg-[#EFF6FF]' : 'text-zinc-800'
                   }`}
                 >
-                  <Icon className="w-5 h-5 text-zinc-500" strokeWidth={1.8} />
+                  <Icon className="w-4 h-4 text-zinc-500" strokeWidth={1.8} />
                   <span>{section.label}</span>
                   <Badge badge={section.badge} />
                 </button>
@@ -313,7 +314,7 @@ export function MobileNav({ activeTab, setActiveTab }) {
       )}
 
       <nav
-        className="md:hidden fixed bottom-0 inset-x-0 z-40 glass-nav border-t border-white/60 flex px-1 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
+        className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-zinc-200 flex px-1 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
         aria-label="Main"
       >
         {primary.map((section) => {
@@ -324,13 +325,13 @@ export function MobileNav({ activeTab, setActiveTab }) {
               key={section.id}
               onClick={() => go(section)}
               className={`relative flex-1 flex flex-col items-center gap-1 text-[11px] ${
-                active ? 'text-[#6D3FC0] font-medium' : 'text-zinc-500'
+                active ? 'text-[#0077CC] font-semibold' : 'text-zinc-500'
               }`}
             >
-              <Icon className="w-5 h-5" strokeWidth={1.8} />
+              <Icon className="w-4 h-4" strokeWidth={1.8} />
               {section.short || section.label}
               {section.badge?.tone === 'live' && (
-                <span className="absolute top-0 right-[30%] w-2 h-2 rounded-full bg-red-500" />
+                <span className="absolute top-0 right-[30%] w-1.5 h-1.5 rounded-full bg-rose-500" />
               )}
             </button>
           );
@@ -338,10 +339,10 @@ export function MobileNav({ activeTab, setActiveTab }) {
         <button
           onClick={() => setMoreOpen((o) => !o)}
           className={`flex-1 flex flex-col items-center gap-1 text-[11px] ${
-            moreActive || moreOpen ? 'text-[#6D3FC0] font-medium' : 'text-zinc-500'
+            moreActive || moreOpen ? 'text-[#0077CC] font-semibold' : 'text-zinc-500'
           }`}
         >
-          {moreOpen ? <X className="w-5 h-5" strokeWidth={1.8} /> : <Menu className="w-5 h-5" strokeWidth={1.8} />}
+          {moreOpen ? <X className="w-4 h-4" strokeWidth={1.8} /> : <Menu className="w-4 h-4" strokeWidth={1.8} />}
           More
         </button>
       </nav>

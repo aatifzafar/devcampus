@@ -21,7 +21,7 @@ export default function AIChatbot({ initialQuestion, initialCourseCode }) {
     {
       id: 'welcome_1',
       sender: 'bot',
-      text: `### Welcome to EDUX AI — Your Socratic Course Tutor 🎓
+      text: `### Welcome to Alliance AI — Academic Reasoning Assistant
 I am grounded in the **Alliance University curriculum**, MSE/ESE past question papers, and syllabus topics.
 
 **How would you like to learn today?**

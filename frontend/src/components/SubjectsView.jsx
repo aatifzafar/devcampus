@@ -22,7 +22,7 @@ function CurrentTile({ s, onNavigate, onOpenCourse }) {
   return (
     <article
       onClick={() => onOpenCourse(s.code, 'intro')}
-      className="group cursor-pointer glass-card rounded-3xl overflow-hidden flex flex-col hover:shadow-lg transition-all"
+      className="group cursor-pointer elastic-card overflow-hidden flex flex-col hover:shadow-lg transition-all"
     >
       <div className="h-1.5" style={{ background: s.color }} />
       <div className="p-5 flex flex-col flex-1">
@@ -39,7 +39,7 @@ function CurrentTile({ s, onNavigate, onOpenCourse }) {
           )}
         </div>
 
-        <h3 className="text-[17px] font-semibold text-zinc-900 leading-snug mb-1 group-hover:text-[#4C2E8A]">{s.name}</h3>
+        <h3 className="text-[17px] font-semibold text-zinc-900 leading-snug mb-1 group-hover:text-[#005FA3]">{s.name}</h3>
         <p className="text-sm text-zinc-500 flex items-center gap-1.5 mb-4">
           <UserRound className="w-3.5 h-3.5" />
           {s.faculty} · {s.credits} credits
@@ -137,7 +137,7 @@ function PastTile({ s, onOpenCourse }) {
               e.stopPropagation();
               onOpenCourse(s.code, 'units');
             }}
-        className="mt-auto self-start inline-flex items-center gap-1 text-sm text-[#6D3FC0] hover:text-[#4C2E8A]"
+        className="mt-auto self-start inline-flex items-center gap-1 text-sm text-[#0077CC] hover:text-[#005FA3]"
       >
         Open course <ArrowRight className="w-4 h-4" />
       </button>
@@ -219,7 +219,7 @@ export default function SubjectsView({ onNavigate, onOpenCourse }) {
                 key={t}
                 onClick={() => setTypeFilter(t)}
                 className={`px-3 py-1.5 rounded-full text-sm ${
-                  typeFilter === t ? 'bg-[#F1EEFB] text-[#4C2E8A] font-medium' : 'text-zinc-600 hover:bg-zinc-100'
+                  typeFilter === t ? 'bg-[#EFF6FF] text-[#005FA3] font-medium' : 'text-zinc-600 hover:bg-zinc-100'
                 }`}
               >
                 {t === 'All' ? 'All' : `${t}${t === 'Theory' ? '' : 's'}`}
@@ -231,7 +231,7 @@ export default function SubjectsView({ onNavigate, onOpenCourse }) {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Find a subject"
-              className="pl-9 pr-3 py-2 w-52 rounded-full border border-zinc-200 bg-white text-sm focus:outline-none focus:border-[#6D3FC0]"
+              className="pl-9 pr-3 py-2 w-52 rounded-full border border-zinc-200 bg-white text-sm focus:outline-none focus:border-[#0077CC]"
             />
           </label>
         </div>

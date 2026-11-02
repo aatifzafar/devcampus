@@ -63,7 +63,7 @@ function inline(text, key) {
     }
     if (p.startsWith('`') && p.endsWith('`') && p.length > 2) {
       return (
-        <code key={`${key}-${i}`} className="px-1.5 py-0.5 rounded bg-zinc-100 text-[13px] font-mono text-[#6D3FC0]">
+        <code key={`${key}-${i}`} className="px-1.5 py-0.5 rounded bg-zinc-100 text-[13px] font-mono text-[#0077CC]">
           {p.slice(1, -1)}
         </code>
       );
@@ -285,10 +285,10 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
   const isLiveConnected = Boolean(customKey || (status && status !== 'offline' && status.connected));
 
   return (
-    <div className={`flex flex-col ${compact ? 'h-full' : 'h-[calc(100vh-15rem)] min-h-[480px]'} glass-card rounded-3xl overflow-hidden relative shadow-[0_12px_40px_0_rgba(31,38,135,0.08)]`}>
+    <div className={`flex flex-col ${compact ? 'h-full' : 'h-[calc(100vh-15rem)] min-h-[480px]'} bg-white border border-zinc-200 rounded-xl shadow-xs overflow-hidden relative`}>
       {/* Header Bar */}
       <div className="flex items-center gap-2 px-4 sm:px-5 py-3 border-b border-zinc-100 flex-wrap sm:flex-nowrap">
-        <span className="w-8 h-8 rounded-xl bg-[#6D3FC0] text-white flex items-center justify-center shrink-0">
+        <span className="w-8 h-8 rounded-xl bg-[#0077CC] text-white flex items-center justify-center shrink-0">
           <Sparkles className="w-4 h-4" />
         </span>
         <div className="min-w-0 mr-auto">
@@ -340,7 +340,7 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
       <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-5 space-y-4">
         {messages.length === 0 && (
           <div className="max-w-xl mx-auto text-center pt-4">
-            <span className="w-12 h-12 rounded-2xl bg-[#F1EEFB] text-[#6D3FC0] flex items-center justify-center mx-auto mb-3">
+            <span className="w-12 h-12 rounded-2xl bg-[#EFF6FF] text-[#0077CC] flex items-center justify-center mx-auto mb-3">
               <Sparkles className="w-6 h-6" />
             </span>
             <p className="text-lg font-semibold text-zinc-900">Ask anything about Alliance or your subjects</p>
@@ -350,9 +350,9 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
 
             {/* Enter API Key Prompt Card if no key is configured */}
             {!customKey && (!status || !status.hasServerKey) && (
-              <div className="mb-5 p-3.5 rounded-2xl bg-gradient-to-r from-[#F1EEFB]/90 to-amber-50/80 border border-indigo-100 text-left flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+              <div className="mb-5 p-3.5 rounded-2xl bg-gradient-to-r from-[#EFF6FF]/90 to-amber-50/80 border border-indigo-100 text-left flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
                 <div className="flex items-center gap-2.5">
-                  <span className="w-8 h-8 rounded-xl bg-white text-[#6D3FC0] shadow-xs flex items-center justify-center shrink-0">
+                  <span className="w-8 h-8 rounded-xl bg-white text-[#0077CC] shadow-xs flex items-center justify-center shrink-0">
                     <Key className="w-4 h-4" />
                   </span>
                   <div>
@@ -363,7 +363,7 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
                 <button
                   type="button"
                   onClick={handleOpenKeyModal}
-                  className="px-3 py-1.5 rounded-xl bg-[#6D3FC0] hover:bg-[#5B32A6] text-white text-xs font-medium transition-colors shrink-0 shadow-xs cursor-pointer"
+                  className="px-3 py-1.5 rounded-xl bg-[#0077CC] hover:bg-[#005FA3] text-white text-xs font-medium transition-colors shrink-0 shadow-xs cursor-pointer"
                 >
                   Enter Key
                 </button>
@@ -375,7 +375,7 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
                 <button
                   key={s}
                   onClick={() => send(s)}
-                  className="px-3.5 py-2 rounded-full border border-zinc-200 text-sm text-zinc-700 hover:border-[#6D3FC0] hover:bg-[#F7F5FD] transition-colors"
+                  className="px-3.5 py-2 rounded-full border border-zinc-200 text-sm text-zinc-700 hover:border-[#0077CC] hover:bg-[#F7F5FD] transition-colors"
                 >
                   {s}
                 </button>
@@ -387,7 +387,7 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
         {messages.map((m, i) =>
           m.role === 'user' ? (
             <div key={i} className="flex justify-end">
-              <div className="max-w-[85%] rounded-2xl rounded-br-md bg-[#6D3FC0] text-white px-4 py-2.5 text-[15px] whitespace-pre-wrap">
+              <div className="max-w-[85%] rounded-xl rounded-br-sm bg-[#0077CC] text-white px-4 py-2.5 text-[15px] whitespace-pre-wrap shadow-xs">
                 {m.content}
               </div>
             </div>
@@ -395,7 +395,7 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
             <div key={i} className="flex gap-3">
               <span
                 className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5 ${
-                  m.error ? 'bg-red-50 text-red-600' : 'bg-[#F1EEFB] text-[#6D3FC0]'
+                  m.error ? 'bg-red-50 text-red-600' : 'bg-[#EFF6FF] text-[#0077CC]'
                 }`}
               >
                 {m.error ? <CircleAlert className="w-4 h-4" /> : <Sparkles className="w-4 h-4" />}
@@ -409,7 +409,7 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
 
         {busy && (
           <div className="flex gap-3 items-center">
-            <span className="w-7 h-7 rounded-lg bg-[#F1EEFB] text-[#6D3FC0] flex items-center justify-center">
+            <span className="w-7 h-7 rounded-lg bg-[#EFF6FF] text-[#0077CC] flex items-center justify-center">
               <Sparkles className="w-4 h-4" />
             </span>
             <span className="flex gap-1">
@@ -427,8 +427,8 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
       </div>
 
       {/* Input Form */}
-      <form onSubmit={(e) => { e.preventDefault(); send(); }} className="p-3 sm:p-4 border-t border-white/60 glass-subtle">
-        <div className="flex items-end gap-2 rounded-2xl glass-input focus-within:border-[#6D3FC0] px-3 py-2">
+      <form onSubmit={(e) => { e.preventDefault(); send(); }} className="p-3 sm:p-4 border-t border-zinc-200 bg-[#F8FAFC]">
+        <div className="flex items-end gap-2 rounded-lg bg-white border border-zinc-300 focus-within:border-[#0077CC] focus-within:ring-2 focus-within:ring-[#0077CC]/15 px-3 py-2 shadow-xs">
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -445,7 +445,7 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
           <button
             type="submit"
             disabled={!input.trim() || busy}
-            className="w-9 h-9 rounded-xl bg-[#6D3FC0] text-white flex items-center justify-center disabled:opacity-40 cursor-pointer"
+            className="w-9 h-9 rounded-xl bg-[#0077CC] text-white flex items-center justify-center disabled:opacity-40 cursor-pointer"
             aria-label="Send"
           >
             <ArrowUp className="w-5 h-5" />
@@ -462,7 +462,7 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
           <div className="w-full max-w-md bg-white rounded-3xl border border-zinc-200 shadow-2xl p-6 relative animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2.5">
-                <span className="w-9 h-9 rounded-xl bg-[#F1EEFB] text-[#6D3FC0] flex items-center justify-center">
+                <span className="w-9 h-9 rounded-xl bg-[#EFF6FF] text-[#0077CC] flex items-center justify-center">
                   <Key className="w-4 h-4" />
                 </span>
                 <div>
@@ -493,7 +493,7 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
                       setKeyFeedback(null);
                     }}
                     placeholder="AIzaSy..."
-                    className="w-full px-3.5 py-2.5 pr-10 text-sm font-mono rounded-xl border border-zinc-200 focus:outline-none focus:border-[#6D3FC0] focus:ring-1 focus:ring-[#6D3FC0]"
+                    className="w-full px-3.5 py-2.5 pr-10 text-sm font-mono rounded-xl border border-zinc-200 focus:outline-none focus:border-[#0077CC] focus:ring-1 focus:ring-[#0077CC]"
                   />
                   <button
                     type="button"
@@ -510,7 +510,7 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
                     href="https://aistudio.google.com/app/apikey"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#6D3FC0] font-medium inline-flex items-center gap-0.5 hover:underline"
+                    className="text-[#0077CC] font-medium inline-flex items-center gap-0.5 hover:underline"
                   >
                     Get free key at Google AI Studio <ExternalLink className="w-3 h-3" />
                   </a>
@@ -539,7 +539,7 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
                   type="button"
                   disabled={isVerifyingKey || !modalKeyInput.trim()}
                   onClick={handleVerifyAndSaveKey}
-                  className="w-full py-2.5 px-4 rounded-xl bg-[#6D3FC0] hover:bg-[#5B32A6] text-white text-sm font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-60 shadow-xs cursor-pointer"
+                  className="w-full py-2.5 px-4 rounded-xl bg-[#0077CC] hover:bg-[#005FA3] text-white text-sm font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-60 shadow-xs cursor-pointer"
                 >
                   {isVerifyingKey ? (
                     <>

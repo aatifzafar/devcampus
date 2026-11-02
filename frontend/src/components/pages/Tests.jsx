@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
+  ShieldAlert,
   AlarmClock,
   ArrowLeft,
   ArrowRight,
@@ -169,7 +170,7 @@ function SystemCheck({ test, onStart, onCancel }) {
           <li>Every answer is saved as soon as you pick it. If you lose connection, reopen the test to continue.</li>
           <li>You can mark questions to review and change answers until you submit.</li>
           <li className="text-red-700 font-semibold bg-red-50/80 p-2 rounded-lg border border-red-200">
-            ⚠️ Strict Proctoring: Do NOT change tabs or minimize windows. Leaving this tab or unfocusing the window will AUTO-SUBMIT the test immediately on the 1st attempt.
+            Strict Proctoring Active: Do NOT change tabs or minimize windows. Leaving this tab or unfocusing the window will AUTO-SUBMIT the test immediately on the 1st attempt.
           </li>
           {test.proctored && <li>An occasional camera photo is taken during the test.</li>}
           <li>{test.negative ? 'Wrong answers lose marks.' : 'There is no negative marking.'}</li>
