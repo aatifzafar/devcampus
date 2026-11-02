@@ -115,8 +115,8 @@ function Tile({ className = '', children, onClick, as = 'div', label }) {
     <Comp
       onClick={onClick}
       aria-label={label}
-      className={`bg-white rounded-3xl border border-[#E4E4E7] p-5 sm:p-6 text-left ${
-        onClick ? 'cursor-pointer hover:border-zinc-300 hover:shadow-sm transition-all' : ''
+      className={`bg-white/75 backdrop-blur-xl rounded-3xl border border-white/70 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-5 sm:p-6 text-left ${
+        onClick ? 'cursor-pointer hover:bg-white/85 hover:border-white/90 hover:shadow-[0_12px_36px_rgb(0,0,0,0.08)] transition-all' : ''
       } ${className}`}
     >
       {children}

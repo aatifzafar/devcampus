@@ -102,7 +102,7 @@ export { readSaved, writeSaved };
 
 /* ---------- components ---------- */
 export const Card = ({ children, className = '', ...rest }) => (
-  <div className={`bg-white rounded-3xl border border-[#E4E4E7] p-5 sm:p-6 ${className}`} {...rest}>
+  <div className={`bg-white/80 backdrop-blur-xl rounded-3xl border border-white/70 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_12px_36px_rgb(0,0,0,0.07)] hover:border-white/90 transition-all p-5 sm:p-6 ${className}`} {...rest}>
     {children}
   </div>
 );
@@ -167,7 +167,7 @@ export const Pill = ({ tone = 'zinc', children, className = '' }) => {
 export const Button = ({ variant = 'secondary', className = '', children, ...rest }) => {
   const styles = {
     primary: 'bg-[#6D3FC0] text-white hover:bg-[#5B32A6]',
-    secondary: 'border border-zinc-200 text-zinc-700 bg-white hover:bg-zinc-50',
+    secondary: 'border border-white/80 text-zinc-700 bg-white/75 backdrop-blur-md hover:bg-white/95 shadow-xs',
     ghost: 'text-[#6D3FC0] hover:bg-[#F7F5FD]',
     danger: 'bg-red-600 text-white hover:bg-red-700',
   };
@@ -203,12 +203,12 @@ export function Modal({ title, subtitle, onClose, children, footer, wide = false
     };
   }, [onClose]);
   return (
-    <div className="fixed inset-0 z-50 bg-black/40 flex items-end sm:items-center justify-center sm:p-6" onClick={onClose}>
+    <div className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm flex items-end sm:items-center justify-center sm:p-6" onClick={onClose}>
       <div
         role="dialog"
         aria-modal="true"
         onClick={(e) => e.stopPropagation()}
-        className={`bg-white w-full ${wide ? 'sm:max-w-3xl' : 'sm:max-w-lg'} max-h-[90vh] rounded-t-3xl sm:rounded-3xl flex flex-col overflow-hidden shadow-2xl`}
+        className={`bg-white/90 backdrop-blur-2xl w-full ${wide ? 'sm:max-w-3xl' : 'sm:max-w-lg'} max-h-[90vh] rounded-t-3xl sm:rounded-3xl border border-white/80 flex flex-col overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]`}
       >
         <div className="flex items-start gap-3 p-5 border-b border-zinc-100">
           <div className="min-w-0">
@@ -227,7 +227,7 @@ export function Modal({ title, subtitle, onClose, children, footer, wide = false
 }
 
 export const Stat = ({ label, value, hint, tone }) => (
-  <div className="rounded-2xl bg-white border border-[#E4E4E7] px-4 py-3.5">
+  <div className="rounded-2xl bg-white/75 backdrop-blur-md border border-white/70 shadow-[0_4px_20px_rgb(0,0,0,0.03)] px-4 py-3.5 transition-all">
     <p className="text-xs text-zinc-500">{label}</p>
     <p className={`text-2xl font-semibold ${tone || 'text-zinc-900'}`}>{value}</p>
     {hint && <p className="text-xs text-zinc-500">{hint}</p>}
@@ -247,4 +247,4 @@ export const Field = ({ label, children, hint, group = false }) => {
 };
 
 export const inputClass =
-  'w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 bg-white text-sm focus:outline-none focus:border-[#6D3FC0] focus:ring-2 focus:ring-[#6D3FC0]/10';
+  'w-full px-3.5 py-2.5 rounded-xl border border-zinc-200/80 bg-white/70 backdrop-blur-md text-sm focus:outline-none focus:bg-white/95 focus:border-[#6D3FC0] focus:ring-2 focus:ring-[#6D3FC0]/15 shadow-xs transition-all';

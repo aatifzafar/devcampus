@@ -36,7 +36,7 @@ export default function Navbar({
   ];
 
   return (
-    <header className="sticky top-0 z-30 w-full bg-[#F6F5F0]/90 backdrop-blur-md px-6 lg:px-10 py-4 flex items-center justify-between border-b border-[#E4E4E7]/60">
+    <header className="sticky top-0 z-30 w-full bg-white/65 backdrop-blur-2xl px-6 lg:px-10 py-4 flex items-center justify-between border-b border-white/50 shadow-[0_4px_30px_rgba(0,0,0,0.02)]">
       {/* Left: Section Title or Greeting */}
       <div className="flex items-center gap-3">
         <h1 className="text-xl md:text-2xl font-semibold tracking-tight text-zinc-900 flex items-center gap-2">
@@ -57,7 +57,7 @@ export default function Navbar({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search courses, PYQs, peers, or alumni..."
-            className="w-full bg-[#EAE8E1]/80 hover:bg-[#EAE8E1] focus:bg-white text-zinc-800 text-sm pl-11 pr-12 py-2.5 rounded-full border border-transparent focus:border-zinc-300 focus:outline-none transition-all placeholder:text-zinc-400"
+            className="w-full bg-white/50 backdrop-blur-md hover:bg-white/80 focus:bg-white text-zinc-800 text-sm pl-11 pr-12 py-2.5 rounded-full border border-white/60 focus:border-[#6D3FC0]/40 focus:outline-none transition-all placeholder:text-zinc-400 shadow-xs"
           />
           <kbd className="absolute right-3.5 px-2 py-0.5 text-[10px] font-code text-zinc-400 bg-zinc-200/80 rounded-md">
             ⌘K

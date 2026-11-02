@@ -50,7 +50,7 @@ export default function Sidebar({ activeTab, setActiveTab, userProfile, onOpenCo
 
   return (
     <aside
-      className={`hidden md:flex shrink-0 flex-col sticky top-0 h-screen bg-white/80 backdrop-blur-md border-r border-[#E4E4E7] transition-all duration-200 py-5 px-3 ${
+      className={`hidden md:flex shrink-0 flex-col sticky top-0 h-screen bg-white/65 backdrop-blur-2xl border-r border-white/50 shadow-[4px_0_30px_rgba(0,0,0,0.02)] transition-all duration-200 py-5 px-3 ${
         collapsed ? 'w-[76px]' : 'w-64'
       }`}
     >

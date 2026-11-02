@@ -165,7 +165,7 @@ export default function DashboardOverview({
             <div
               key={course.id || idx}
               onClick={() => onOpenCourse && onOpenCourse(course)}
-              className="bg-white rounded-3xl p-5 border border-[#E4E4E7] flex flex-col justify-between hover:border-zinc-300 hover:shadow-md transition-all cursor-pointer group"
+              className="bg-white/75 backdrop-blur-xl rounded-3xl p-5 border border-white/70 flex flex-col justify-between hover:border-white/90 hover:bg-white/85 hover:shadow-[0_12px_36px_rgb(0,0,0,0.08)] transition-all cursor-pointer group shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
             >
               {/* Header: Icon badge & 3-dot menu */}
               <div className="flex items-center justify-between">
@@ -223,7 +223,7 @@ export default function DashboardOverview({
       {/* SECOND ROW: Bento Middle (Task completed + Skill rank) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         {/* Left: Task completed (Soft peach/coral card matching screenshot) */}
-        <div className="lg:col-span-8 bg-[#FFEADB]/85 rounded-3xl p-6 lg:p-7 border border-[#FCD4C2]/50 flex flex-col justify-between relative">
+        <div className="lg:col-span-8 bg-[#FFEADB]/75 backdrop-blur-xl rounded-3xl p-6 lg:p-7 border border-white/70 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between relative">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-base font-bold text-zinc-900 tracking-tight">
               Task completed
@@ -290,7 +290,7 @@ export default function DashboardOverview({
         </div>
 
         {/* Right: Skill rank (Soft butter yellow card matching screenshot) */}
-        <div className="lg:col-span-4 bg-[#FEF7D6]/90 rounded-3xl p-6 lg:p-7 border border-[#FBEFA3]/60 flex flex-col justify-between">
+        <div className="lg:col-span-4 bg-[#FEF7D6]/80 backdrop-blur-xl rounded-3xl p-6 lg:p-7 border border-white/70 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-base font-bold text-zinc-900 tracking-tight">
@@ -347,7 +347,7 @@ export default function DashboardOverview({
       {/* THIRD ROW: Bento Bottom (Upcoming submission + Calendar) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         {/* Left: Upcoming submission (Soft periwinkle/blue card matching screenshot) */}
-        <div className="lg:col-span-8 bg-[#E9F2FE]/85 rounded-3xl p-6 lg:p-7 border border-[#D5E6FC]/60 flex flex-col justify-between">
+        <div className="lg:col-span-8 bg-[#E9F2FE]/75 backdrop-blur-xl rounded-3xl p-6 lg:p-7 border border-white/70 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-base font-bold text-zinc-900 tracking-tight">
@@ -452,7 +452,7 @@ export default function DashboardOverview({
         </div>
 
         {/* Right: Calendar (Soft mint/sage green card matching screenshot) */}
-        <div className="lg:col-span-4 bg-[#EBF7EE]/90 rounded-3xl p-6 lg:p-7 border border-[#D3EED8]/60 flex flex-col justify-between">
+        <div className="lg:col-span-4 bg-[#EBF7EE]/80 backdrop-blur-xl rounded-3xl p-6 lg:p-7 border border-white/70 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-sm font-bold text-zinc-900 tracking-tight font-code">

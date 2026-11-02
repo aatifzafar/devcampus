@@ -21,8 +21,8 @@
 /* Custom Design Tokens & Utility Classes */
 :root {
   --bg-main: #F6F5F0;
-  --bg-card: #FFFFFF;
-  --border-hairline: #E4E4E7;
+  --bg-card: rgba(255, 255, 255, 0.75);
+  --border-hairline: rgba(255, 255, 255, 0.6);
   --accent-primary: #4F46E5;
   --accent-secondary: #6D28D9;
 }
@@ -32,6 +32,53 @@ body {
   background-color: var(--bg-main);
   color: #18181B;
   min-height: 100vh;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.04);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(228, 228, 231, 0.75);
+  transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #6D3FC0;
+  box-shadow: 0 0 0 3px rgba(109, 63, 192, 0.12);
+}
+
+.glass-dark {
+  background: rgba(24, 24, 27, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Editorial Serif Headings */
@@ -66,4 +113,3 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #A1A1AA;
 }
-

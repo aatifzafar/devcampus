@@ -285,7 +285,7 @@ export function AskAlliance({ initialPrompt, onPromptUsed, compact = false, user
   const isLiveConnected = Boolean(customKey || (status && status !== 'offline' && status.connected));
 
   return (
-    <div className={`flex flex-col ${compact ? 'h-full' : 'h-[calc(100vh-15rem)] min-h-[480px]'} bg-white rounded-3xl border border-[#E4E4E7] overflow-hidden relative`}>
+    <div className={`flex flex-col ${compact ? 'h-full' : 'h-[calc(100vh-15rem)] min-h-[480px]'} bg-white/80 backdrop-blur-2xl rounded-3xl border border-white/70 shadow-[0_8px_32px_0_rgba(31,38,135,0.06)] overflow-hidden relative`}>
       {/* Header Bar */}
       <div className="flex items-center gap-2 px-4 sm:px-5 py-3 border-b border-zinc-100 flex-wrap sm:flex-nowrap">
         <span className="w-8 h-8 rounded-xl bg-[#6D3FC0] text-white flex items-center justify-center shrink-0">

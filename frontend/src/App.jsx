@@ -199,7 +199,11 @@ export default function App() {
   const profile = role === 'faculty' ? { ...FACULTY, ...user } : user;
 
   return (
-    <div className="flex min-h-screen bg-[#F6F5F0] text-[#18181B] font-sans antialiased">
+    <div className="flex min-h-screen bg-[#F6F5F0] text-[#18181B] font-sans antialiased relative overflow-x-hidden">
+      {/* Ambient glassmorphism gradient orbs */}
+      <div className="fixed -top-40 -right-40 w-[32rem] h-[32rem] rounded-full bg-gradient-to-br from-indigo-400/15 via-[#6D3FC0]/10 to-transparent blur-3xl pointer-events-none -z-10" />
+      <div className="fixed top-1/3 -left-40 w-[28rem] h-[28rem] rounded-full bg-gradient-to-tr from-amber-300/12 via-rose-300/10 to-transparent blur-3xl pointer-events-none -z-10" />
+      <div className="fixed -bottom-40 right-1/4 w-[36rem] h-[36rem] rounded-full bg-gradient-to-tl from-emerald-300/12 via-sky-300/10 to-transparent blur-3xl pointer-events-none -z-10" />
       {/* Left Navigation Sidebar */}
       <Sidebar
         activeTab={activeTab}
