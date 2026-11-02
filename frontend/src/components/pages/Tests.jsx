@@ -207,18 +207,52 @@ function TestScreen({ test, stream, saved, onSave, onSubmit }) {
     if (videoRef.current && stream) videoRef.current.srcObject = stream;
   }, [stream]);
 
-  // Leaving the tab is noted, not punished.
+  const armedRef = useRef(false);
+  const submittedRef = useRef(false);
+
+  // Arm security detection after 1.2s to prevent false trigger on initial mount/fullscreen
   useEffect(() => {
-    if (!test.proctored) return undefined;
-    const onHide = () => {
+    const t = setTimeout(() => {
+      armedRef.current = true;
+    }, 1200);
+    return () => clearTimeout(t);
+  }, []);
+
+  const handleSecurityViolation = useCallback(
+    (reason) => {
+      if (!armedRef.current || submittedRef.current) return;
+      submittedRef.current = true;
+      onSubmit({
+        answers,
+        marked,
+        warnings: 1,
+        autoSubmitted: true,
+        violationReason: reason || 'Tab switch or window unfocused'
+      });
+    },
+    [answers, marked, onSubmit]
+  );
+
+  // Auto-submit immediately on the 1st tab change or window blur
+  useEffect(() => {
+    const onVisibilityChange = () => {
       if (document.hidden) {
-        setWarnings((w) => w + 1);
-        setShowWarning(true);
+        handleSecurityViolation('Tab switch or browser minimized');
       }
     };
-    document.addEventListener('visibilitychange', onHide);
-    return () => document.removeEventListener('visibilitychange', onHide);
-  }, [test.proctored]);
+
+    const onBlur = () => {
+      handleSecurityViolation('Window unfocused or application switched');
+    };
+
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    window.addEventListener('blur', onBlur);
+
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      window.removeEventListener('blur', onBlur);
+    };
+  }, [handleSecurityViolation]);
 
   const persist = useCallback(
     (next) => {
@@ -267,6 +301,10 @@ function TestScreen({ test, stream, saved, onSave, onSubmit }) {
           <p className="font-semibold text-zinc-900 truncate">{test.title}</p>
           <p className="text-xs text-zinc-500 truncate">{subjectOf(test.code).name}</p>
         </div>
+        <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-red-50 text-red-700 border border-red-200">
+          <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+          Proctored: Tab Switch Auto-Submits (1st Attempt)
+        </span>
         <span className="hidden sm:inline-flex items-center gap-1.5 text-xs text-emerald-700 ml-auto">
           <CircleCheck className="w-4 h-4" />
           {savedAt ? `Saved ${fmtTime(savedAt)}` : 'Answers save automatically'}
@@ -408,14 +446,38 @@ function TestScreen({ test, stream, saved, onSave, onSubmit }) {
 }
 
 function Submitted({ test, attempt, onDone, onResults }) {
-  const s = scoreOf({ bank: test.bank, questions: test.customQuestions, answers: attempt.answers.map((a) => (a === null ? -1 : a)) });
+  const s = scoreOf({ bank: test.bank, questions: test.customQuestions, answers: (attempt?.answers || []).map((a) => (a === null ? -1 : a)) });
+  const isViolation = Boolean(attempt?.autoSubmitted || attempt?.violationReason);
+
   return (
     <div className="max-w-lg mx-auto w-full py-16 px-4 text-center">
-      <span className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-4">
-        <CircleCheck className="w-9 h-9" />
-      </span>
-      <h1 className="text-2xl font-semibold text-zinc-900 mb-1">Test submitted</h1>
+      {isViolation ? (
+        <span className="w-16 h-16 rounded-full bg-red-100 text-red-600 flex items-center justify-center mx-auto mb-4 animate-in zoom-in-95">
+          <CircleX className="w-9 h-9" />
+        </span>
+      ) : (
+        <span className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-4">
+          <CircleCheck className="w-9 h-9" />
+        </span>
+      )}
+      <h1 className="text-2xl font-semibold text-zinc-900 mb-1">
+        {isViolation ? 'Test Auto-Submitted' : 'Test submitted'}
+      </h1>
       <p className="text-zinc-600 mb-6">{test.title} · {subjectOf(test.code).name}</p>
+
+      {isViolation && (
+        <div className="mb-6 p-4 rounded-2xl bg-red-50 border border-red-200 text-left flex items-start gap-3 shadow-xs">
+          <TriangleAlert className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+          <div>
+            <p className="text-sm font-semibold text-red-900">Security Violation: Auto-Submitted on 1st Attempt</p>
+            <p className="text-xs text-red-700 mt-1 leading-relaxed">
+              Your test was automatically submitted because a tab switch or window change was detected ({attempt?.violationReason || 'Window switch'}).
+              Your answers have been finalized.
+            </p>
+          </div>
+        </div>
+      )}
+
       <Card className="mb-6 text-left">
         <div className="flex items-center gap-5">
           <div className="text-center">
@@ -424,8 +486,8 @@ function Submitted({ test, attempt, onDone, onResults }) {
           </div>
           <div className="text-sm text-zinc-700 space-y-1">
             <p>Score: <span className="font-semibold">{s.percent}%</span></p>
-            <p>Submitted at {fmtTime(new Date(attempt.submittedAt))}</p>
-            {attempt.warnings > 0 && <p className="text-amber-700">Left the test tab {attempt.warnings} time(s)</p>}
+            <p>Submitted at {fmtTime(new Date(attempt?.submittedAt || Date.now()))}</p>
+            {isViolation && <p className="text-red-600 font-medium text-xs">Terminated on Tab/Window Switch</p>}
           </div>
         </div>
       </Card>
