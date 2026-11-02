@@ -168,7 +168,9 @@ function SystemCheck({ test, onStart, onCancel }) {
           <li>The timer starts when you press Start and cannot be paused.</li>
           <li>Every answer is saved as soon as you pick it. If you lose connection, reopen the test to continue.</li>
           <li>You can mark questions to review and change answers until you submit.</li>
-          {test.proctored && <li>Stay on this tab. Leaving it is noted for your faculty to review; it does not end your test.</li>}
+          <li className="text-red-700 font-semibold bg-red-50/80 p-2 rounded-lg border border-red-200">
+            ⚠️ Strict Proctoring: Do NOT change tabs or minimize windows. Leaving this tab or unfocusing the window will AUTO-SUBMIT the test immediately on the 1st attempt.
+          </li>
           {test.proctored && <li>An occasional camera photo is taken during the test.</li>}
           <li>{test.negative ? 'Wrong answers lose marks.' : 'There is no negative marking.'}</li>
         </ul>
