@@ -199,17 +199,8 @@ export default function App() {
   const profile = role === 'faculty' ? { ...FACULTY, ...user } : user;
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#F8FAFC] text-[#0F172A] font-sans antialiased">
-      {/* Elastic-style Announcement Ribbon */}
-      <div className="bg-[#EFF6FF] border-b border-[#BAE6FD] px-4 py-2 text-center text-xs font-medium text-[#005FA3] flex items-center justify-center gap-2">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#0077CC] animate-pulse shrink-0"></span>
-        <span className="font-semibold text-zinc-900">Alliance University Academic OS</span>
-        <span className="text-zinc-400">·</span>
-        <span className="text-zinc-600">Enterprise Curriculum Intelligence, Proctored Observability, and Autonomous AI</span>
-      </div>
-
-      <div className="flex flex-1 min-h-0">
-        {/* Left Navigation Sidebar */}
+    <div className="flex min-h-screen bg-white text-[#18181B] font-sans antialiased">
+      {/* Left Navigation Sidebar */}
         <Sidebar
           activeTab={activeTab}
           setActiveTab={setActiveTab}
@@ -222,7 +213,7 @@ export default function App() {
         />
 
         {/* Main Content Area */}
-        <div className="flex-1 flex flex-col min-w-0 bg-[#F8FAFC]">
+        <div className="flex-1 flex flex-col min-w-0 bg-white">
           {/* Top Header Navbar */}
           <Navbar
             userProfile={profile}
@@ -289,8 +280,6 @@ export default function App() {
             )}
           </main>
         </div>
-      </div>
-
       {/* Phone bottom navigation */}
       <MobileNav activeTab={activeTab} setActiveTab={setActiveTab} />
 

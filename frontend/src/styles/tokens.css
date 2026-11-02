@@ -5,46 +5,44 @@
   --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 
   /* Elastic Design System Color Palette */
-  --color-elastic-blue: #0077CC;
-  --color-elastic-blue-hover: #005FA3;
+  --color-elastic-blue: #005FB8;
+  --color-elastic-blue-hover: #004B93;
   --color-elastic-blue-subtle: #EFF6FF;
   --color-elastic-blue-border: #BAE6FD;
   
-  --color-elastic-dark: #0F172A;
-  --color-elastic-charcoal: #1E293B;
-  --color-elastic-slate: #64748B;
+  --color-elastic-dark: #18181B;
+  --color-elastic-charcoal: #27272A;
+  --color-elastic-slate: #52525B;
   
   --color-elastic-bg: #FFFFFF;
-  --color-elastic-canvas: #F8FAFC;
-  --color-elastic-border: #E2E8F0;
-  --color-elastic-border-subtle: #F1F5F9;
+  --color-elastic-canvas: #FFFFFF;
+  --color-elastic-border: #18181B;
+  --color-elastic-border-subtle: #E4E4E7;
 
   --color-elastic-emerald: #059669;
   --color-elastic-emerald-subtle: #F0FDF4;
   --color-elastic-amber: #D97706;
   --color-elastic-amber-subtle: #FFFBEB;
-  --color-elastic-rose: #E11D48;
-  --color-elastic-rose-subtle: #FFF1F2;
+  --color-elastic-rose: #DC2626;
+  --color-elastic-rose-subtle: #FEF2F2;
 }
 
 /* Custom Design Tokens */
 :root {
-  --bg-main: #F8FAFC;
+  --bg-main: #FFFFFF;
   --bg-card: #FFFFFF;
-  --color-primary: #0077CC;
-  --color-primary-hover: #005FA3;
-  --border-hairline: #E2E8F0;
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #64748B;
+  --color-primary: #005FB8;
+  --color-primary-hover: #004B93;
+  --border-hairline: #18181B;
+  --text-primary: #18181B;
+  --text-secondary: #3F3F46;
+  --text-muted: #71717A;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: #F8FAFC;
-  background-image: radial-gradient(#CBD5E1 0.75px, transparent 0.75px);
-  background-size: 24px 24px;
-  color: #0F172A;
+  background-color: #FFFFFF;
+  color: #18181B;
   min-height: 100vh;
   position: relative;
   -webkit-font-smoothing: antialiased;
@@ -52,94 +50,92 @@ body {
 }
 
 /* ==========================================================================
-   Elastic Enterprise Tech SaaS Utilities
+   Elastic Technical SaaS Utilities (Matching Wireframe Grid)
    ========================================================================== */
 
-/* Clean Enterprise Card */
+/* Crisp Technical Box Card */
 .elastic-card {
   background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 14px;
-  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid #18181B;
+  border-radius: 6px;
+  box-shadow: none;
+  transition: all 0.15s ease;
 }
 
 .elastic-card:hover {
-  border-color: #CBD5E1;
-  box-shadow: 0 4px 12px 0 rgba(15, 23, 42, 0.07);
-  transform: translateY(-1px);
+  border-color: #005FB8;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.06);
 }
 
-/* Clean Header / Nav */
+/* Crisp Nav */
 .elastic-nav {
   background: #FFFFFF;
-  border-color: #E2E8F0;
-  box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.03);
+  border-color: #E4E4E7;
 }
 
 /* Primary Enterprise Button (Elastic Signature Blue) */
 .elastic-btn-primary {
-  background-color: #0077CC;
+  background-color: #005FB8;
   color: #FFFFFF;
-  font-weight: 500;
-  border-radius: 8px;
+  font-weight: 600;
+  border-radius: 6px;
   padding: 0.5rem 1rem;
   transition: all 0.15s ease;
-  box-shadow: 0 1px 2px 0 rgba(0, 119, 204, 0.2);
+  box-shadow: 0 1px 2px 0 rgba(0, 95, 184, 0.2);
 }
 
 .elastic-btn-primary:hover {
-  background-color: #005FA3;
-  box-shadow: 0 2px 4px 0 rgba(0, 119, 204, 0.3);
+  background-color: #004B93;
 }
 
-/* Secondary Enterprise Button (Clean Outline) */
+/* Secondary Enterprise Button (Clean Crisp Outline) */
 .elastic-btn-secondary {
   background-color: #FFFFFF;
-  color: #1E293B;
-  border: 1px solid #CBD5E1;
-  font-weight: 500;
-  border-radius: 8px;
+  color: #18181B;
+  border: 1px solid #18181B;
+  font-weight: 600;
+  border-radius: 6px;
   padding: 0.5rem 1rem;
   transition: all 0.15s ease;
 }
 
 .elastic-btn-secondary:hover {
-  background-color: #F8FAFC;
-  border-color: #94A3B8;
+  background-color: #F4F4F5;
+  border-color: #005FB8;
+  color: #005FB8;
 }
 
 /* Enterprise Input Field */
 .elastic-input {
   background: #FFFFFF;
-  border: 1px solid #CBD5E1;
-  border-radius: 8px;
-  padding: 0.55rem 0.85rem;
+  border: 1px solid #D4D4D8;
+  border-radius: 6px;
+  padding: 0.5rem 0.85rem;
   font-size: 0.875rem;
-  color: #0F172A;
+  color: #18181B;
   transition: all 0.15s ease;
 }
 
 .elastic-input:focus {
   outline: none;
-  border-color: #0077CC;
-  box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.15);
+  border-color: #005FB8;
+  box-shadow: 0 0 0 2px rgba(0, 95, 184, 0.2);
 }
 
 /* Enterprise Modal Dialog */
 .elastic-modal {
   background: #FFFFFF;
-  border: 1px solid #CBD5E1;
-  border-radius: 16px;
-  box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.1);
+  border: 1.5px solid #18181B;
+  border-radius: 8px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
 }
 
 /* High-Contrast Code / Dark Surface */
 .elastic-dark {
-  background-color: #0F172A;
-  color: #F8FAFC;
-  border: 1px solid #1E293B;
-  border-radius: 10px;
+  background-color: #18181B;
+  color: #FAFAFA;
+  border: 1px solid #27272A;
+  border-radius: 6px;
 }
 
 /* Technical Monospace & Section Kicker */
@@ -150,7 +146,7 @@ body {
 
 /* Hairline border */
 .border-hairline {
-  border: 1px solid #E2E8F0;
+  border: 1px solid #E4E4E7;
 }
 
 /* Clean scrollbars */
@@ -159,12 +155,12 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1F5F9;
+  background: #F4F4F5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: #D4D4D8;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: #A1A1AA;
 }
